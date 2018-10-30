@@ -16,6 +16,16 @@ public class Die {
     private Random random;
 
     /**
+     * Create a die with its own randomizer.
+     *
+     * @param size   Size of the die, must be positive.
+     * @throws IllegalArgumentException if the size is not positive.
+     */
+    public Die(int size) {
+        this(size, new Random());
+    }
+
+    /**
      * Create a die with a randomizer via dependency injection.
      *
      * @param size   Size of the die, must be positive.
@@ -32,20 +42,20 @@ public class Die {
     }
 
     /**
-     * Create a die with its own randomizer.
+     * Get string representing the die in the form of "D{size} = {value}".
      *
-     * @param size   Size of the die, must be positive.
-     * @throws IllegalArgumentException if the size is not positive.
+     * @return Representative string.
      */
-    public Die(int size) {
-        this(size, new Random());
+    @Override
+    public String toString() {
+        return String.format("D%d = %d", size, value);
     }
 
     /**
      * Roll the die, generating a new value.
      */
     public void roll() {
-        value = random.nextInt(size - 1) + 1;
+        value = random.nextInt(size) + 1;
     }
 
     /**
