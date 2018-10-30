@@ -1,4 +1,4 @@
-package com.mrshannon.hexmek;
+package io.mrshannon.hexmek;
 
 import java.util.Random;
 
@@ -11,60 +11,60 @@ import java.util.Random;
  */
 public class Die {
 
-    private int size;
+    private int faces;
     private int value;
     private Random random;
 
     /**
      * Create a die with its own randomizer.
      *
-     * @param size   Size of the die, must be positive.
+     * @param faces   Number of faces of the die, must be positive.
      * @throws IllegalArgumentException if the size is not positive.
      */
-    public Die(int size) {
-        this(size, new Random());
+    public Die(int faces) {
+        this(faces, new Random());
     }
 
     /**
      * Create a die with a randomizer via dependency injection.
      *
-     * @param size   Size of the die, must be positive.
+     * @param faces   Number of faces of the die, must be positive.
      * @param random Randomizer instance to use.
      * @throws IllegalArgumentException if the size is not positive.
      */
-    public Die(int size, Random random) {
-        if (size < 1) {
-            throw new IllegalArgumentException("Die size must be a positive integer.");
+    public Die(int faces, Random random) {
+        if (faces < 1) {
+            throw new IllegalArgumentException("Number of die faces must be a positive integer.");
         }
-        this.size = size;
+        this.faces = faces;
         this.random = random;
         roll();
     }
 
     /**
-     * Get string representing the die in the form of "D{size} = {value}".
+     * Get string representing the die in the form of "d{faces} = {value}".
      *
      * @return Representative string.
      */
     @Override
     public String toString() {
-        return String.format("D%d = %d", size, value);
+        return String.format("d%d = %d", faces, value);
     }
 
     /**
      * Roll the die, generating a new value.
      */
     public void roll() {
-        value = random.nextInt(size) + 1;
+        value = random.nextInt(faces) + 1;
     }
 
     /**
-     * Get the size of the die.
+     * Get the number of faces of the die.
      *
-     * @return Numerical size of the die.
+     * @return Number of faces of the die.
      */
-    public int getSize() {
-        return size;
+    public int getFaces() {
+        return faces;
     }
 
     /**
