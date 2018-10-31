@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * This class represents a single die of any Dn size.
- *
+ * <p>
  * Dice are always constructed with an initial roll.
  *
  * @author Michael R. Shannon
@@ -18,7 +18,7 @@ public class Die {
     /**
      * Create a die with its own randomizer.
      *
-     * @param faces   Number of faces of the die, must be positive.
+     * @param faces number of faces of the die, must be positive
      * @throws IllegalArgumentException if the size is not positive.
      */
     public Die(int faces) {
@@ -28,9 +28,9 @@ public class Die {
     /**
      * Create a die with a randomizer via dependency injection.
      *
-     * @param faces   Number of faces of the die, must be positive.
-     * @param random Randomizer instance to use.
-     * @throws IllegalArgumentException if the size is not positive.
+     * @param faces  number of faces of the die, must be positive
+     * @param random randomizer instance to use.
+     * @throws IllegalArgumentException if the size is not positive
      */
     public Die(int faces, Random random) {
         if (faces < 1) {
@@ -44,7 +44,7 @@ public class Die {
     /**
      * Get string representing the die in the form of "d{faces} = {value}".
      *
-     * @return Representative string.
+     * @return representative string
      */
     @Override
     public String toString() {
@@ -52,7 +52,7 @@ public class Die {
     }
 
     /**
-     * Roll the die, generating a new value.
+     * Roll the die, generating a new random value.
      */
     public void roll() {
         value = random.nextInt(faces) + 1;
@@ -61,7 +61,7 @@ public class Die {
     /**
      * Get the number of faces of the die.
      *
-     * @return Number of faces of the die.
+     * @return number of faces of the die
      */
     public int getFaces() {
         return faces;
@@ -70,7 +70,7 @@ public class Die {
     /**
      * Get the current value of the die.
      *
-     * @return Value of die.
+     * @return value of die
      */
     public int getValue() {
         return value;
