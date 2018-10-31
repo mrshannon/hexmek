@@ -106,32 +106,33 @@ public class DiceRoller extends AbstractCollection<Die> {
     }
 
     /**
-     * Compute probability that the next roll will produce a total less than the given value.
+     * Compute probability that the next roll will produce a total with at least the given value.
      *
-     * @param value value that total should be less than
-     * @return probability that the next roll will produce a total less than the given value
+     * @param value value that total should be no less than
+     * @return probability that the next roll will produce a total at least the given value
      */
-    public double lessThanProbability(int value) {
+    public double atLeastProbability(int value) {
         double sum = 0.0;
-        for (int i = 1; i < value; i++) {
+        for (int i = value; i <= getMax(); i++) {
             sum += probability(i);
         }
         return sum;
     }
 
     /**
-     * Compute probability that the next roll will produce a total greater than the given value.
+     * Compute probability that the next roll will produce a total with at most the given value.
      *
-     * @param value value that total should be greater than
-     * @return probability that the next roll will produce a total greater than the given value
+     * @param value value that total should be no greater than
+     * @return probability that the next roll will produce a total at most the given value
      */
-    public double greaterThanProbability(int value) {
+    public double atMostProbability(int value) {
         double sum = 0.0;
-        for (int i = value + 1; i <= getMax(); i++) {
+        for (int i = 1; i <= value; i++) {
             sum += probability(i);
         }
         return sum;
     }
+
 
     /**
      * Returns an iterator over the dice contained in the roller.
