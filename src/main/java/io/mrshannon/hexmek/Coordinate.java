@@ -47,18 +47,20 @@ public class Coordinate {
      */
     public List<Coordinate> neighbors() {
         var coordinates = new ArrayList<Coordinate>();
-        coordinates.add(new Coordinate(column, row - 1)); // north
-        coordinates.add(new Coordinate(column, row + 2)); // south
         if ((column & 1) == 0) { // even
+            coordinates.add(new Coordinate(column, row - 1)); // north
             coordinates.add(new Coordinate(column + 1, row)); // north east
             coordinates.add(new Coordinate(column + 1, row + 1)); // south east
-            coordinates.add(new Coordinate(column - 1, row)); // north west
+            coordinates.add(new Coordinate(column, row + 1)); // south
             coordinates.add(new Coordinate(column - 1, row + 1)); // south west
+            coordinates.add(new Coordinate(column - 1, row)); // north west
         } else { // odd
+            coordinates.add(new Coordinate(column, row - 1)); // north
             coordinates.add(new Coordinate(column + 1, row - 1)); // north east
             coordinates.add(new Coordinate(column + 1, row)); // south east
-            coordinates.add(new Coordinate(column - 1, row - 1)); // north west
+            coordinates.add(new Coordinate(column, row + 1)); // south
             coordinates.add(new Coordinate(column - 1, row)); // south west
+            coordinates.add(new Coordinate(column - 1, row - 1)); // north west
         }
         return coordinates;
     }
@@ -69,8 +71,12 @@ public class Coordinate {
      * @param other other coordinate to compare to
      * @return true if both coordinates are the same
      */
-    public boolean equals(Coordinate other) {
-        return (column == other.column) && (row == other.row);
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Coordinate) {
+            return (column == ((Coordinate) other).column) && (row == ((Coordinate) other).row);
+        }
+        return false;
     }
 
     /**
