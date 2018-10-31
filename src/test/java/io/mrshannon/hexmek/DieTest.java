@@ -33,7 +33,7 @@ public class DieTest {
             var truthSet = new HashSet<Integer>();
             var die = new Die(faces);
 
-            for (int i = 1; i <= 1000; ++i) {
+            for (int i = 1; i <= 10000; ++i) {
                 die.roll();
                 set.add(die.getValue());
             }
