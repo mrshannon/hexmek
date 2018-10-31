@@ -1,9 +1,44 @@
 package io.mrshannon.hexmek;
 
+/**
+ * A direction in the hexagonal, flat top/bottom map.  Valid directions are "North", "North East", "South East",
+ * "South", "South West", and "North West".
+ */
 public class Direction {
 
-    enum Enum {
-        NORTH, NORTHEAST, SOUTHEAST, SOUTH, SOUTHWEST, NORTHWEST
+    /**
+     * Direction enums.
+     */
+    public enum Enum {
+        /**
+         * North
+         */
+        NORTH,
+
+        /**
+         * North East
+         */
+        NORTHEAST,
+
+        /**
+         * South East
+         */
+        SOUTHEAST,
+
+        /**
+         * South
+         */
+        SOUTH,
+
+        /**
+         * South West
+         */
+        SOUTHWEST,
+
+        /**
+         * North West
+         */
+        NORTHWEST
     }
 
     private Enum direction;
@@ -60,6 +95,46 @@ public class Direction {
             newOrdinal += values.length;
         }
         direction = values[newOrdinal];
+    }
+
+    /**
+     * Use direction to propagate a coordinate by one unit.
+     *
+     * @param coordinate coordinate to propagate
+     * @return propagated coordinate
+     */
+    public Coordinate propagateCoordinate(Coordinate coordinate) {
+        switch (direction) {
+            case NORTH:
+                return new Coordinate(coordinate.getColumn(), coordinate.getRow() - 1);
+            case NORTHEAST:
+                if ((coordinate.getColumn() & 1) == 0) { // even
+                    return new Coordinate(coordinate.getColumn() + 1, coordinate.getRow());
+                } else { // odd
+                    return new Coordinate(coordinate.getColumn() + 1, coordinate.getRow() - 1);
+                }
+            case SOUTHEAST:
+                if ((coordinate.getColumn() & 1) == 0) { // even
+                    return new Coordinate(coordinate.getColumn() + 1, coordinate.getRow() + 1);
+                } else { // odd
+                    return new Coordinate(coordinate.getColumn() + 1, coordinate.getRow());
+                }
+            case SOUTH:
+                return new Coordinate(coordinate.getColumn(), coordinate.getRow() + 1);
+            case SOUTHWEST:
+                if ((coordinate.getColumn() & 1) == 0) { // even
+                    return new Coordinate(coordinate.getColumn() - 1, coordinate.getRow() + 1);
+                } else { // odd
+                    return new Coordinate(coordinate.getColumn() - 1, coordinate.getRow());
+                }
+            case NORTHWEST:
+                if ((coordinate.getColumn() & 1) == 0) { // even
+                    return new Coordinate(coordinate.getColumn() - 1, coordinate.getRow() );
+                } else { // odd
+                    return new Coordinate(coordinate.getColumn() - 1, coordinate.getRow() - 1);
+                }
+        }
+        return null; // not possible to reach this
     }
 
     /**
