@@ -143,8 +143,12 @@ public class Direction {
      * @param other direction to compare to
      * @return true if both directions are the same
      */
-    public boolean equals(Direction other) {
-        return direction.equals(other.direction);
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Direction) {
+            return direction.equals(((Direction) other).direction);
+        }
+        return false;
     }
 
     /**
