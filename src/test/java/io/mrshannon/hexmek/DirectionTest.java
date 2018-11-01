@@ -107,19 +107,19 @@ public class DirectionTest {
     @Test
     public void propagateCoordinate() {
         // even column
-        assertTrue(north.propagateCoordinate(new Coordinate(4, 7)).equals(new Coordinate(4, 6)));
-        assertTrue(northEast.propagateCoordinate(new Coordinate(4, 7)).equals(new Coordinate(5, 7)));
-        assertTrue(southEast.propagateCoordinate(new Coordinate(4, 7)).equals(new Coordinate(5, 8)));
-        assertTrue(south.propagateCoordinate(new Coordinate(4, 7)).equals(new Coordinate(4, 8)));
-        assertTrue(southWest.propagateCoordinate(new Coordinate(4, 7)).equals(new Coordinate(3, 8)));
-        assertTrue(northWest.propagateCoordinate(new Coordinate(4, 7)).equals(new Coordinate(3, 7)));
+        assertTrue(north.propagateCoordinate(new OffsetCoordinate(4, 7)).equals(new OffsetCoordinate(4, 6)));
+        assertTrue(northEast.propagateCoordinate(new OffsetCoordinate(4, 7)).equals(new OffsetCoordinate(5, 7)));
+        assertTrue(southEast.propagateCoordinate(new OffsetCoordinate(4, 7)).equals(new OffsetCoordinate(5, 8)));
+        assertTrue(south.propagateCoordinate(new OffsetCoordinate(4, 7)).equals(new OffsetCoordinate(4, 8)));
+        assertTrue(southWest.propagateCoordinate(new OffsetCoordinate(4, 7)).equals(new OffsetCoordinate(3, 8)));
+        assertTrue(northWest.propagateCoordinate(new OffsetCoordinate(4, 7)).equals(new OffsetCoordinate(3, 7)));
 
         // odd column
-        assertTrue(north.propagateCoordinate(new Coordinate(5, 7)).equals(new Coordinate(5, 6)));
-        assertTrue(northEast.propagateCoordinate(new Coordinate(5, 7)).equals(new Coordinate(6, 6)));
-        assertTrue(southEast.propagateCoordinate(new Coordinate(5, 7)).equals(new Coordinate(6, 7)));
-        assertTrue(south.propagateCoordinate(new Coordinate(5, 7)).equals(new Coordinate(5, 8)));
-        assertTrue(southWest.propagateCoordinate(new Coordinate(5, 7)).equals(new Coordinate(4, 7)));
-        assertTrue(northWest.propagateCoordinate(new Coordinate(5, 7)).equals(new Coordinate(4, 6)));
+        assertTrue(north.propagateCoordinate(new OffsetCoordinate(5, 7)).equals(new OffsetCoordinate(5, 6)));
+        assertTrue(northEast.propagateCoordinate(new OffsetCoordinate(5, 7)).equals(new OffsetCoordinate(6, 6)));
+        assertTrue(southEast.propagateCoordinate(new OffsetCoordinate(5, 7)).equals(new OffsetCoordinate(6, 7)));
+        assertTrue(south.propagateCoordinate(new OffsetCoordinate(5, 7)).equals(new OffsetCoordinate(5, 8)));
+        assertTrue(southWest.propagateCoordinate(new OffsetCoordinate(5, 7)).equals(new OffsetCoordinate(4, 7)));
+        assertTrue(northWest.propagateCoordinate(new OffsetCoordinate(5, 7)).equals(new OffsetCoordinate(4, 6)));
     }
 }

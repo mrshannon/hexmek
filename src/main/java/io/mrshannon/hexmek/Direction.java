@@ -103,35 +103,35 @@ public class Direction {
      * @param coordinate coordinate to propagate
      * @return propagated coordinate
      */
-    public Coordinate propagateCoordinate(Coordinate coordinate) {
+    public OffsetCoordinate propagateCoordinate(OffsetCoordinate coordinate) {
         switch (direction) {
             case NORTH:
-                return new Coordinate(coordinate.getColumn(), coordinate.getRow() - 1);
+                return new OffsetCoordinate(coordinate.getColumn(), coordinate.getRow() - 1);
             case NORTHEAST:
                 if ((coordinate.getColumn() & 1) == 0) { // even
-                    return new Coordinate(coordinate.getColumn() + 1, coordinate.getRow());
+                    return new OffsetCoordinate(coordinate.getColumn() + 1, coordinate.getRow());
                 } else { // odd
-                    return new Coordinate(coordinate.getColumn() + 1, coordinate.getRow() - 1);
+                    return new OffsetCoordinate(coordinate.getColumn() + 1, coordinate.getRow() - 1);
                 }
             case SOUTHEAST:
                 if ((coordinate.getColumn() & 1) == 0) { // even
-                    return new Coordinate(coordinate.getColumn() + 1, coordinate.getRow() + 1);
+                    return new OffsetCoordinate(coordinate.getColumn() + 1, coordinate.getRow() + 1);
                 } else { // odd
-                    return new Coordinate(coordinate.getColumn() + 1, coordinate.getRow());
+                    return new OffsetCoordinate(coordinate.getColumn() + 1, coordinate.getRow());
                 }
             case SOUTH:
-                return new Coordinate(coordinate.getColumn(), coordinate.getRow() + 1);
+                return new OffsetCoordinate(coordinate.getColumn(), coordinate.getRow() + 1);
             case SOUTHWEST:
                 if ((coordinate.getColumn() & 1) == 0) { // even
-                    return new Coordinate(coordinate.getColumn() - 1, coordinate.getRow() + 1);
+                    return new OffsetCoordinate(coordinate.getColumn() - 1, coordinate.getRow() + 1);
                 } else { // odd
-                    return new Coordinate(coordinate.getColumn() - 1, coordinate.getRow());
+                    return new OffsetCoordinate(coordinate.getColumn() - 1, coordinate.getRow());
                 }
             case NORTHWEST:
                 if ((coordinate.getColumn() & 1) == 0) { // even
-                    return new Coordinate(coordinate.getColumn() - 1, coordinate.getRow() );
+                    return new OffsetCoordinate(coordinate.getColumn() - 1, coordinate.getRow() );
                 } else { // odd
-                    return new Coordinate(coordinate.getColumn() - 1, coordinate.getRow() - 1);
+                    return new OffsetCoordinate(coordinate.getColumn() - 1, coordinate.getRow() - 1);
                 }
         }
         return null; // not possible to reach this

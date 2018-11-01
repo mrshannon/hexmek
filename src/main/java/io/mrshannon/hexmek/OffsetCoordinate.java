@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Coordinate in a hexagonal grid (flat top/bottom).
+ * OffsetCoordinate in a hexagonal grid (flat top/bottom).
  */
-public class Coordinate {
+public class OffsetCoordinate {
 
     private int column;
     private int row;
@@ -17,7 +17,7 @@ public class Coordinate {
      * @param column column number in hexagonal grid
      * @param row row number in hexagonal grid
      */
-    public Coordinate(int column, int row) {
+    public OffsetCoordinate(int column, int row) {
         this.column = column;
         this.row = row;
     }
@@ -45,22 +45,22 @@ public class Coordinate {
      *
      * @return list of neighboring coordinates
      */
-    public List<Coordinate> neighbors() {
-        var coordinates = new ArrayList<Coordinate>();
+    public List<OffsetCoordinate> neighbors() {
+        var coordinates = new ArrayList<OffsetCoordinate>();
         if ((column & 1) == 0) { // even
-            coordinates.add(new Coordinate(column, row - 1)); // north
-            coordinates.add(new Coordinate(column + 1, row)); // north east
-            coordinates.add(new Coordinate(column + 1, row + 1)); // south east
-            coordinates.add(new Coordinate(column, row + 1)); // south
-            coordinates.add(new Coordinate(column - 1, row + 1)); // south west
-            coordinates.add(new Coordinate(column - 1, row)); // north west
+            coordinates.add(new OffsetCoordinate(column, row - 1)); // north
+            coordinates.add(new OffsetCoordinate(column + 1, row)); // north east
+            coordinates.add(new OffsetCoordinate(column + 1, row + 1)); // south east
+            coordinates.add(new OffsetCoordinate(column, row + 1)); // south
+            coordinates.add(new OffsetCoordinate(column - 1, row + 1)); // south west
+            coordinates.add(new OffsetCoordinate(column - 1, row)); // north west
         } else { // odd
-            coordinates.add(new Coordinate(column, row - 1)); // north
-            coordinates.add(new Coordinate(column + 1, row - 1)); // north east
-            coordinates.add(new Coordinate(column + 1, row)); // south east
-            coordinates.add(new Coordinate(column, row + 1)); // south
-            coordinates.add(new Coordinate(column - 1, row)); // south west
-            coordinates.add(new Coordinate(column - 1, row - 1)); // north west
+            coordinates.add(new OffsetCoordinate(column, row - 1)); // north
+            coordinates.add(new OffsetCoordinate(column + 1, row - 1)); // north east
+            coordinates.add(new OffsetCoordinate(column + 1, row)); // south east
+            coordinates.add(new OffsetCoordinate(column, row + 1)); // south
+            coordinates.add(new OffsetCoordinate(column - 1, row)); // south west
+            coordinates.add(new OffsetCoordinate(column - 1, row - 1)); // north west
         }
         return coordinates;
     }
@@ -73,8 +73,8 @@ public class Coordinate {
      */
     @Override
     public boolean equals(Object other) {
-        if (other instanceof Coordinate) {
-            return (column == ((Coordinate) other).column) && (row == ((Coordinate) other).row);
+        if (other instanceof OffsetCoordinate) {
+            return (column == ((OffsetCoordinate) other).column) && (row == ((OffsetCoordinate) other).row);
         }
         return false;
     }
