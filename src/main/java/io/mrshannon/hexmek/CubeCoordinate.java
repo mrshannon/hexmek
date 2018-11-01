@@ -68,6 +68,54 @@ public class CubeCoordinate {
     }
 
     /**
+     * Translate the coordinate north by a given distance.
+     * @param amount distance to translate
+     */
+    public void translateNorth(int amount) {
+        add(new CubeCoordinate(0, amount, -amount));
+    }
+
+    /**
+     * Translate the coordinate north-east by a given distance.
+     * @param amount distance to translate
+     */
+    public void translateNorthEast(int amount) {
+        add(new CubeCoordinate(amount, 0, -amount));
+    }
+
+    /**
+     * Translate the coordinate south-east by a given distance.
+     * @param amount distance to translate
+     */
+    public void translateSouthEast(int amount) {
+        add(new CubeCoordinate(amount, -amount, 0));
+    }
+
+    /**
+     * Translate the coordinate south by a given distance.
+     * @param amount distance to translate
+     */
+    public void translateSouth(int amount) {
+        add(new CubeCoordinate(0, -amount, amount));
+    }
+
+    /**
+     * Translate the coordinate south-est by a given distance.
+     * @param amount distance to translate
+     */
+    public void translateSouthWest(int amount) {
+        add(new CubeCoordinate(-amount, 0, amount));
+    }
+
+    /**
+     * Translate the coordinate north-west by a given distance.
+     * @param amount distance to translate
+     */
+    public void translateNorthWest(int amount) {
+        add(new CubeCoordinate(-amount, amount, 0));
+    }
+
+    /**
      * Get list of coordinates from this coordinate to another coordinate.
      *
      * @param other the coordinate at the other end of the line
