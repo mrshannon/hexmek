@@ -22,7 +22,7 @@ public class Hex {
      */
     public Hex(int column, int row) {
         q = column;
-        r = row - (column + (column & 1))/2;
+        r = row - (int)(column + (column & 1))/2;
         s = -q - r;
     }
 
@@ -65,7 +65,7 @@ public class Hex {
      * @return row number
      */
     public int getRow() {
-        return r + (q + (q & 1))/2;
+        return r + (int)(q + (q & 1))/2;
     }
 
     /**
@@ -85,8 +85,8 @@ public class Hex {
      * @param amount distance to translate
      */
     public void translateNorth(int amount) {
-        r += amount;
-        s -= amount;
+        r -= amount;
+        s += amount;
     }
 
     /**
@@ -96,7 +96,7 @@ public class Hex {
      */
     public void translateNorthEast(int amount) {
         q += amount;
-        s -= amount;
+        r -= amount;
     }
 
     /**
@@ -106,7 +106,7 @@ public class Hex {
      */
     public void translateSouthEast(int amount) {
         q += amount;
-        r -= amount;
+        s -= amount;
     }
 
     /**
@@ -115,8 +115,8 @@ public class Hex {
      * @param amount distance to translate
      */
     public void translateSouth(int amount) {
-        r -= amount;
-        s += amount;
+        r += amount;
+        s -= amount;
     }
 
     /**
@@ -126,7 +126,7 @@ public class Hex {
      */
     public void translateSouthWest(int amount) {
         q -= amount;
-        s += amount;
+        r += amount;
     }
 
     /**
@@ -136,7 +136,7 @@ public class Hex {
      */
     public void translateNorthWest(int amount) {
         q -= amount;
-        r += amount;
+        s += amount;
     }
 
     /**
