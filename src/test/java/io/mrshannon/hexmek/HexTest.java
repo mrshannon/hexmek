@@ -334,8 +334,6 @@ public class HexTest {
         hexes.add(new Hex(2, -2));
         hex = new Hex(-1, 4);
         for (var h : hex.lineTo(new Hex(2,-2))) {
-            System.out.println(hexes.get(i));
-            System.out.println(h);
             assertEquals(hexes.get(i).getColumn(), h.getColumn());
             assertEquals(hexes.get(i).getRow(), h.getRow());
             ++i;
