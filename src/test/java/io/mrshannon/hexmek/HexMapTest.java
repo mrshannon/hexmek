@@ -6,8 +6,7 @@ import org.junit.Test;
 
 import java.util.HashMap;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class HexMapTest {
     private HexMap clearMap;
@@ -26,6 +25,18 @@ public class HexMapTest {
 
     @After
     public void tearDown() throws Exception {
+    }
+
+    @Test
+    public void getWidth() {
+        assertEquals(2, clearMap.getWidth());
+        assertEquals(3, woodsMap.getWidth());
+    }
+
+    @Test
+    public void getHeight() {
+        assertEquals(3, clearMap.getHeight());
+        assertEquals(2, woodsMap.getHeight());
     }
 
     @Test

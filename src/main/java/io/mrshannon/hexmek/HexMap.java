@@ -45,10 +45,8 @@ public class HexMap {
      */
     public HexMap(int width, int height, Tile baseTile, Map<Hex, Tile> tiles) {
         this(width, height, baseTile);
-        System.out.println(String.format("width = %d   height = %d", width, height));
         for (var entry : tiles.entrySet()) {
             if (isHexValid(entry.getKey())) {
-                System.out.println(entry.getKey());
                 this.tiles[entry.getKey().getColumn() - 1 + width*(entry.getKey().getRow() - 1)] = entry.getValue();
             }
         }
