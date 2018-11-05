@@ -98,43 +98,41 @@ public class Direction {
     }
 
     /**
-     * Use direction to propagate a coordinate by one unit.
+     * Use direction to propagate a coordinate by 1 unit.
      *
-     * @param coordinate coordinate to propagate
-     * @return propagated coordinate
+     * @param hex coordinate to propagate
      */
-    public OffsetCoordinate propagateCoordinate(OffsetCoordinate coordinate) {
+    public void apply(Hex hex) {
+        this.apply(1, hex);
+    }
+
+    /**
+     * Use direction to propagate a coordinate by the given distance.
+     *
+     * @param distance distance to propagate the coordinate
+     * @param hex coordinate to propagate
+     */
+    public void apply(int distance, Hex hex) {
         switch (direction) {
             case NORTH:
-                return new OffsetCoordinate(coordinate.getColumn(), coordinate.getRow() - 1);
+                hex.translateNorth(distance);
+                break;
             case NORTHEAST:
-                if ((coordinate.getColumn() & 1) == 0) { // even
-                    return new OffsetCoordinate(coordinate.getColumn() + 1, coordinate.getRow());
-                } else { // odd
-                    return new OffsetCoordinate(coordinate.getColumn() + 1, coordinate.getRow() - 1);
-                }
+                hex.translateNorthEast(distance);
+                break;
             case SOUTHEAST:
-                if ((coordinate.getColumn() & 1) == 0) { // even
-                    return new OffsetCoordinate(coordinate.getColumn() + 1, coordinate.getRow() + 1);
-                } else { // odd
-                    return new OffsetCoordinate(coordinate.getColumn() + 1, coordinate.getRow());
-                }
+                hex.translateSouthEast(distance);
+                break;
             case SOUTH:
-                return new OffsetCoordinate(coordinate.getColumn(), coordinate.getRow() + 1);
+                hex.translateSouth(distance);
+                break;
             case SOUTHWEST:
-                if ((coordinate.getColumn() & 1) == 0) { // even
-                    return new OffsetCoordinate(coordinate.getColumn() - 1, coordinate.getRow() + 1);
-                } else { // odd
-                    return new OffsetCoordinate(coordinate.getColumn() - 1, coordinate.getRow());
-                }
+                hex.translateSouthWest(distance);
+                break;
             case NORTHWEST:
-                if ((coordinate.getColumn() & 1) == 0) { // even
-                    return new OffsetCoordinate(coordinate.getColumn() - 1, coordinate.getRow() );
-                } else { // odd
-                    return new OffsetCoordinate(coordinate.getColumn() - 1, coordinate.getRow() - 1);
-                }
+                hex.translateNorthWest(distance);
+                break;
         }
-        return null; // not possible to reach this
     }
 
     /**

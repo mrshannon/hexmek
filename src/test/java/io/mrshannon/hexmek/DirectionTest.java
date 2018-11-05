@@ -105,21 +105,77 @@ public class DirectionTest {
     }
 
     @Test
-    public void propagateCoordinate() {
+    public void apply1() {
+        Hex hex;
+
         // even column
-        assertTrue(north.propagateCoordinate(new OffsetCoordinate(4, 7)).equals(new OffsetCoordinate(4, 6)));
-        assertTrue(northEast.propagateCoordinate(new OffsetCoordinate(4, 7)).equals(new OffsetCoordinate(5, 7)));
-        assertTrue(southEast.propagateCoordinate(new OffsetCoordinate(4, 7)).equals(new OffsetCoordinate(5, 8)));
-        assertTrue(south.propagateCoordinate(new OffsetCoordinate(4, 7)).equals(new OffsetCoordinate(4, 8)));
-        assertTrue(southWest.propagateCoordinate(new OffsetCoordinate(4, 7)).equals(new OffsetCoordinate(3, 8)));
-        assertTrue(northWest.propagateCoordinate(new OffsetCoordinate(4, 7)).equals(new OffsetCoordinate(3, 7)));
+        hex = new Hex(4,7);
+        north.apply(hex);
+        assertTrue(hex.equals(new Hex(4, 6)));
+
+        hex = new Hex(4,7);
+        northEast.apply(hex);
+        assertTrue(hex.equals(new Hex(5, 7)));
+
+        hex = new Hex(4,7);
+        southEast.apply(hex);
+        assertTrue(hex.equals(new Hex(5, 8)));
+
+        hex = new Hex(4,7);
+        south.apply(hex);
+        assertTrue(hex.equals(new Hex(4, 8)));
+
+        hex = new Hex(4,7);
+        southWest.apply(hex);
+        assertTrue(hex.equals(new Hex(3, 8)));
+
+        hex = new Hex(4,7);
+        northWest.apply(hex);
+        assertTrue(hex.equals(new Hex(3, 7)));
+
 
         // odd column
-        assertTrue(north.propagateCoordinate(new OffsetCoordinate(5, 7)).equals(new OffsetCoordinate(5, 6)));
-        assertTrue(northEast.propagateCoordinate(new OffsetCoordinate(5, 7)).equals(new OffsetCoordinate(6, 6)));
-        assertTrue(southEast.propagateCoordinate(new OffsetCoordinate(5, 7)).equals(new OffsetCoordinate(6, 7)));
-        assertTrue(south.propagateCoordinate(new OffsetCoordinate(5, 7)).equals(new OffsetCoordinate(5, 8)));
-        assertTrue(southWest.propagateCoordinate(new OffsetCoordinate(5, 7)).equals(new OffsetCoordinate(4, 7)));
-        assertTrue(northWest.propagateCoordinate(new OffsetCoordinate(5, 7)).equals(new OffsetCoordinate(4, 6)));
+        hex = new Hex(5,7);
+        north.apply(hex);
+        assertTrue(hex.equals(new Hex(5, 6)));
+
+        hex = new Hex(5,7);
+        northEast.apply(hex);
+        assertTrue(hex.equals(new Hex(6, 6)));
+
+        hex = new Hex(5,7);
+        southEast.apply(1, hex);
+        assertTrue(hex.equals(new Hex(6, 7)));
+
+        hex = new Hex(5,7);
+        south.apply(hex);
+        assertTrue(hex.equals(new Hex(5, 8)));
+
+        hex = new Hex(5,7);
+        southWest.apply(hex);
+        assertTrue(hex.equals(new Hex(4, 7)));
+
+        hex = new Hex(5,7);
+        northWest.apply(hex);
+        assertTrue(hex.equals(new Hex(4, 6)));
+    }
+
+    @Test
+    public void apply2() {
+        Hex hex;
+
+        hex = new Hex(0,0);
+        north.apply(1, hex);
+        assertTrue(hex.equals(new Hex(0, -1)));
+        northEast.apply(2, hex);
+        assertTrue(hex.equals(new Hex(2, -2)));
+        southEast.apply(3, hex);
+        assertTrue(hex.equals(new Hex(5, 0)));
+        south.apply(4, hex);
+        assertTrue(hex.equals(new Hex(5, 4)));
+        southWest.apply(5, hex);
+        assertTrue(hex.equals(new Hex(0, 6)));
+        northWest.apply(5, hex);
+        assertTrue(hex.equals(new Hex(-5, 4)));
     }
 }
