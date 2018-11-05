@@ -7,10 +7,9 @@ import java.util.HashMap;
  */
 public class TileFactory {
 
-    private static HashMap<String, Tile> tileTypes;
+    private static HashMap<String, Tile> tileTypes = new HashMap<>();
 
-    public TileFactory() {
-        tileTypes = new HashMap<>();
+    private TileFactory() {
     }
 
     /**
