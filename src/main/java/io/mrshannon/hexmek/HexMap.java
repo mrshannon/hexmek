@@ -25,9 +25,11 @@ public class HexMap {
         if (height < 1) {
             throw new IllegalArgumentException("Map height must be positive.");
         }
+        this.width = width;
+        this.height = height;
         tiles = new Tile[width*height];
         for (int w = 0; w < width; ++w) {
-            for (int h = 0; h < height; ++w) {
+            for (int h = 0; h < height; ++h) {
                 tiles[w + width*h] = baseTile;
             }
         }
@@ -43,38 +45,58 @@ public class HexMap {
      */
     public HexMap(int width, int height, Tile baseTile, Map<Hex, Tile> tiles) {
         this(width, height, baseTile);
+        System.out.println(String.format("width = %d   height = %d", width, height));
         for (var entry : tiles.entrySet()) {
             if (isHexValid(entry.getKey())) {
-                this.tiles[entry.getKey().getColumn() + width*entry.getKey().getRow()] = entry.getValue();
+                System.out.println(entry.getKey());
+                this.tiles[entry.getKey().getColumn() - 1 + width*(entry.getKey().getRow() - 1)] = entry.getValue();
             }
         }
     }
 
     /**
-     * Get terrain tile at the given coordinate.
+     * Get width of map.
      *
-     * @param coordinate coordinate to retrieve terrain tile for
-     * @return the terrain tile that is at the given coordinate
+     * @return width of map in hexes
      */
-    public Tile getTile(Hex coordinate) {
-        checkHexBounds(coordinate);
-        return tiles[coordinate.getColumn() + width*coordinate.getRow()];
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * Get height of map.
+     *
+     * @return height of map in hexes
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * Get terrain tile at the given hex.
+     *
+     * @param hex coordinate to retrieve terrain tile for
+     * @return the terrain tile that is at the given hex
+     */
+    public Tile getTile(Hex hex) {
+        checkHexBounds(hex);
+        return tiles[hex.getColumn() - 1 + width*(hex.getRow() - 1)];
     }
 
     /**
      * Determine if a coordinate is valid (within the map).
      *
-     * @param coordinate coordinate to check
-     * @return true, if the given coordinate is within the map
+     * @param hex coordinate to check
+     * @return true, if the given hex is within the map
      */
-    public boolean isHexValid(Hex coordinate) {
+    public boolean isHexValid(Hex hex) {
         boolean heightInBounds = false;
-        boolean widthInBounds = (0 < coordinate.getColumn()) && (coordinate.getColumn() <= width);
+        boolean widthInBounds = (0 < hex.getColumn()) && (hex.getColumn() <= width);
         // even column
-        if ((coordinate.getColumn() & 1) == 0) {
-            heightInBounds = (0 < coordinate.getRow()) && (coordinate.getRow() < height);
+        if ((hex.getColumn() & 1) == 0) {
+            heightInBounds = (0 < hex.getRow()) && (hex.getRow() < height);
         } else { // odd column
-            heightInBounds = (0 < coordinate.getRow()) && (coordinate.getRow() <= height);
+            heightInBounds = (0 < hex.getRow()) && (hex.getRow() <= height);
         }
         return widthInBounds && heightInBounds;
     }
@@ -82,12 +104,13 @@ public class HexMap {
     /**
      * Check bounds of coordinate, throwing error if out of bounds.
      *
-     * @param coordinate coordinate to check
+     * @param hex coordinate to check
+     * @throws IndexOutOfBoundsException if given coordinate is out of bounds
      */
-    private void checkHexBounds(Hex coordinate) {
-        if (!isHexValid(coordinate)) {
-            throw new IllegalArgumentException(
-                    String.format("Hex coordinate (%s) is out of bounds.", coordinate.toString()));
+    private void checkHexBounds(Hex hex) {
+        if (!isHexValid(hex)) {
+            throw new IndexOutOfBoundsException(
+                    String.format("Hex coordinate (%s) is out of bounds.", hex.toString()));
         }
     }
 }
