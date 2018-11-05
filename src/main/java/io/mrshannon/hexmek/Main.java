@@ -1,5 +1,7 @@
 package io.mrshannon.hexmek;
 
+import java.io.IOException;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -20,6 +22,17 @@ public class Main {
             System.out.println(d);
             d.rotateLeft();
         }
+
+        var loader = new MapLoader("default");
+        HexMap map;
+        try {
+            map = loader.createMap();
+            System.out.println(map.getTile(new Hex(5,13)));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+//        var path = Paths.get("a", "b", "c");
+//        System.out.println(path.toString());
 
 	// write your code here
     }
