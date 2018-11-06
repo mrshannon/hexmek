@@ -8,7 +8,6 @@ import static org.junit.Assert.*;
 
 public class DirectionTest {
 
-    private Direction direction;
     private Direction north;
     private Direction northEast;
     private Direction southEast;
@@ -18,13 +17,12 @@ public class DirectionTest {
 
     @Before
     public void setUp() throws Exception {
-        direction = new Direction();
-        north = new Direction(Direction.Enum.NORTH);
-        northEast = new Direction(Direction.Enum.NORTHEAST);
-        southEast = new Direction(Direction.Enum.SOUTHEAST);
-        south = new Direction(Direction.Enum.SOUTH);
-        southWest = new Direction(Direction.Enum.SOUTHWEST);
-        northWest = new Direction(Direction.Enum.NORTHWEST);
+        north = new North();
+        northEast = new NorthEast();
+        southEast = new SouthEast();
+        south = new South();
+        southWest = new SouthWest();
+        northWest = new NorthWest();
     }
 
     @After
@@ -32,66 +30,68 @@ public class DirectionTest {
     }
 
     @Test
-    public void getDirectionEnum() {
-        assertEquals(Direction.Enum.NORTH, direction.getDirectionEnum());
-        assertEquals(Direction.Enum.NORTH, north.getDirectionEnum());
-        assertEquals(Direction.Enum.NORTHEAST, northEast.getDirectionEnum());
-        assertEquals(Direction.Enum.SOUTHEAST, southEast.getDirectionEnum());
-        assertEquals(Direction.Enum.SOUTH, south.getDirectionEnum());
-        assertEquals(Direction.Enum.SOUTHWEST, southWest.getDirectionEnum());
-        assertEquals(Direction.Enum.NORTHWEST, northWest.getDirectionEnum());
+    public void testEquals() {
+        assertEquals(north, new North());
+        assertNotEquals(north, new NorthEast());
+        assertNotEquals(north, new SouthEast());
+        assertNotEquals(north, new South());
+        assertNotEquals(north, new SouthWest());
+        assertNotEquals(north, new NorthWest());
+
+        assertEquals(northEast, new NorthEast());
+        assertNotEquals(northEast, new SouthEast());
+        assertNotEquals(northEast, new South());
+        assertNotEquals(northEast, new SouthWest());
+        assertNotEquals(northEast, new NorthWest());
+        assertNotEquals(northEast, new North());
+
+        assertEquals(southEast, new SouthEast());
+        assertNotEquals(southEast, new South());
+        assertNotEquals(southEast, new SouthWest());
+        assertNotEquals(southEast, new NorthWest());
+        assertNotEquals(southEast, new North());
+        assertNotEquals(southEast, new NorthEast());
+
+        assertEquals(south, new South());
+        assertNotEquals(south, new SouthWest());
+        assertNotEquals(south, new NorthWest());
+        assertNotEquals(south, new North());
+        assertNotEquals(south, new NorthEast());
+        assertNotEquals(south, new SouthEast());
+
+        assertEquals(southWest, new SouthWest());
+        assertNotEquals(southWest, new NorthWest());
+        assertNotEquals(southWest, new North());
+        assertNotEquals(southWest, new NorthEast());
+        assertNotEquals(southWest, new SouthEast());
+        assertNotEquals(southWest, new South());
+
+        assertEquals(northWest, new NorthWest());
+        assertNotEquals(northWest, new North());
+        assertNotEquals(northWest, new NorthEast());
+        assertNotEquals(northWest, new SouthEast());
+        assertNotEquals(northWest, new South());
+        assertNotEquals(northWest, new SouthWest());
     }
 
     @Test
     public void rotateRight() {
-        assertTrue(direction.equals(north));
-        direction.rotateRight();
-        assertTrue(direction.equals(northEast));
-        direction.rotateRight();
-        assertTrue(direction.equals(southEast));
-        direction.rotateRight();
-        assertTrue(direction.equals(south));
-        direction.rotateRight();
-        assertTrue(direction.equals(southWest));
-        direction.rotateRight();
-        assertTrue(direction.equals(northWest));
-        direction.rotateRight();
-        assertTrue(direction.equals(north));
+        assertEquals(new NorthEast(), north.rotateRight());
+        assertEquals(new SouthEast(), northEast.rotateRight());
+        assertEquals(new South(), southEast.rotateRight());
+        assertEquals(new SouthWest(), south.rotateRight());
+        assertEquals(new NorthWest(), southWest.rotateRight());
+        assertEquals(new North(), northWest.rotateRight());
     }
 
     @Test
     public void rotateLeft() {
-        assertTrue(direction.equals(north));
-        direction.rotateLeft();
-        assertTrue(direction.equals(northWest));
-        direction.rotateLeft();
-        assertTrue(direction.equals(southWest));
-        direction.rotateLeft();
-        assertTrue(direction.equals(south));
-        direction.rotateLeft();
-        assertTrue(direction.equals(southEast));
-        direction.rotateLeft();
-        assertTrue(direction.equals(northEast));
-        direction.rotateLeft();
-        assertTrue(direction.equals(north));
-    }
-
-    @Test
-    public void equals() {
-        assertTrue(direction.equals(new Direction(Direction.Enum.NORTH)));
-        assertTrue(north.equals(new Direction(Direction.Enum.NORTH)));
-        assertTrue(northEast.equals(new Direction(Direction.Enum.NORTHEAST)));
-        assertTrue(southEast.equals(new Direction(Direction.Enum.SOUTHEAST)));
-        assertTrue(south.equals(new Direction(Direction.Enum.SOUTH)));
-        assertTrue(southWest.equals(new Direction(Direction.Enum.SOUTHWEST)));
-        assertTrue(northWest.equals(new Direction(Direction.Enum.NORTHWEST)));
-
-        assertFalse(north.equals(new Direction(Direction.Enum.NORTHEAST)));
-        assertFalse(northEast.equals(new Direction(Direction.Enum.SOUTHEAST)));
-        assertFalse(southEast.equals(new Direction(Direction.Enum.SOUTH)));
-        assertFalse(south.equals(new Direction(Direction.Enum.SOUTHWEST)));
-        assertFalse(southWest.equals(new Direction(Direction.Enum.NORTHWEST)));
-        assertFalse(northWest.equals(new Direction(Direction.Enum.NORTH)));
+        assertEquals(new NorthWest(), north.rotateLeft());
+        assertEquals(new North(), northEast.rotateLeft());
+        assertEquals(new NorthEast(), southEast.rotateLeft());
+        assertEquals(new SouthEast(), south.rotateLeft());
+        assertEquals(new South(), southWest.rotateLeft());
+        assertEquals(new SouthWest(), northWest.rotateLeft());
     }
 
     @Test
@@ -111,53 +111,54 @@ public class DirectionTest {
         // even column
         hex = new Hex(4,7);
         north.apply(hex);
-        assertTrue(hex.equals(new Hex(4, 6)));
+//        assertTrue(hex.equals(new Hex(4, 6)));
+        assertEquals(new Hex(4, 6), hex);
 
         hex = new Hex(4,7);
         northEast.apply(hex);
-        assertTrue(hex.equals(new Hex(5, 7)));
+        assertEquals(new Hex(5, 7), hex);
 
         hex = new Hex(4,7);
         southEast.apply(hex);
-        assertTrue(hex.equals(new Hex(5, 8)));
+        assertEquals(new Hex(5, 8), hex);
 
         hex = new Hex(4,7);
         south.apply(hex);
-        assertTrue(hex.equals(new Hex(4, 8)));
+        assertEquals(new Hex(4, 8), hex);
 
         hex = new Hex(4,7);
         southWest.apply(hex);
-        assertTrue(hex.equals(new Hex(3, 8)));
+        assertEquals(new Hex(3, 8), hex);
 
         hex = new Hex(4,7);
         northWest.apply(hex);
-        assertTrue(hex.equals(new Hex(3, 7)));
+        assertEquals(new Hex(3, 7), hex);
 
 
         // odd column
         hex = new Hex(5,7);
         north.apply(hex);
-        assertTrue(hex.equals(new Hex(5, 6)));
+        assertEquals(new Hex(5, 6), hex);
 
         hex = new Hex(5,7);
         northEast.apply(hex);
-        assertTrue(hex.equals(new Hex(6, 6)));
+        assertEquals(new Hex(6, 6), hex);
 
         hex = new Hex(5,7);
         southEast.apply(1, hex);
-        assertTrue(hex.equals(new Hex(6, 7)));
+        assertEquals(new Hex(6, 7), hex);
 
         hex = new Hex(5,7);
         south.apply(hex);
-        assertTrue(hex.equals(new Hex(5, 8)));
+        assertEquals(new Hex(5, 8), hex);
 
         hex = new Hex(5,7);
         southWest.apply(hex);
-        assertTrue(hex.equals(new Hex(4, 7)));
+        assertEquals(new Hex(4, 7), hex);
 
         hex = new Hex(5,7);
         northWest.apply(hex);
-        assertTrue(hex.equals(new Hex(4, 6)));
+        assertEquals(new Hex(4, 6), hex);
     }
 
     @Test
@@ -166,16 +167,16 @@ public class DirectionTest {
 
         hex = new Hex(0,0);
         north.apply(1, hex);
-        assertTrue(hex.equals(new Hex(0, -1)));
+        assertEquals(new Hex(0, -1), hex);
         northEast.apply(2, hex);
-        assertTrue(hex.equals(new Hex(2, -2)));
+        assertEquals(new Hex(2, -2), hex);
         southEast.apply(3, hex);
-        assertTrue(hex.equals(new Hex(5, 0)));
+        assertEquals(new Hex(5, 0), hex);
         south.apply(4, hex);
-        assertTrue(hex.equals(new Hex(5, 4)));
+        assertEquals(new Hex(5, 4), hex);
         southWest.apply(5, hex);
-        assertTrue(hex.equals(new Hex(0, 6)));
+        assertEquals(new Hex(0, 6), hex);
         northWest.apply(5, hex);
-        assertTrue(hex.equals(new Hex(-5, 4)));
+        assertEquals(new Hex(-5, 4), hex);
     }
 }
