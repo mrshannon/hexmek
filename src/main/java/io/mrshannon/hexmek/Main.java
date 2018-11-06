@@ -10,17 +10,14 @@ public class Main {
         for (int i = 0; i <= 20; ++i) {
             System.out.println(String.format("%d = %f", i, dice.probability(i)));
         }
-        System.out.println(Direction.Enum.NORTH);
-        System.out.println(Direction.Enum.NORTH.ordinal());
-        System.out.println(Direction.Enum.SOUTH == Direction.Enum.SOUTH);
-        var d = new Direction();
+        Direction d = new North();
         for (int i = 0; i <= 20; i++) {
             System.out.println(d);
-            d.rotateRight();
+            d = d.rotateRight();
         }
         for (int i = 0; i <= 20; i++) {
             System.out.println(d);
-            d.rotateLeft();
+            d = d.rotateLeft();
         }
 
         var loader = new MapLoader("default");
@@ -31,9 +28,5 @@ public class Main {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-//        var path = Paths.get("a", "b", "c");
-//        System.out.println(path.toString());
-
-	// write your code here
     }
 }
