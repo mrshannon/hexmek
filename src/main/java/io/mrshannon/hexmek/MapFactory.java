@@ -2,7 +2,7 @@ package io.mrshannon.hexmek;
 
 import java.io.IOException;
 
-public interface MapFactoryInterface {
+public interface MapFactory {
 
     /**
      * Create hexagonal map.

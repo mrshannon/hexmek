@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
-public class MapLoader implements MapFactoryInterface {
+public class MapLoader implements MapFactory {
 
     private String mapName;
 
