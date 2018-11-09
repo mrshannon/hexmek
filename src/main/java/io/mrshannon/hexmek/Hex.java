@@ -82,7 +82,7 @@ public class Hex {
     /**
      * Translate the coordinate north by a given distance.
      *
-     * @param amount distance to translate
+     * @param amount distance to translate, can be negative
      */
     public void translateNorth(int amount) {
         r -= amount;
@@ -92,7 +92,7 @@ public class Hex {
     /**
      * Translate the coordinate north-east by a given distance.
      *
-     * @param amount distance to translate
+     * @param amount distance to translate, can be negative
      */
     public void translateNorthEast(int amount) {
         q += amount;
@@ -102,7 +102,7 @@ public class Hex {
     /**
      * Translate the coordinate south-east by a given distance.
      *
-     * @param amount distance to translate
+     * @param amount distance to translate, can be negative
      */
     public void translateSouthEast(int amount) {
         q += amount;
@@ -112,7 +112,7 @@ public class Hex {
     /**
      * Translate the coordinate south by a given distance.
      *
-     * @param amount distance to translate
+     * @param amount distance to translate, can be negative
      */
     public void translateSouth(int amount) {
         r += amount;
@@ -122,7 +122,7 @@ public class Hex {
     /**
      * Translate the coordinate south-est by a given distance.
      *
-     * @param amount distance to translate
+     * @param amount distance to translate, can be negative
      */
     public void translateSouthWest(int amount) {
         q -= amount;
@@ -132,7 +132,7 @@ public class Hex {
     /**
      * Translate the coordinate north-west by a given distance.
      *
-     * @param amount distance to translate
+     * @param amount distance to translate, can be negative
      */
     public void translateNorthWest(int amount) {
         q -= amount;
@@ -211,6 +211,7 @@ public class Hex {
      * @return list of neighboring coordinates
      */
     public List<Hex> neighbors() {
+        // TODO: Consider changing this to an iterator.
         var coordinates = new ArrayList<Hex>();
         coordinates.add(northNeighbor());
         coordinates.add(northEastNeighbor());
