@@ -2,31 +2,18 @@ package io.mrshannon.hexmek;
 
 public abstract class Unit implements Originator {
 
-    private int cruisingMovementPoints;
-    private int flankingMovementPoints;
-
     private String id;
     private Hex hex;
     private Direction facing;
-    private int toHitModifier;
-    private int gunneryModifier;
+    private MovementFactory movementFactory;
+    private Movement currentMovement;
 
-    public Unit(String id, Hex hex, Direction facing, int cruisingMovementPoints, int flankingMovementPoints) {
+    public Unit(String id, Hex hex, Direction facing, MovementFactory movementFactory) {
         this.id = id;
         this.hex = hex;
         this.facing = facing;
-        this.cruisingMovementPoints = cruisingMovementPoints;
-        this.flankingMovementPoints = flankingMovementPoints;
-        this.gunneryModifier = 4;
-        this.toHitModifier = 0;
-    }
-
-    public int getCruisingMovementPoints() {
-        return cruisingMovementPoints;
-    }
-
-    public int getFlankingMovementPoints() {
-        return flankingMovementPoints;
+        this.movementFactory = movementFactory;
+        this.currentMovement = movementFactory.createHalt(this);
     }
 
     public String getId() {
@@ -42,19 +29,29 @@ public abstract class Unit implements Originator {
     }
 
     public int getToHitModifier() {
-        return toHitModifier;
+        return currentMovement.getToHitModifier();
     }
 
     public int getGunneryModifier() {
-        return gunneryModifier;
+        return currentMovement.getGunneryModifier();
     }
 
-    public Cruiser cruise() {
-        return new Cruiser(this);
+    public Halt halt() {
+        Halt haltInstance = movementFactory.createHalt(this)
+        currentMovement = haltInstance;
+        return haltInstance;
     }
 
-    public Flanker flank() {
-        return new Flanker(this);
+    public Cruise cruise() {
+        Cruise cruiseInstance = movementFactory.createCruise(this);
+        currentMovement = cruiseInstance;
+        return cruiseInstance;
+    }
+
+    public Flank flank() {
+        Flank flankInstance = movementFactory.createFlank(this);
+        currentMovement = flankInstance;
+        return flankInstance;
     }
 
     @Override
@@ -67,23 +64,20 @@ public abstract class Unit implements Originator {
         private Unit originator;
         private Hex hex;
         private Direction facing;
-        private int toHitModifier;
-        private int gunneryModifier;
+        private Movement currentMovement;
 
         UnitMemento(Unit originator) {
             this.originator = originator;
             this.hex = originator.hex;
             this.facing = originator.facing;
-            this.toHitModifier = originator.toHitModifier;
-            this.gunneryModifier = originator.gunneryModifier;
+            this.currentMovement = originator.currentMovement.clone();
         }
 
         @Override
         public void restore() {
             originator.hex = hex;
             originator.facing = facing;
-            originator.toHitModifier = toHitModifier;
-            originator.gunneryModifier = gunneryModifier;
+            originator.currentMovement = currentMovement.clone();
         }
     }
 
