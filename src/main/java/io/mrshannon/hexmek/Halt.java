@@ -12,6 +12,15 @@ public class Halt extends Movement {
         super(0);
     }
 
+    /**
+     * Copy constructor.
+     *
+     * @param other halt object to copy.
+     */
+    public Halt(Halt other) {
+        super(other);
+    }
+
     @Override
     public int getToHitModifier() {
         return 0;
@@ -20,5 +29,10 @@ public class Halt extends Movement {
     @Override
     public int getGunneryModifier() {
         return Movement.BASE_GUNNERY;
+    }
+
+    @Override
+    public Object clone() {
+        return new Halt(this);
     }
 }

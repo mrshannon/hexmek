@@ -11,12 +11,22 @@ public class Flank extends Movement {
      * Construct a flanking movement.
      *
      * @param unit unit to move
-     * @param movementPoints number of movement points to initialize with
+     * @param movementPoints number of movement points to begin with
      */
     public Flank(Unit unit, int movementPoints) {
         super(movementPoints);
         this.unit = unit;
         visitHex(unit.getHex());
+    }
+
+    /**
+     * Copy constructor.
+     *
+     * @param other flank object to copy
+     */
+    public Flank(Flank other) {
+        super(other);
+        this.unit = other.unit;
     }
 
     @Override
@@ -41,6 +51,11 @@ public class Flank extends Movement {
     public void rotateLeft() throws MovementPointsExhaustedException {
         decrementMovementPoints();
         unit.getFacing().rotateLeft();
+    }
+
+    @Override
+    public Object clone() {
+        return new Flank(this);
     }
 
 }

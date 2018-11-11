@@ -19,6 +19,16 @@ public class Cruise extends Movement {
         visitHex(unit.getHex());
     }
 
+    /**
+     * Copy constructor.
+     *
+     * @param other cruise object to copy
+     */
+    public Cruise(Cruise other) {
+        super(other);
+        this.unit = other.unit;
+    }
+
     @Override
     public int getGunneryModifier() {
         return Movement.BASE_GUNNERY + 1;
@@ -48,6 +58,11 @@ public class Cruise extends Movement {
     public void rotateLeft() throws MovementPointsExhaustedException {
         decrementMovementPoints();
         unit.getFacing().rotateLeft();
+    }
+
+    @Override
+    public Object clone() {
+        return new Cruise(this);
     }
 
 }

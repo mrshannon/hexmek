@@ -5,7 +5,7 @@ import java.util.HashSet;
 /**
  * Base of all movement types that are used to initiate a move for a unit.
  */
-public abstract class Movement {
+public abstract class Movement implements Cloneable {
 
     private int movementPoints;
     private HashSet<Hex> visitedHexes;
@@ -26,6 +26,16 @@ public abstract class Movement {
     }
 
     /**
+     * Copy constructor.
+     *
+     * @param other movement to copy
+     */
+    public Movement(Movement other) {
+        this.movementPoints = other.movementPoints;
+        this.visitedHexes = new HashSet<>(other.visitedHexes);
+    }
+
+    /**
      * Decrement the internal movement point counter.
      *
      * @throws MovementPointsExhaustedException if there are no movement points before the decrement
@@ -39,10 +49,10 @@ public abstract class Movement {
     /**
      * Record a visit to a hex.
      *
-     * @param hex visited hex grid
+     * @param hex visited hex grid, it will be copied
      */
     protected void visitHex(Hex hex) {
-        visitedHexes.add(hex);
+        visitedHexes.add(new Hex(hex));
     }
 
     /**
@@ -128,5 +138,12 @@ public abstract class Movement {
     public void rotateLeft() throws MovementPointsExhaustedException {
         throw new UnsupportedOperationException();
     }
+
+    /**
+     * Clone the movement object.
+     *
+      * @return new movement object
+     */
+    public abstract Object clone();
 
 }

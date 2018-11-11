@@ -37,7 +37,7 @@ public abstract class Unit implements Originator {
     }
 
     public Halt halt() {
-        Halt haltInstance = movementFactory.createHalt(this)
+        Halt haltInstance = movementFactory.createHalt(this);
         currentMovement = haltInstance;
         return haltInstance;
     }
@@ -70,14 +70,14 @@ public abstract class Unit implements Originator {
             this.originator = originator;
             this.hex = originator.hex;
             this.facing = originator.facing;
-            this.currentMovement = originator.currentMovement.clone();
+            this.currentMovement = (Movement) originator.currentMovement.clone();
         }
 
         @Override
         public void restore() {
             originator.hex = hex;
             originator.facing = facing;
-            originator.currentMovement = currentMovement.clone();
+            originator.currentMovement = (Movement) currentMovement.clone();
         }
     }
 
