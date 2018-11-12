@@ -1,5 +1,10 @@
 package io.mrshannon.hexmek;
 
+/**
+ * North east direction.
+ *
+ * @see io.mrshannon.hexmek.Direction
+ */
 public class NorthEast implements Direction {
 
     @Override
@@ -13,8 +18,8 @@ public class NorthEast implements Direction {
     }
 
     @Override
-    public void apply(int distance, Hex hex) {
-        hex.translateNorthEast(distance);
+    public Hex apply(int distance, Hex hex) {
+        return hex.northEast(distance);
     }
 
     @Override

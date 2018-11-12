@@ -21,19 +21,21 @@ public interface Direction {
     Direction rotateLeft();
 
     /**
-     * Use direction to propagate a coordinate by 1 unit.
+     * Use direction to propagate a coordinate by 1 unit, returning the new coordinate.
      *
      * @param hex coordinate to propagate
+     * @return new hex, which is 1 unit in this direction
      */
-    default void apply(Hex hex) {
-        apply(1, hex);
+    default Hex apply(Hex hex) {
+        return apply(1, hex);
     }
 
     /**
-     * Use direction to propagate a coordinate by the given distance.
+     * Use direction to propagate a coordinate by the given distance, returning the new coordinate.
      *
      * @param distance distance to propagate the coordinate
      * @param hex coordinate to propagate
+     * @return new hex, which is 1 unit in this direction
      */
-    void apply(int distance, Hex hex);
+    Hex apply(int distance, Hex hex);
 }

@@ -1,10 +1,13 @@
 package io.mrshannon.hexmek;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Represents a coordinate in a hexagonal grid.
+ *
+ * This is an immutable type.  This is not exactly typical object oriented design, but because this is a type that is
+ * typically passed around as a data type it is convenient to make this immutable so getters do not accidentally expose
+ * a mutable state.
  *
  * Based on: https://www.redblobgames.com/grids/hexagons/
  */
@@ -69,156 +72,143 @@ public class Hex {
     }
 
     /**
-     * Add another coordinate to this one.
+     * Add another coordinate to this one and return the result
      *
-     * @param other coordinate to add
+     * @param other coordinate to add to this one
+     * @return new hex that is the sum of this hex and the other
      */
-    public void add(Hex other) {
-        q += other.q;
-        r += other.r;
-        s += other.s;
+    public Hex add(Hex other) {
+        return new Hex(q + other.q, r + other.r, s + other.s);
     }
 
     /**
-     * Translate the coordinate north by a given distance.
+     * Get coordinate that is directly north of of this hex.
      *
-     * @param amount distance to translate, can be negative
+     * @return new hex, directly north of this hex
      */
-    public void translateNorth(int amount) {
-        r -= amount;
-        s += amount;
+    public Hex north() {
+        return north(1);
     }
 
     /**
-     * Translate the coordinate north-east by a given distance.
+     * Get coordinate that is north of this hex by a given distance.
      *
-     * @param amount distance to translate, can be negative
+     * @param distance distance to new hex, can be negative
+     * @return new hex, {@code distance} north of this hex
      */
-    public void translateNorthEast(int amount) {
-        q += amount;
-        r -= amount;
+    public Hex north(int distance) {
+        return new Hex(q, r - distance, s + distance);
     }
 
     /**
-     * Translate the coordinate south-east by a given distance.
+     * Get coordinate that is directly north east of of this hex.
      *
-     * @param amount distance to translate, can be negative
+     * @return new hex, directly north east of this hex
      */
-    public void translateSouthEast(int amount) {
-        q += amount;
-        s -= amount;
+    public Hex northEast() {
+        return northEast(1);
     }
 
     /**
-     * Translate the coordinate south by a given distance.
+     * Get coordinate that is north east of this hex by a given distance.
      *
-     * @param amount distance to translate, can be negative
+     * @param distance distance to new hex, can be negative
+     * @return new hex, {@code distance} north east of this hex
      */
-    public void translateSouth(int amount) {
-        r += amount;
-        s -= amount;
+    public Hex northEast(int distance) {
+        return new Hex(q + distance, r - distance, s);
     }
 
     /**
-     * Translate the coordinate south-est by a given distance.
+     * Get coordinate that is directly south east of of this hex.
      *
-     * @param amount distance to translate, can be negative
+     * @return new hex, directly south east of this hex
      */
-    public void translateSouthWest(int amount) {
-        q -= amount;
-        r += amount;
+    public Hex southEast() {
+        return southEast(1);
     }
 
     /**
-     * Translate the coordinate north-west by a given distance.
+     * Get coordinate that is south east of this hex by a given distance.
      *
-     * @param amount distance to translate, can be negative
+     * @param distance distance to new hex, can be negative
+     * @return new hex, {@code distance} south east of this hex
      */
-    public void translateNorthWest(int amount) {
-        q -= amount;
-        s += amount;
+    public Hex southEast(int distance) {
+        return new Hex(q + distance, r, s - distance);
     }
 
     /**
-     * Get neighbor to the north.
+     * Get coordinate that is directly south of of this hex.
      *
-     * @return northern neighbor coordinate
+     * @return new hex, directly south of this hex
      */
-    public Hex northNeighbor() {
-        var neighbor = new Hex(this);
-        neighbor.translateNorth(1);
-        return neighbor;
+    public Hex south() {
+        return south(1);
     }
 
     /**
-     * Get neighbor to the north-east.
+     * Get coordinate that is south of this hex by a given distance.
      *
-     * @return northeastern neighbor coordinate
+     * @param amount distance to new hex, can be negative
+     * @return new hex, amount south of this hex
      */
-    public Hex northEastNeighbor() {
-        var neighbor = new Hex(this);
-        neighbor.translateNorthEast(1);
-        return neighbor;
+    public Hex south(int amount) {
+        return new Hex(q, r + amount, s - amount);
     }
 
     /**
-     * Get neighbor to the south-east.
+     * Get coordinate that is directly south west of of this hex.
      *
-     * @return southeastern neighbor coordinate
+     * @return new hex, directly south west of this hex
      */
-    public Hex southEastNeighbor() {
-        var neighbor = new Hex(this);
-        neighbor.translateSouthEast(1);
-        return neighbor;
+    public Hex southWest() {
+        return southWest(1);
     }
 
     /**
-     * Get neighbor to the south.
+     * Get coordinate that is south east of this hex by a given distance.
      *
-     * @return southern neighbor coordinate
+     * @param distance distance to new hex, can be negative
+     * @return new hex, {@code distance} south east of this hex
      */
-    public Hex southNeighbor() {
-        var neighbor = new Hex(this);
-        neighbor.translateSouth(1);
-        return neighbor;
+    public Hex southWest(int distance) {
+        return new Hex(q - distance, r + distance, s);
     }
 
     /**
-     * Get neighbor to the south-west.
+     * Get coordinate that is directly south west of of this hex.
      *
-     * @return southwestern neighbor coordinate
+     * @return new hex, directly south west of this hex
      */
-    public Hex southWestNeighbor() {
-        var neighbor = new Hex(this);
-        neighbor.translateSouthWest(1);
-        return neighbor;
+    public Hex northWest() {
+        return northWest(1);
     }
 
     /**
-     * Get neighbor to the north-west.
+     * Get coordinate that is south east of this hex by a given distance.
      *
-     * @return northwestern neighbor coordinate
+     * @param refactor distance to new hex, can be negative
+     * @return new hex, refactor south east of this hex
      */
-    public Hex northWestNeighbor() {
-        var neighbor = new Hex(this);
-        neighbor.translateNorthWest(1);
-        return neighbor;
+    public Hex northWest(int refactor) {
+        return new Hex(q - refactor, r, s + refactor);
     }
 
     /**
-     * Get list of neighboring cell coordinates, starting at the cell north of the coordinate and rotating clockwise.
+     * Get iterable to neighboring cell coordinates, starting at the cell north of the coordinate and rotating
+     * clockwise.
      *
-     * @return list of neighboring coordinates
+     * @return iterable to neighboring coordinates
      */
-    public List<Hex> neighbors() {
-        // TODO: Consider changing this to an iterator.
+    public Iterable<Hex> neighbors() {
         var coordinates = new ArrayList<Hex>();
-        coordinates.add(northNeighbor());
-        coordinates.add(northEastNeighbor());
-        coordinates.add(southEastNeighbor());
-        coordinates.add(southNeighbor());
-        coordinates.add(southWestNeighbor());
-        coordinates.add(northWestNeighbor());
+        coordinates.add(north(1));
+        coordinates.add(northEast(1));
+        coordinates.add(southEast(1));
+        coordinates.add(south(1));
+        coordinates.add(southWest(1));
+        coordinates.add(northWest(1));
         return coordinates;
     }
 
@@ -233,12 +223,12 @@ public class Hex {
     }
 
     /**
-     * Get list of coordinates from this coordinate to another coordinate.
+     * Get iterable to coordinates from this coordinate to another coordinate.
      *
      * @param other the coordinate at the other end of the line
-     * @return list of coordinates along the line, from start to end (the other coordinate)
+     * @return iterable to coordinates along the line, from start to end (the other coordinate)
      */
-    public List<Hex> lineTo(Hex other) {
+    public Iterable<Hex> lineTo(Hex other) {
         int n = this.distanceTo(other);
         var results = new ArrayList<Hex>();
 

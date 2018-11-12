@@ -95,177 +95,93 @@ public class HexTest {
     }
 
     @Test
-    public void translateNorth() {
+    public void north() {
         hex = new Hex(0,0);
-        hex.translateNorth(1);
-        assertEquals(0, hex.getColumn());
-        assertEquals(-1, hex.getRow());
+        assertEquals(new Hex(0, -1), hex.north());
+        assertEquals(new Hex(0, -1), hex.north(1));
+        assertEquals(new Hex(0, -3), hex.north(3));
+        assertEquals(new Hex(0, 1), hex.north(-1));
 
         hex = new Hex(1,1);
-        hex.translateNorth(1);
-        assertEquals(1, hex.getColumn());
-        assertEquals(0, hex.getRow());
-
-        hex = new Hex(0,3);
-        hex.translateNorth(3);
-        assertEquals(0, hex.getColumn());
-        assertEquals(0, hex.getRow());
+        assertEquals(new Hex(1, 0), hex.north());
+        assertEquals(new Hex(1, 0), hex.north(1));
+        assertEquals(new Hex(4, -1), hex.north(3));
+        assertEquals(new Hex(1, 2), hex.north(-1));
     }
 
     @Test
-    public void translateNorthEast() {
+    public void northEast() {
         hex = new Hex(0,0);
-        hex.translateNorthEast(1);
-        assertEquals(1, hex.getColumn());
-        assertEquals(0, hex.getRow());
+        assertEquals(new Hex(1, 0), hex.northEast());
+        assertEquals(new Hex(1, 0), hex.northEast(1));
+        assertEquals(new Hex(3, -1), hex.northEast(3));
+        assertEquals(new Hex(-1, 1), hex.northEast(-1));
 
         hex = new Hex(1,1);
-        hex.translateNorthEast(1);
-        assertEquals(2, hex.getColumn());
-        assertEquals(0, hex.getRow());
-
-        hex = new Hex(-3,2);
-        hex.translateNorthEast(3);
-        assertEquals(0, hex.getColumn());
-        assertEquals(0, hex.getRow());
+        assertEquals(new Hex(2, 0), hex.northEast());
+        assertEquals(new Hex(2, 0), hex.northEast(1));
+        assertEquals(new Hex(4, -1), hex.northEast(3));
+        assertEquals(new Hex(0, 1), hex.northEast(-1));
     }
 
     @Test
-    public void translateSouthEast() {
+    public void southEast() {
         hex = new Hex(0,0);
-        hex.translateSouthEast(1);
-        assertEquals(1, hex.getColumn());
-        assertEquals(1, hex.getRow());
+        assertEquals(new Hex(1, 1), hex.southEast());
+        assertEquals(new Hex(1, 1), hex.southEast(1));
+        assertEquals(new Hex(3, 2), hex.southEast(3));
+        assertEquals(new Hex(-1, 0), hex.southEast(-1));
 
         hex = new Hex(1,1);
-        hex.translateSouthEast(1);
-        assertEquals(2, hex.getColumn());
-        assertEquals(1, hex.getRow());
-
-        hex = new Hex(-3,-1);
-        hex.translateSouthEast(3);
-        assertEquals(0, hex.getColumn());
-        assertEquals(0, hex.getRow());
+        assertEquals(new Hex(2, 1), hex.southEast());
+        assertEquals(new Hex(2, 1), hex.southEast(1));
+        assertEquals(new Hex(4, 2), hex.southEast(3));
+        assertEquals(new Hex(0, 0), hex.southEast(-1));
     }
 
     @Test
-    public void translateSouth() {
+    public void south() {
         hex = new Hex(0,0);
-        hex.translateSouth(1);
-        assertEquals(0, hex.getColumn());
-        assertEquals(1, hex.getRow());
+        assertEquals(new Hex(0, 1), hex.south());
+        assertEquals(new Hex(0, 1), hex.south(1));
+        assertEquals(new Hex(0, 3), hex.south(3));
+        assertEquals(new Hex(0, -1), hex.south(-1));
 
         hex = new Hex(1,1);
-        hex.translateSouth(1);
-        assertEquals(1, hex.getColumn());
-        assertEquals(2, hex.getRow());
-
-        hex = new Hex(0,-3);
-        hex.translateSouth(3);
-        assertEquals(0, hex.getColumn());
-        assertEquals(0, hex.getRow());
+        assertEquals(new Hex(1, 2), hex.south());
+        assertEquals(new Hex(1, 2), hex.south(1));
+        assertEquals(new Hex(1, 4), hex.south(3));
+        assertEquals(new Hex(1, 0), hex.south(-1));
     }
 
     @Test
-    public void translateSouthWest() {
+    public void southWest() {
         hex = new Hex(0,0);
-        hex.translateSouthWest(1);
-        assertEquals(-1, hex.getColumn());
-        assertEquals(1, hex.getRow());
+        assertEquals(new Hex(-1, 1), hex.southWest());
+        assertEquals(new Hex(-1, 1), hex.southWest(1));
+        assertEquals(new Hex(-3, 2), hex.southWest(3));
+        assertEquals(new Hex(1, 0), hex.southWest(-1));
 
         hex = new Hex(1,1);
-        hex.translateSouthWest(1);
-        assertEquals(0, hex.getColumn());
-        assertEquals(1, hex.getRow());
-
-        hex = new Hex(3,-1);
-        hex.translateSouthWest(3);
-        assertEquals(0, hex.getColumn());
-        assertEquals(0, hex.getRow());
+        assertEquals(new Hex(0, 1), hex.southWest());
+        assertEquals(new Hex(0, 1), hex.southWest(1));
+        assertEquals(new Hex(-2, 2), hex.southWest(3));
+        assertEquals(new Hex(2, 0), hex.southWest(-1));
     }
 
     @Test
-    public void translateNorthWest() {
+    public void northWest() {
         hex = new Hex(0,0);
-        hex.translateNorthWest(1);
-        assertEquals(-1, hex.getColumn());
-        assertEquals(0, hex.getRow());
+        assertEquals(new Hex(-1, 0), hex.northWest());
+        assertEquals(new Hex(-1, 0), hex.northWest(1));
+        assertEquals(new Hex(-3, -1), hex.northWest(3));
+        assertEquals(new Hex(1, 1), hex.northWest(-1));
 
         hex = new Hex(1,1);
-        hex.translateNorthWest(1);
-        assertEquals(0, hex.getColumn());
-        assertEquals(0, hex.getRow());
-
-        hex = new Hex(3,2);
-        hex.translateNorthWest(3);
-        assertEquals(0, hex.getColumn());
-        assertEquals(0, hex.getRow());
-    }
-
-    @Test
-    public void northNeighbor() {
-        hex = new Hex(0,0);
-        assertEquals(0, hex.northNeighbor().getColumn());
-        assertEquals(-1, hex.northNeighbor().getRow());
-
-        hex = new Hex(1,1);
-        assertEquals(1, hex.northNeighbor().getColumn());
-        assertEquals(0, hex.northNeighbor().getRow());
-    }
-
-    @Test
-    public void northEastNeighbor() {
-        hex = new Hex(0,0);
-        assertEquals(1, hex.northEastNeighbor().getColumn());
-        assertEquals(0, hex.northEastNeighbor().getRow());
-
-        hex = new Hex(1,1);
-        assertEquals(2, hex.northEastNeighbor().getColumn());
-        assertEquals(0, hex.northEastNeighbor().getRow());
-    }
-
-    @Test
-    public void southEastNeighbor() {
-        hex = new Hex(0,0);
-        assertEquals(1, hex.southEastNeighbor().getColumn());
-        assertEquals(1, hex.southEastNeighbor().getRow());
-
-        hex = new Hex(1,1);
-        assertEquals(2, hex.southEastNeighbor().getColumn());
-        assertEquals(1, hex.southEastNeighbor().getRow());
-    }
-
-    @Test
-    public void southNeighbor() {
-        hex = new Hex(0,0);
-        assertEquals(0, hex.southNeighbor().getColumn());
-        assertEquals(1, hex.southNeighbor().getRow());
-
-        hex = new Hex(1,1);
-        assertEquals(1, hex.southNeighbor().getColumn());
-        assertEquals(2, hex.southNeighbor().getRow());
-    }
-
-    @Test
-    public void southWestNeighbor() {
-        hex = new Hex(0,0);
-        assertEquals(-1, hex.southWestNeighbor().getColumn());
-        assertEquals(1, hex.southWestNeighbor().getRow());
-
-        hex = new Hex(1,1);
-        assertEquals(0, hex.southWestNeighbor().getColumn());
-        assertEquals(1, hex.southWestNeighbor().getRow());
-    }
-
-    @Test
-    public void northWestNeighbor() {
-        hex = new Hex(0,0);
-        assertEquals(-1, hex.northWestNeighbor().getColumn());
-        assertEquals(0, hex.northWestNeighbor().getRow());
-
-        hex = new Hex(1,1);
-        assertEquals(0, hex.northWestNeighbor().getColumn());
-        assertEquals(0, hex.northWestNeighbor().getRow());
+        assertEquals(new Hex(0, 0), hex.northWest());
+        assertEquals(new Hex(0, 0), hex.northWest(1));
+        assertEquals(new Hex(-2, -1), hex.northWest(3));
+        assertEquals(new Hex(2, 1), hex.northWest(-1));
     }
 
     @Test
