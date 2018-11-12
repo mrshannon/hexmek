@@ -1,22 +1,17 @@
 package io.mrshannon.hexmek;
 
 /**
- * Cruising movement, this is the slowest form of movement and allows backwards movement.
+ * Cruising movement, this is the slowest form of movement but allows backwards movement.
  */
 public class Cruise extends Movement {
-
-    private Unit unit;
 
     /**
      * Construct a cruising movement.
      *
-     * @param unit unit to move
      * @param movementPoints number of movement points to initialize with
      */
-    public Cruise(Unit unit, int movementPoints) {
+    public Cruise(int movementPoints) {
         super(movementPoints);
-        this.unit = unit;
-        visitHex(unit.getHex());
     }
 
     /**
@@ -26,38 +21,39 @@ public class Cruise extends Movement {
      */
     public Cruise(Cruise other) {
         super(other);
-        this.unit = other.unit;
     }
 
     @Override
     public int getGunneryModifier() {
-        return Movement.BASE_GUNNERY + 1;
+        return super.getGunneryModifier() + 1;
     }
 
     @Override
-    public void moveForward() throws MovementPointsExhaustedException {
+    public Hex moveForward(Hex hex, Direction facing) throws MovementPointsExhaustedException {
         decrementMovementPoints();
-        unit.getFacing().apply(1, unit.getHex());
-        visitHex(unit.getHex());
+        Hex newHex = facing.apply(hex);
+        visitHex(newHex);
+        return newHex;
     }
 
     @Override
-    public void moveBackward() throws MovementPointsExhaustedException {
+    public Hex moveBackward(Hex hex, Direction facing) throws MovementPointsExhaustedException {
         decrementMovementPoints();
-        unit.getFacing().apply(-1, unit.getHex());
-        visitHex(unit.getHex());
+        Hex newHex = facing.apply(-1, hex);
+        visitHex(newHex);
+        return newHex;
     }
 
     @Override
-    public void rotateRight() throws MovementPointsExhaustedException {
+    public Direction rotateRight(Direction facing) throws MovementPointsExhaustedException {
         decrementMovementPoints();
-        unit.getFacing().rotateRight();
+        return facing.rotateRight();
     }
 
     @Override
-    public void rotateLeft() throws MovementPointsExhaustedException {
+    public Direction rotateLeft(Direction facing) throws MovementPointsExhaustedException {
         decrementMovementPoints();
-        unit.getFacing().rotateLeft();
+        return facing.rotateLeft();
     }
 
     @Override

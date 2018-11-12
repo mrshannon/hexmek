@@ -28,7 +28,7 @@ public class Halt extends Movement {
 
     @Override
     public int getGunneryModifier() {
-        return Movement.BASE_GUNNERY;
+        return super.getGunneryModifier();
     }
 
     @Override

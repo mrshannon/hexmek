@@ -22,31 +22,28 @@ public class MovementFactory {
     /**
      * Create a halting movement, no movement allowed.
      *
-     * @param unit unit to halt
      * @return the new movement object
      */
-    public Halt createHalt(Unit unit) {
+    public Halt createHalt() {
         return new Halt();
     }
 
     /**
      * Create a cruising movement, all movements allowed.
      *
-     * @param unit unit to move
      * @return the new movement object
      */
-    public Cruise createCruise(Unit unit) {
-        return new Cruise(unit, cruiseMovementPoints);
+    public Cruise createCruise() {
+        return new Cruise(cruiseMovementPoints);
     }
 
     /**
      * Create a flanking movement.  This is the fastest movement, but backwards movement is not allowed.
      *
-     * @param unit unit to move
      * @return the new movement object
      */
-    public Flank createFlank(Unit unit) {
-        return new Flank(unit, flankMovementPoints);
+    public Flank createFlank() {
+        return new Flank(flankMovementPoints);
     }
 
 }

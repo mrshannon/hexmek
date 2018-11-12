@@ -49,10 +49,10 @@ public abstract class Movement implements Cloneable {
     /**
      * Record a visit to a hex.
      *
-     * @param hex visited hex grid, it will be copied
+     * @param hex visited hex grid
      */
     protected void visitHex(Hex hex) {
-        visitedHexes.add(new Hex(hex));
+        visitedHexes.add(hex);
     }
 
     /**
@@ -97,45 +97,57 @@ public abstract class Movement implements Cloneable {
      *
      * @return gunnery (attack) modifier
      */
-    public abstract int getGunneryModifier();
+    public int getGunneryModifier() {
+        return Movement.BASE_GUNNERY;
+    }
 
     /**
-     * Move the unit forward one unit.
+     * Move unit forward one unit.
      *
+     * @param hex current hex coordinate
+     * @param facing current facing direction
+     * @return new hex coordinate
      * @throws MovementPointsExhaustedException if no movement points remain for the movement
      * @throws UnsupportedOperationException if forwards movement is not supported for the movement type
      */
-    public void moveForward() throws MovementPointsExhaustedException {
+    public Hex moveForward(Hex hex, Direction facing) throws MovementPointsExhaustedException {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Move the unit backward one unit.
+     * Move unit backward one unit.
      *
+     * @param hex current hex coordinate
+     * @param facing current facing direction
+     * @return new hex coordinate
      * @throws MovementPointsExhaustedException if no movement points remain for the movement
      * @throws UnsupportedOperationException if backwards movement is not supported for the movement type
      */
-    public void moveBackward() throws MovementPointsExhaustedException {
+    public Hex moveBackward(Hex hex, Direction facing) throws MovementPointsExhaustedException {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Rotate the unit to the right.
+     * Rotate unit to the right.
      *
+     * @param facing current facing direction
+     * @return new facing direction
      * @throws MovementPointsExhaustedException if no movement points remain for the movement
      * @throws UnsupportedOperationException if right rotation is not supported for the movement type
      */
-    public  void rotateRight() throws MovementPointsExhaustedException {
+    public Direction rotateRight(Direction facing) throws MovementPointsExhaustedException {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Rotate the unit to the left.
+     * Rotate unit to the left.
      *
+     * @param facing current facing direction
+     * @return new facing direction
      * @throws MovementPointsExhaustedException if no movement points remain for the movement
      * @throws UnsupportedOperationException if left rotation is not supported for the movement type
      */
-    public void rotateLeft() throws MovementPointsExhaustedException {
+    public Direction rotateLeft(Direction facing) throws MovementPointsExhaustedException {
         throw new UnsupportedOperationException();
     }
 

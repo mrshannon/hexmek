@@ -6,7 +6,7 @@ package io.mrshannon.hexmek;
 public interface Memento {
 
     /**
-     * Restore the object this memento is associated with.
+     * Restore the object this memento is associated with to the state saved in the memento.
      */
     void restore();
 }
