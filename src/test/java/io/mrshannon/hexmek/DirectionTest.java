@@ -110,55 +110,43 @@ public class DirectionTest {
 
         // even column
         hex = new Hex(4,7);
-        north.apply(hex);
-//        assertTrue(hex.equals(new Hex(4, 6)));
-        assertEquals(new Hex(4, 6), hex);
+        assertEquals(new Hex(4, 6), north.apply(hex));
 
         hex = new Hex(4,7);
-        northEast.apply(hex);
-        assertEquals(new Hex(5, 7), hex);
+        assertEquals(new Hex(5, 7), northEast.apply(hex));
 
         hex = new Hex(4,7);
-        southEast.apply(hex);
-        assertEquals(new Hex(5, 8), hex);
+        assertEquals(new Hex(5, 8), southEast.apply(hex));
 
         hex = new Hex(4,7);
-        south.apply(hex);
-        assertEquals(new Hex(4, 8), hex);
+        assertEquals(new Hex(4, 8), south.apply(hex));
 
         hex = new Hex(4,7);
-        southWest.apply(hex);
-        assertEquals(new Hex(3, 8), hex);
+        assertEquals(new Hex(3, 8), southWest.apply(hex));
 
         hex = new Hex(4,7);
-        northWest.apply(hex);
-        assertEquals(new Hex(3, 7), hex);
+        assertEquals(new Hex(3, 7), northWest.apply(hex));
 
 
         // odd column
         hex = new Hex(5,7);
-        north.apply(hex);
-        assertEquals(new Hex(5, 6), hex);
+        assertEquals(new Hex(5, 6), north.apply(hex));
 
         hex = new Hex(5,7);
-        northEast.apply(hex);
-        assertEquals(new Hex(6, 6), hex);
+        assertEquals(new Hex(6, 6), northEast.apply(hex));
 
         hex = new Hex(5,7);
-        southEast.apply(1, hex);
-        assertEquals(new Hex(6, 7), hex);
+        assertEquals(new Hex(6, 7), southEast.apply(hex));
 
         hex = new Hex(5,7);
-        south.apply(hex);
-        assertEquals(new Hex(5, 8), hex);
+        assertEquals(new Hex(5, 8), south.apply(hex));
 
         hex = new Hex(5,7);
-        southWest.apply(hex);
-        assertEquals(new Hex(4, 7), hex);
+        assertEquals(new Hex(4, 7), southWest.apply(hex));
 
         hex = new Hex(5,7);
         northWest.apply(hex);
-        assertEquals(new Hex(4, 6), hex);
+        assertEquals(new Hex(4, 6), northWest.apply(hex));
     }
 
     @Test
@@ -166,17 +154,17 @@ public class DirectionTest {
         Hex hex;
 
         hex = new Hex(0,0);
-        north.apply(1, hex);
+        hex = north.apply(1, hex);
         assertEquals(new Hex(0, -1), hex);
-        northEast.apply(2, hex);
+        hex = northEast.apply(2, hex);
         assertEquals(new Hex(2, -2), hex);
-        southEast.apply(3, hex);
+        hex = southEast.apply(3, hex);
         assertEquals(new Hex(5, 0), hex);
-        south.apply(4, hex);
+        hex = south.apply(4, hex);
         assertEquals(new Hex(5, 4), hex);
-        southWest.apply(5, hex);
+        hex = southWest.apply(5, hex);
         assertEquals(new Hex(0, 6), hex);
-        northWest.apply(5, hex);
+        hex = northWest.apply(5, hex);
         assertEquals(new Hex(-5, 4), hex);
     }
 }

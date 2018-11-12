@@ -39,59 +39,37 @@ public class HexTest {
     @Test
     public void add() {
         hex = new Hex(0,0);
-        hex.add(new Hex(1,0));
-        assertEquals(1, hex.getColumn());
-        assertEquals(0, hex.getRow());
+        assertEquals(new Hex(1, 0), hex.add(new Hex(1, 0)));
 
         hex = new Hex(0,0);
-        hex.add(new Hex(-1,0));
-        assertEquals(-1, hex.getColumn());
-        assertEquals(0, hex.getRow());
+        assertEquals(new Hex(-1, 0), hex.add(new Hex(-1, 0)));
 
         hex = new Hex(0,0);
-        hex.add(new Hex(0,1));
-        assertEquals(0, hex.getColumn());
-        assertEquals(1, hex.getRow());
+        assertEquals(new Hex(0, 1), hex.add(new Hex(0, 1)));
 
         hex = new Hex(0,0);
-        hex.add(new Hex(0,-1));
-        assertEquals(0, hex.getColumn());
-        assertEquals(-1, hex.getRow());
+        assertEquals(new Hex(0, -1), hex.add(new Hex(0, -1)));
 
         hex = new Hex(0,0);
-        hex.add(new Hex(1,1));
-        assertEquals(1, hex.getColumn());
-        assertEquals(1, hex.getRow());
+        assertEquals(new Hex(1, 1), hex.add(new Hex(1, 1)));
 
         hex = new Hex(0,0);
-        hex.add(new Hex(1,-1));
-        assertEquals(1, hex.getColumn());
-        assertEquals(-1, hex.getRow());
+        assertEquals(new Hex(1, -1), hex.add(new Hex(1, -1)));
 
         hex = new Hex(0,0);
-        hex.add(new Hex(-1,1));
-        assertEquals(-1, hex.getColumn());
-        assertEquals(1, hex.getRow());
+        assertEquals(new Hex(-1, 1), hex.add(new Hex(-1, 1)));
 
         hex = new Hex(0,0);
-        hex.add(new Hex(-1,-1));
-        assertEquals(-1, hex.getColumn());
-        assertEquals(-1, hex.getRow());
+        assertEquals(new Hex(-1, -1), hex.add(new Hex(-1, -1)));
 
         hex = new Hex(0,-1);
-        hex.add(new Hex(0,1));
-        assertEquals(0, hex.getColumn());
-        assertEquals(0, hex.getRow());
+        assertEquals(new Hex(0, 0), hex.add(new Hex(0, 1)));
 
         hex = new Hex(1,0);
-        hex.add(new Hex(-1,1));
-        assertEquals(0, hex.getColumn());
-        assertEquals(0, hex.getRow());
+        assertEquals(new Hex(0, 0), hex.add(new Hex(-1, 1)));
 
         hex = new Hex(1,1);
-        hex.add(new Hex(-1,0));
-        assertEquals(0, hex.getColumn());
-        assertEquals(0, hex.getRow());
+        assertEquals(new Hex(0, 0), hex.add(new Hex(-1, 0)));
     }
 
     @Test
@@ -105,7 +83,7 @@ public class HexTest {
         hex = new Hex(1,1);
         assertEquals(new Hex(1, 0), hex.north());
         assertEquals(new Hex(1, 0), hex.north(1));
-        assertEquals(new Hex(4, -1), hex.north(3));
+        assertEquals(new Hex(1, -2), hex.north(3));
         assertEquals(new Hex(1, 2), hex.north(-1));
     }
 
@@ -259,9 +237,9 @@ public class HexTest {
     @Test
     public void testEquals() {
         hex = new Hex(40,20);
-        assertTrue(hex.equals(new Hex(40, 20)));
-        assertFalse(hex.equals(new Hex(41, 20)));
-        assertFalse(hex.equals(new Hex(40, 21)));
+        assertEquals(new Hex(40, 20), hex);
+        assertNotEquals(new Hex(41, 20), hex);
+        assertNotEquals(new Hex(40, 21), hex);
     }
 
     @Test
