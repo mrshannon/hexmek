@@ -10,9 +10,9 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class FlankTest {
 
-    Flank flank;
-    Flank flank1;
-    Flank flank6;
+    private Flank flank;
+    private Flank flank1;
+    private Flank flank6;
 
     @Before
     public void setUp() throws Exception {
