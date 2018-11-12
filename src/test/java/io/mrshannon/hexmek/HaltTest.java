@@ -9,7 +9,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class HaltTest {
 
-    Halt halt;
+    private Halt halt;
 
     @Before
     public void setUp() throws Exception {
