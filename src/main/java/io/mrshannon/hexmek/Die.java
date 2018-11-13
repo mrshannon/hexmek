@@ -1,7 +1,5 @@
 package io.mrshannon.hexmek;
 
-import java.util.Random;
-
 /**
  * This class represents a single die of any Dn size.
  * <p>
@@ -13,31 +11,18 @@ public class Die {
 
     private int faces;
     private int value;
-    private Random random;
 
     /**
      * Create a die with its own randomizer.
      *
-     * @param faces number of faces of the die, must be positive
-     * @throws IllegalArgumentException if the size is not positive.
-     */
-    public Die(int faces) {
-        this(faces, new Random());
-    }
-
-    /**
-     * Create a die with a randomizer via dependency injection.
-     *
      * @param faces  number of faces of the die, must be positive
-     * @param random randomizer instance to use.
      * @throws IllegalArgumentException if the size is not positive
      */
-    public Die(int faces, Random random) {
+    public Die(int faces) {
         if (faces < 1) {
             throw new IllegalArgumentException("Number of die faces must be a positive integer.");
         }
         this.faces = faces;
-        this.random = random;
         roll();
     }
 
@@ -55,7 +40,7 @@ public class Die {
      * Roll the die, generating a new random value.
      */
     public void roll() {
-        value = random.nextInt(faces) + 1;
+        value = RandomSingleton.getInstance().nextInt(faces) + 1;
     }
 
     /**
