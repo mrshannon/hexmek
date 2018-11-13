@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class DirectFireStrategyTest {
+public class DirectStrategyTest {
 
-    DirectFireStrategy lineOfSight;
+    DirectStrategy lineOfSight;
 
     @Before
     public void setUp() throws Exception {
-        lineOfSight = new DirectFireStrategy();
+        lineOfSight = new DirectStrategy();
     }
 
     @After
