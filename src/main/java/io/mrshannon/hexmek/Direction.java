@@ -3,6 +3,13 @@ package io.mrshannon.hexmek;
 /**
  * A direction in the hexagonal, flat top/bottom map.  Valid directions are "North", "North East", "South East",
  * "South", "South West", and "North West".
+ *
+ * @see io.mrshannon.hexmek.North
+ * @see io.mrshannon.hexmek.NorthEast
+ * @see io.mrshannon.hexmek.SouthEast
+ * @see io.mrshannon.hexmek.South
+ * @see io.mrshannon.hexmek.SouthWest
+ * @see io.mrshannon.hexmek.NorthWest
  */
 public interface Direction {
 
