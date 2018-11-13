@@ -1,0 +1,106 @@
+package io.mrshannon.hexmek;
+
+/**
+ * Weapon range specification and range modifier calculations.
+ */
+public class WeaponRange {
+
+    private int minimumRange;
+    private int shortRange;
+    private int mediumRange;
+    private int longRange;
+
+    /**
+     * Construct a weapon range for a weapon with a minimum range.
+     *
+     * @param minimumRange minimum range of weapon
+     * @param shortRange short range of weapon
+     * @param mediumRange medium range of weapon
+     * @param longRange long range of weapon
+     */
+    public WeaponRange(int minimumRange, int shortRange, int mediumRange, int longRange) {
+        this.minimumRange = minimumRange;
+        this.shortRange = shortRange;
+        this.mediumRange = mediumRange;
+        this.longRange = longRange;
+    }
+
+    /**
+     * Construct a weapon range for a weapon without a minimum range.
+     *
+     * @param shortRange short range of weapon
+     * @param mediumRange medium range of weapon
+     * @param longRange long range of weapon
+     */
+    public WeaponRange(int shortRange, int mediumRange, int longRange) {
+        this(0, shortRange, mediumRange, longRange);
+    }
+
+    /**
+     * Get the minimum range of the weapon.
+     *
+     * @return minimum range of weapon
+     */
+    public int getMinimumRange() {
+        return minimumRange;
+    }
+
+    /**
+     * Get the short range of the weapon.
+     *
+     * @return short range of weapon
+     */
+    public int getShortRange() {
+        return shortRange;
+    }
+
+    /**
+     * Get the medium range of the weapon.
+     *
+     * @return medium range of weapon
+     */
+    public int getMediumRange() {
+        return mediumRange;
+    }
+
+    /**
+     * Get the long range of the weapon.
+     *
+     * @return long range of weapon
+     */
+    public int getLongRange() {
+        return longRange;
+    }
+
+    /**
+     * Determine if a weapon can hit at all.
+     *
+     * @param range range to target, not including starting hex
+     * @return true if the weapon can hit, false if the weapon cannot hit
+     */
+    public boolean canHit(int range) {
+        return modifier(range) <= 12;
+    }
+
+    /**
+     * Calculate the range modifier for the given range.
+     *
+     * @param range range to target, not including starting hex
+     * @return range modifier for the weapon and the given {@code range}
+     */
+    public int modifier(int range) {
+        if (range <= minimumRange) {
+            return minimumRange - range + 1;
+        }
+        if (range <= shortRange) {
+            return 0;
+        }
+        if (range <= mediumRange) {
+            return 2;
+        }
+        if (range <= longRange) {
+            return 4;
+        }
+        return 13;
+    }
+}
