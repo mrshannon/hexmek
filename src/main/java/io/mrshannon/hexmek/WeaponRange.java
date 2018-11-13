@@ -106,6 +106,6 @@ public class WeaponRange {
         if (range <= longRange) {
             return 4;
         }
-        return Integer.MAX_VALUE/2;
+        return WeaponRange.OUT_OF_RANGE;
     }
 }
