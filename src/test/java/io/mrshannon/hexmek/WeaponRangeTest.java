@@ -67,7 +67,7 @@ public class WeaponRangeTest {
         for (int i = 7; i <= 9; ++i) {
             assertEquals(4, range.modifier(i));
         }
-        assertEquals(Integer.MAX_VALUE/2, range.modifier(10));
+        assertEquals(WeaponRange.OUT_OF_RANGE, range.modifier(10));
 
 
         assertEquals(6, rangeMinimum.modifier(1));
@@ -82,6 +82,6 @@ public class WeaponRangeTest {
         for (int i = 15; i <= 21; ++i) {
             assertEquals(4, rangeMinimum.modifier(i));
         }
-        assertEquals(Integer.MAX_VALUE/2, rangeMinimum.modifier(22));
+        assertEquals(WeaponRange.OUT_OF_RANGE, rangeMinimum.modifier(22));
     }
 }

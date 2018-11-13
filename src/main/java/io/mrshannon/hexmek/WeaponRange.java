@@ -11,6 +11,11 @@ public class WeaponRange {
     private int longRange;
 
     /**
+     * Out of range modifier value, guaranteed to be at least 4096.
+     */
+    public static final int OUT_OF_RANGE = Integer.MAX_VALUE/1024;
+
+    /**
      * Construct a weapon range for a weapon with a minimum range.
      *
      * @param minimumRange minimum range of weapon
@@ -86,7 +91,7 @@ public class WeaponRange {
      * Calculate the range modifier for the given range.
      *
      * @param range range to target, not including starting hex
-     * @return range modifier for the weapon and the given {@code range}, (Integer.MAX_VALUE)/2 if outside of range
+     * @return range modifier for the weapon and the given {@code range}, ({@code WeaponRange.OUT_OF_RANGE} if outside of range)
      */
     public int modifier(int range) {
         if (range <= minimumRange) {
