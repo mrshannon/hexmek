@@ -10,11 +10,11 @@ import static org.junit.Assert.*;
 
 public class IndirectFireStrategyTest {
 
-    IndirectFireStrategy firingStrategy;
+    IndirectFireStrategy lineOfSight;
 
     @Before
     public void setUp() throws Exception {
-        firingStrategy = new IndirectFireStrategy();
+        lineOfSight = new IndirectFireStrategy();
     }
 
     @After
@@ -24,7 +24,7 @@ public class IndirectFireStrategyTest {
     @Test
     public void modifier() {
         ArrayList<Tile> tiles = new ArrayList<>();
-        assertEquals(0, firingStrategy.modifier(tiles.iterator()));
+        assertEquals(0, lineOfSight.modifier(tiles));
     }
 
 }
