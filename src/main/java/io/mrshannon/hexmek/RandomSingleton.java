@@ -7,20 +7,20 @@ import java.util.Random;
  */
 public class RandomSingleton {
 
-    private static Random instance = null;
+    private static Random random = null;
 
     private RandomSingleton() {
     }
 
     /**
-     * Get the global random instance.
+     * Get the global random random.
      *
-     * @return global random instance
+     * @return global random random
      */
-    public static Random getInstance() {
-        if (instance == null) {
-            instance = new Random();
+    public static Random getRandom() {
+        if (random == null) {
+            random = new Random();
         }
-        return instance;
+        return random;
     }
 }

@@ -40,7 +40,7 @@ public class Die {
      * Roll the die, generating a new random value.
      */
     public void roll() {
-        value = RandomSingleton.getInstance().nextInt(faces) + 1;
+        value = RandomSingleton.getRandom().nextInt(faces) + 1;
     }
 
     /**
