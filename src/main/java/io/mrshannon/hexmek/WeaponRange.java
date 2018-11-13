@@ -73,20 +73,20 @@ public class WeaponRange {
     }
 
     /**
-     * Determine if a weapon can hit at all.
+     * Determine if something is out of range, beyond long range.
      *
      * @param range range to target, not including starting hex
-     * @return true if the weapon can hit, false if the weapon cannot hit
+     * @return true if range is too great
      */
-    public boolean canHit(int range) {
-        return modifier(range) <= 12;
+    public boolean outOfRange(int range) {
+        return range > longRange;
     }
 
     /**
      * Calculate the range modifier for the given range.
      *
      * @param range range to target, not including starting hex
-     * @return range modifier for the weapon and the given {@code range}
+     * @return range modifier for the weapon and the given {@code range}, (Integer.MAX_VALUE)/2 if outside of range
      */
     public int modifier(int range) {
         if (range <= minimumRange) {
@@ -101,6 +101,6 @@ public class WeaponRange {
         if (range <= longRange) {
             return 4;
         }
-        return 13;
+        return Integer.MAX_VALUE/2;
     }
 }
