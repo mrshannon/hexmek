@@ -34,6 +34,7 @@ public class NormalFiringStrategy implements FiringStrategy {
     @Override
     public List<DamageRecord> fire(Weapon weapon, Unit target, int modifiers) {
         dice.roll();
+        System.out.println(dice.getTotal());
         if (dice.getTotal() >= modifiers) {
             return target.applyDamage(weapon, damage);
         }
