@@ -1,5 +1,7 @@
 package io.mrshannon.hexmek;
 
+import java.util.List;
+
 /**
  * A firing strategy is used to allow some weapons to be single shot and others to fire in clusters.
  */
@@ -26,8 +28,8 @@ public interface FiringStrategy {
      * @param weapon weapon to fire
      * @param target target unit
      * @param modifiers sum of all modifiers (gunnery, attack, and to hit)
-     * @return iterable of damage records, will only have one element for non cluster (normal) firing strategy
+     * @return list of damage records, will only have one element for non cluster (normal) firing strategy
      */
-    Iterable<DamageRecord> fire(Weapon weapon, Unit target, int modifiers);
+    List<DamageRecord> fire(Weapon weapon, Unit target, int modifiers);
 
 }
