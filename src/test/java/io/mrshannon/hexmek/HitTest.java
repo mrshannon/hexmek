@@ -7,16 +7,19 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class MissTest {
+public class HitTest {
 
     private Weapon mockedWeapon;
-    private Miss miss;
+    private Component mockedComponent;
+    private Hit hit;
 
     @Before
     public void setUp() throws Exception {
         mockedWeapon = mock(Weapon.class);
         when(mockedWeapon.getName()).thenReturn("Mock Weapon");
-        miss = new Miss(mockedWeapon);
+        mockedComponent = mock(Component.class);
+        when(mockedComponent.getName()).thenReturn("Mock Component");
+        hit = new Hit(mockedWeapon, mockedComponent, 23);
     }
 
     @After
@@ -25,21 +28,21 @@ public class MissTest {
 
     @Test
     public void getWeapon() {
-        assertEquals(mockedWeapon, miss.getWeapon());
+        assertEquals(mockedWeapon, hit.getWeapon());
     }
 
     @Test
     public void getComponent() {
-        assertEquals(null, miss.getComponent());
+        assertEquals(mockedComponent, hit.getComponent());
     }
 
     @Test
     public void getDamage() {
-        assertEquals(0, miss.getDamage());
+        assertEquals(23, hit.getDamage());
     }
 
     @Test
     public void testToString() {
-        assertEquals("Mock Weapon missed.", miss.toString());
+        assertEquals("Mock Weapon hit Mock Component for 23 damage.", hit.toString());
     }
 }
