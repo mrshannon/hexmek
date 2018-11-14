@@ -1,6 +1,7 @@
 package io.mrshannon.hexmek;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a coordinate in a hexagonal grid.
@@ -196,12 +197,12 @@ public class Hex {
     }
 
     /**
-     * Get iterable to neighboring cell coordinates, starting at the cell north of the coordinate and rotating
+     * Get list of neighboring cell coordinates, starting at the cell north of the coordinate and rotating
      * clockwise.
      *
-     * @return iterable to neighboring coordinates
+     * @return list of neighboring coordinates
      */
-    public Iterable<Hex> neighbors() {
+    public List<Hex> neighbors() {
         var coordinates = new ArrayList<Hex>();
         coordinates.add(north(1));
         coordinates.add(northEast(1));
@@ -226,9 +227,9 @@ public class Hex {
      * Get iterable to coordinates from this coordinate to another coordinate.
      *
      * @param other the coordinate at the other end of the line
-     * @return iterable to coordinates along the line, from start to end (the other coordinate)
+     * @return list of coordinates along the line, from start to end (the other coordinate)
      */
-    public Iterable<Hex> lineTo(Hex other) {
+    public List<Hex> lineTo(Hex other) {
         int n = this.distanceTo(other);
         var results = new ArrayList<Hex>();
 
