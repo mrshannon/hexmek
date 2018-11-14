@@ -68,7 +68,7 @@ public class NormalFiringStrategyTest {
         assertEquals(1, records.size());
         assertThat(records.get(0), instanceOf(Miss.class));
         assertEquals(mockedWeapon, records.get(0).getWeapon());
-        assertEquals(null, records.get(0).getComponent());
+        assertNull(records.get(0).getComponent());
         assertEquals(0, records.get(0).getDamage());
     }
 }
