@@ -3,8 +3,8 @@ package io.mrshannon.hexmek;
 /**
  * Line of sight strategy, to compute the line of sight modifier.
  *
- * @see DirectStrategy
- * @see IndirectStrategy
+ * @see DirectFireStrategy
+ * @see IndirectFireStrategy
  */
 public interface LineOfSightStrategy {
 

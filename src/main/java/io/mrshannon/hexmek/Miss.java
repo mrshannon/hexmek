@@ -33,7 +33,7 @@ public class Miss implements DamageRecord {
 
     @Override
     public String toString() {
-        return String.format("%s missed.", weapon.getName());
+        return String.format("%s missed.", weapon.getType());
     }
 
 }

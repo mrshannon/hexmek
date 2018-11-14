@@ -39,7 +39,7 @@ public class Hit implements DamageRecord {
 
     @Override
     public String toString() {
-        return String.format("%s hit %s for %d damage.", weapon.getName(), component.getName(), damage);
+        return String.format("%s hit %s for %d damage.", weapon.getType(), component.getName(), damage);
     }
 
 }

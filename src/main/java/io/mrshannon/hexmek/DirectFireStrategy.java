@@ -4,7 +4,7 @@ package io.mrshannon.hexmek;
 /**
  * Direct fire strategy, affected by terrain.
  */
-public class DirectStrategy implements LineOfSightStrategy {
+public class DirectFireStrategy implements LineOfSightStrategy {
 
     @Override
     public int modifier(Iterable<Tile> tiles) {

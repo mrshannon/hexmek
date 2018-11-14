@@ -15,7 +15,7 @@ public class MissTest {
     @Before
     public void setUp() throws Exception {
         mockedWeapon = mock(Weapon.class);
-        when(mockedWeapon.getName()).thenReturn("Mock Weapon");
+        when(mockedWeapon.getType()).thenReturn("Mock Weapon");
         miss = new Miss(mockedWeapon);
     }
 

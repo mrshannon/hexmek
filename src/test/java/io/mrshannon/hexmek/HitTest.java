@@ -16,7 +16,7 @@ public class HitTest {
     @Before
     public void setUp() throws Exception {
         mockedWeapon = mock(Weapon.class);
-        when(mockedWeapon.getName()).thenReturn("Mock Weapon");
+        when(mockedWeapon.getType()).thenReturn("Mock Weapon");
         mockedComponent = mock(Component.class);
         when(mockedComponent.getName()).thenReturn("Mock Component");
         hit = new Hit(mockedWeapon, mockedComponent, 23);
