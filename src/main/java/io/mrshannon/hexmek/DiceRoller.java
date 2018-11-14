@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class DiceRoller extends AbstractCollection<Die> {
 
-    private Collection<Die> dice;
+    private List<Die> dice;
     private HashMap<Integer, Double> probabilities;
 
     /**
