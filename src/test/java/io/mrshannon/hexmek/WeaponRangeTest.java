@@ -84,4 +84,17 @@ public class WeaponRangeTest {
         }
         assertEquals(WeaponRange.OUT_OF_RANGE, rangeMinimum.modifier(22));
     }
+
+    @Test
+    public void testEquals() {
+        assertEquals(new WeaponRange(3, 6, 9), range);
+        assertEquals(new WeaponRange(6, 7, 14, 21), rangeMinimum);
+    }
+
+    @Test
+    public void testToString() {
+        assertEquals("short range = 3, medium range = 6, long range = 9", range.toString());
+        assertEquals("minimum range = 6, short range = 7, medium range = 14, long range = 21",
+                rangeMinimum.toString());
+    }
 }

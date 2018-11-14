@@ -108,4 +108,34 @@ public class WeaponRange {
         }
         return OUT_OF_RANGE;
     }
+
+    /**
+     * Compare two weapon ranges.
+     *
+     * @param other the other range to compare this range to
+     * @return true if both ranges are the same
+     */
+    public boolean equals(Object other) {
+        if (other instanceof WeaponRange) {
+            return (minimumRange == ((WeaponRange) other).minimumRange) &&
+                    (shortRange == ((WeaponRange) other).shortRange) &&
+                    (mediumRange == ((WeaponRange) other).mediumRange) &&
+                    (longRange == ((WeaponRange) other).longRange);
+        }
+        return false;
+    }
+
+    /**
+     * Get string representation of the range.
+     *
+     * @return string representation of range
+     */
+    public String toString() {
+        if (minimumRange == 0) {
+            return String.format("short range = %s, medium range = %s, long range = %s",
+                    shortRange, mediumRange, longRange);
+        }
+        return String.format("minimum range = %s, short range = %s, medium range = %s, long range = %s",
+                minimumRange, shortRange, mediumRange, longRange);
+    }
 }
