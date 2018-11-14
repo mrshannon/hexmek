@@ -76,7 +76,7 @@ public class ClusterFiringStrategy implements FiringStrategy {
     }
 
     /**
-     * Get the number of projectiles of the cluster that will hit.
+     * Computer the number of projectiles of the cluster that will hit for a given dice roll.
      *
      * @param diceTotal the total of 2D6
      * @return number of projectiles that will hit

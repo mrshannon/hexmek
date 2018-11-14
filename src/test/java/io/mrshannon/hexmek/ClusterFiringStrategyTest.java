@@ -61,6 +61,77 @@ public class ClusterFiringStrategyTest {
         assertEquals(0.0, clusterStrategy.getHitChance(13), 0.0001);
     }
 
+
+    @Test
+    public void clusterHits() {
+        ClusterFiringStrategy cluster;
+
+        cluster = new ClusterFiringStrategy(1, 2);
+        assertEquals(1, cluster.clusterHits(2));
+        assertEquals(1, cluster.clusterHits(3));
+        assertEquals(1, cluster.clusterHits(4));
+        assertEquals(1, cluster.clusterHits(5));
+        assertEquals(1, cluster.clusterHits(6));
+        assertEquals(1, cluster.clusterHits(7));
+        assertEquals(2, cluster.clusterHits(8));
+        assertEquals(2, cluster.clusterHits(9));
+        assertEquals(2, cluster.clusterHits(10));
+        assertEquals(2, cluster.clusterHits(11));
+        assertEquals(2, cluster.clusterHits(12));
+
+        cluster = new ClusterFiringStrategy(1, 8);
+        assertEquals(3, cluster.clusterHits(2));
+        assertEquals(3, cluster.clusterHits(3));
+        assertEquals(4, cluster.clusterHits(4));
+        assertEquals(4, cluster.clusterHits(5));
+        assertEquals(5, cluster.clusterHits(6));
+        assertEquals(5, cluster.clusterHits(7));
+        assertEquals(5, cluster.clusterHits(8));
+        assertEquals(6, cluster.clusterHits(9));
+        assertEquals(6, cluster.clusterHits(10));
+        assertEquals(8, cluster.clusterHits(11));
+        assertEquals(8, cluster.clusterHits(12));
+
+        cluster = new ClusterFiringStrategy(1, 11);
+        assertEquals(4, cluster.clusterHits(2));
+        assertEquals(4, cluster.clusterHits(3));
+        assertEquals(5, cluster.clusterHits(4));
+        assertEquals(7, cluster.clusterHits(5));
+        assertEquals(7, cluster.clusterHits(6));
+        assertEquals(7, cluster.clusterHits(7));
+        assertEquals(7, cluster.clusterHits(8));
+        assertEquals(9, cluster.clusterHits(9));
+        assertEquals(9, cluster.clusterHits(10));
+        assertEquals(11, cluster.clusterHits(11));
+        assertEquals(11, cluster.clusterHits(12));
+
+        cluster = new ClusterFiringStrategy(1, 16);
+        assertEquals(5, cluster.clusterHits(2));
+        assertEquals(5, cluster.clusterHits(3));
+        assertEquals(7, cluster.clusterHits(4));
+        assertEquals(10, cluster.clusterHits(5));
+        assertEquals(10, cluster.clusterHits(6));
+        assertEquals(10, cluster.clusterHits(7));
+        assertEquals(10, cluster.clusterHits(8));
+        assertEquals(13, cluster.clusterHits(9));
+        assertEquals(13, cluster.clusterHits(10));
+        assertEquals(16, cluster.clusterHits(11));
+        assertEquals(16, cluster.clusterHits(12));
+
+        cluster = new ClusterFiringStrategy(1, 30);
+        assertEquals(10, cluster.clusterHits(2));
+        assertEquals(10, cluster.clusterHits(3));
+        assertEquals(12, cluster.clusterHits(4));
+        assertEquals(18, cluster.clusterHits(5));
+        assertEquals(18, cluster.clusterHits(6));
+        assertEquals(18, cluster.clusterHits(7));
+        assertEquals(18, cluster.clusterHits(8));
+        assertEquals(24, cluster.clusterHits(9));
+        assertEquals(24, cluster.clusterHits(10));
+        assertEquals(30, cluster.clusterHits(11));
+        assertEquals(30, cluster.clusterHits(12));
+    }
+
     @Test
     public void fire() {
         List<DamageRecord> records;
@@ -88,9 +159,5 @@ public class ClusterFiringStrategyTest {
                 assertEquals(1, record.getDamage());
             }
         }
-
-//        assertEquals(mockedWeapon, records.get(0).getWeapon());
-//        assertEquals(mockedComponent, records.get(0).getComponent());
-//        assertEquals(23, records.get(0).getDamage());
     }
 }
