@@ -5,7 +5,7 @@ package io.mrshannon.hexmek;
  *
  * @see io.mrshannon.hexmek.Originator
  */
-public interface Unit extends Originator {
+public interface Unit extends Damageable, Originator {
 
     /**
      * Get the ID of the unit.
@@ -52,7 +52,6 @@ public interface Unit extends Originator {
      * @return current attack modifier
      */
     int getGunneryModifier();
-
 
     /**
      * Determine if the unit is still alive.
