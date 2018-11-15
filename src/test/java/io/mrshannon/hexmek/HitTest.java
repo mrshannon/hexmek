@@ -18,7 +18,7 @@ public class HitTest {
         mockedWeapon = mock(Weapon.class);
         when(mockedWeapon.getType()).thenReturn("Mock Weapon");
         mockedComponent = mock(Component.class);
-        when(mockedComponent.getName()).thenReturn("Mock Component");
+        when(mockedComponent.getType()).thenReturn("Mock Component");
         hit = new Hit(mockedWeapon, mockedComponent, 23);
     }
 

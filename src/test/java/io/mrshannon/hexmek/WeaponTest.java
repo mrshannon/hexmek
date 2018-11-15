@@ -40,7 +40,7 @@ public class WeaponTest {
         map = (new MapLoader("default")).createMap();
 
         component = mock(Component.class);
-        when(component.getName()).thenReturn("Mock Component");
+        when(component.getType()).thenReturn("Mock Component");
 
         var ac20record = new ArrayList<DamageRecord>();
         ac20record.add(new Hit(ac20, component, 20));
