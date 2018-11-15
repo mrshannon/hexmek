@@ -42,7 +42,7 @@ public class Weapon {
      *
      * @return weapon range specification
      */
-    public WeaponRange getRanage() {
+    public WeaponRange getRange() {
         return range;
     }
 
@@ -71,7 +71,7 @@ public class Weapon {
             tiles.add(map.getTile(hex));
         }
         modifiers += lineOfSightStrategy.modifier(tiles);
-        modifiers += range.modifier(tiles.size());
+        modifiers += range.modifier(tiles.size()-1);
         modifiers += attacker.getGunneryModifier();
         modifiers += target.getToHitModifier();
         return modifiers;
