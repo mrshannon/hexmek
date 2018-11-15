@@ -101,4 +101,13 @@ public class Weapon {
         return firingStrategy.fire(this, target, modifier(attacker, target, map));
     }
 
+    /**
+     * Get string representation of weapon.
+     *
+     * @return weapon type
+     */
+    public String toString() {
+        return type;
+    }
+
 }
