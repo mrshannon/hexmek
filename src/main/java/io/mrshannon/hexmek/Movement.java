@@ -39,14 +39,13 @@ public abstract class Movement implements Cloneable {
         this.visitedHexes = new HashSet<>(other.visitedHexes);
     }
 
-
     /**
      * Get the movement cost to move into the given hex coordinate.
      *
      * @param hex the hex coordinate to get the movement cost for
      * @return movement cost for the given {@code hex}
      */
-    protected int getMovementCost(Hex hex) {
+    public int getMovementCost(Hex hex) {
         return map.getTile(hex).getMovementCost() + 1;
     }
 
@@ -56,7 +55,7 @@ public abstract class Movement implements Cloneable {
      * @param movementCost how many movement points to use up
      * @throws MovementPointsExhaustedException if there are no movement points before the decrement
      */
-    protected void decrementMovementPoints(int movementCost) throws MovementPointsExhaustedException {
+    public void decrementMovementPoints(int movementCost) throws MovementPointsExhaustedException {
         if ((movementPoints - movementCost) < 0) {
             throw new MovementPointsExhaustedException("Out of movement points.");
         }
