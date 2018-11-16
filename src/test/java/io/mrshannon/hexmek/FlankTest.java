@@ -13,12 +13,15 @@ public class FlankTest {
     private Flank flank;
     private Flank flank1;
     private Flank flank6;
+    private Flank flankDefaultMap;
 
     @Before
     public void setUp() throws Exception {
-        flank = new Flank(100);
-        flank1 = new Flank(1);
-        flank6 = new Flank(6);
+        var map = (new MapLoader("clear")).createMap();
+        flank = new Flank(map, 100);
+        flank1 = new Flank(map, 1);
+        flank6 = new Flank(map, 6);
+        flankDefaultMap = new Flank((new MapLoader("default")).createMap(), 7);
     }
 
     @After
@@ -27,18 +30,18 @@ public class FlankTest {
 
     @Test
     public void moveForward() throws MovementPointsExhaustedException {
-        assertEquals(new Hex(0, -1), flank6.moveForward(new Hex(0, 0), new North()));
-        assertEquals(new Hex(1, 0), flank6.moveForward(new Hex(0, 0), new NorthEast()));
-        assertEquals(new Hex(1, 1), flank6.moveForward(new Hex(0, 0), new SouthEast()));
-        assertEquals(new Hex(0, 1), flank6.moveForward(new Hex(0, 0), new South()));
-        assertEquals(new Hex(-1, 1), flank6.moveForward(new Hex(0, 0), new SouthWest()));
-        assertEquals(new Hex(-1, 0), flank6.moveForward(new Hex(0, 0), new NorthWest()));
+        assertEquals(new Hex(2, 1), flank6.moveForward(new Hex(2, 2), new North()));
+        assertEquals(new Hex(3, 2), flank6.moveForward(new Hex(2, 2), new NorthEast()));
+        assertEquals(new Hex(3, 3), flank6.moveForward(new Hex(2, 2), new SouthEast()));
+        assertEquals(new Hex(2, 3), flank6.moveForward(new Hex(2, 2), new South()));
+        assertEquals(new Hex(1, 3), flank6.moveForward(new Hex(2, 2), new SouthWest()));
+        assertEquals(new Hex(1, 2), flank6.moveForward(new Hex(2, 2), new NorthWest()));
     }
 
     @Test(expected = MovementPointsExhaustedException.class)
     public void moveForwardOutOfMP() throws MovementPointsExhaustedException {
-        assertEquals(new Hex(0, -1), flank1.moveForward(new Hex(0, 0), new North()));
-        assertEquals(new Hex(1, 0), flank1.moveForward(new Hex(0, 0), new NorthEast()));
+        assertEquals(new Hex(2, 1), flank1.moveForward(new Hex(2, 2), new North()));
+        assertEquals(new Hex(3, 2), flank1.moveForward(new Hex(2, 2), new NorthEast()));
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -81,19 +84,29 @@ public class FlankTest {
     @Test
     public void getMovementPoints() throws MovementPointsExhaustedException {
         assertEquals(1, flank1.getMovementPoints());
+
         assertEquals(6, flank6.getMovementPoints());
-        flank6.moveForward(new Hex(0, 0), new North());
+        flank6.moveForward(new Hex(1, 1), new SouthEast());
         assertEquals(5, flank6.getMovementPoints());
         flank6.rotateRight(new North());
         assertEquals(4, flank6.getMovementPoints());
         flank6.rotateLeft(new North());
         assertEquals(3, flank6.getMovementPoints());
+
+        Hex hex = new Hex(10, 2);
+        assertEquals(7, flankDefaultMap.getMovementPoints());
+        hex = flankDefaultMap.moveForward(hex, new South());
+        assertEquals(5, flankDefaultMap.getMovementPoints());
+        hex = flankDefaultMap.moveForward(hex, new South());
+        assertEquals(2, flankDefaultMap.getMovementPoints());
+        hex = flankDefaultMap.moveForward(hex, new South());
+        assertEquals(0, flankDefaultMap.getMovementPoints());
     }
 
     @Test
     public void getToHitModifier() throws MovementPointsExhaustedException {
-        Hex hex = new Hex(0, 0);
-        Direction facing = new North();
+        Hex hex = new Hex(1, 1);
+        Direction facing = new SouthEast();
 
         for (int i = 1; i <= 2; ++i) {
             hex = flank.moveForward(hex, facing);
@@ -119,7 +132,7 @@ public class FlankTest {
             hex = flank.moveForward(hex, facing);
             assertEquals(5, flank.getToHitModifier());
         }
-        for (int i = 25; i < 100; ++i) {
+        for (int i = 25; i < 50; ++i) {
             hex = flank.moveForward(hex, facing);
             assertEquals(6, flank.getToHitModifier());
         }
@@ -127,8 +140,8 @@ public class FlankTest {
 
     @Test
     public void getToHitModifier1() throws MovementPointsExhaustedException {
-        Hex hex = new Hex(0, 0);
-        Direction facing = new North();
+        Hex hex = new Hex(5, 5);
+        Direction facing = new SouthEast();
 
         assertEquals(0, flank.getToHitModifier());
         hex = flank.moveForward(hex, facing); // moved 1
@@ -160,8 +173,8 @@ public class FlankTest {
 
     @Test
     public void testClone() throws MovementPointsExhaustedException {
-        Hex hex = new Hex(0, 0);
-        Direction facing = new North();
+        Hex hex = new Hex(1, 1);
+        Direction facing = new SouthEast();
 
         for (int i = 1; i <= 8; ++i) {
             hex = flank.moveForward(hex, facing);

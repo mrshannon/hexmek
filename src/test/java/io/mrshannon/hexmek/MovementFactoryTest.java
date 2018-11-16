@@ -14,8 +14,9 @@ public class MovementFactoryTest {
 
     @Before
     public void setUp() throws Exception {
-        factory35 = new MovementFactory(3, 5);
-        factory47 = new MovementFactory(4, 7);
+        var map = (new MapLoader("default")).createMap();
+        factory35 = new MovementFactory(map, 3, 5);
+        factory47 = new MovementFactory(map, 4, 7);
     }
 
     @After

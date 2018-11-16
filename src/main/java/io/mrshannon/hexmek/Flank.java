@@ -8,10 +8,11 @@ public class Flank extends Movement {
     /**
      * Construct a flanking movement.
      *
+     * @param map the map that movement will be on
      * @param movementPoints number of movement points to begin with
      */
-    public Flank(int movementPoints) {
-        super(movementPoints);
+    public Flank(HexMap map, int movementPoints) {
+        super(map, movementPoints);
     }
 
     /**
@@ -30,21 +31,21 @@ public class Flank extends Movement {
 
     @Override
     public Hex moveForward(Hex hex, Direction facing) throws MovementPointsExhaustedException {
-        decrementMovementPoints();
         Hex newHex = facing.apply(hex);
+        decrementMovementPoints(getMovementCost(newHex));
         visitHex(newHex);
         return newHex;
     }
 
     @Override
     public Direction rotateRight(Direction facing) throws MovementPointsExhaustedException {
-        decrementMovementPoints();
+        decrementMovementPoints(1);
         return facing.rotateRight();
     }
 
     @Override
     public Direction rotateLeft(Direction facing) throws MovementPointsExhaustedException {
-        decrementMovementPoints();
+        decrementMovementPoints(1);
         return facing.rotateLeft();
     }
 

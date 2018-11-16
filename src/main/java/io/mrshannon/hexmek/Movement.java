@@ -7,6 +7,7 @@ import java.util.HashSet;
  */
 public abstract class Movement implements Cloneable {
 
+    private HexMap map;
     private int movementPoints;
     private HashSet<Hex> visitedHexes;
 
@@ -18,9 +19,11 @@ public abstract class Movement implements Cloneable {
     /**
      * Construct a movement object.
      *
+     * @param map the map that movement will be on
      * @param movementPoints how many movement points to initialize the mover with
      */
-    public Movement(int movementPoints) {
+    public Movement(HexMap map, int movementPoints) {
+        this.map = map;
         this.movementPoints = movementPoints;
         this.visitedHexes = new HashSet<>();
     }
@@ -31,19 +34,33 @@ public abstract class Movement implements Cloneable {
      * @param other movement to copy
      */
     public Movement(Movement other) {
+        this.map = map;
         this.movementPoints = other.movementPoints;
         this.visitedHexes = new HashSet<>(other.visitedHexes);
+    }
+
+
+    /**
+     * Get the movement cost to move into the given hex coordinate.
+     *
+     * @param hex the hex coordinate to get the movement cost for
+     * @return movement cost for the given {@code hex}
+     */
+    protected int getMovementCost(Hex hex) {
+        return map.getTile(hex).getMovementCost() + 1;
     }
 
     /**
      * Decrement the internal movement point counter.
      *
+     * @param movementCost how many movement points to use up
      * @throws MovementPointsExhaustedException if there are no movement points before the decrement
      */
-    protected void decrementMovementPoints() throws MovementPointsExhaustedException {
-        if (movementPoints-- == 0) {
+    protected void decrementMovementPoints(int movementCost) throws MovementPointsExhaustedException {
+        if ((movementPoints - movementCost) < 0) {
             throw new MovementPointsExhaustedException("Out of movement points.");
         }
+        movementPoints -= movementCost;
     }
 
     /**

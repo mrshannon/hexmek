@@ -7,9 +7,11 @@ public class Halt extends Movement {
 
     /**
      * Construct a halt movement object.
+     *
+     * @param map the map that movement will be on
      */
-    public Halt() {
-        super(0);
+    public Halt(HexMap map) {
+        super(map, 0);
     }
 
     /**

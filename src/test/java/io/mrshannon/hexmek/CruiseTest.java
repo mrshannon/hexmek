@@ -12,12 +12,15 @@ public class CruiseTest {
     private Cruise cruise;
     private Cruise cruise1;
     private Cruise cruise6;
+    private Cruise cruiseDefaultMap;
 
     @Before
     public void setUp() throws Exception {
-        cruise = new Cruise(100);
-        cruise1 = new Cruise(1);
-        cruise6 = new Cruise(6);
+        var map = (new MapLoader("clear")).createMap();
+        cruise = new Cruise(map, 100);
+        cruise1 = new Cruise(map, 1);
+        cruise6 = new Cruise(map, 6);
+        cruiseDefaultMap = new Cruise((new MapLoader("default")).createMap(), 7);
     }
 
     @After
@@ -26,34 +29,34 @@ public class CruiseTest {
 
     @Test
     public void moveForward() throws MovementPointsExhaustedException {
-        assertEquals(new Hex(0, -1), cruise6.moveForward(new Hex(0, 0), new North()));
-        assertEquals(new Hex(1, 0), cruise6.moveForward(new Hex(0, 0), new NorthEast()));
-        assertEquals(new Hex(1, 1), cruise6.moveForward(new Hex(0, 0), new SouthEast()));
-        assertEquals(new Hex(0, 1), cruise6.moveForward(new Hex(0, 0), new South()));
-        assertEquals(new Hex(-1, 1), cruise6.moveForward(new Hex(0, 0), new SouthWest()));
-        assertEquals(new Hex(-1, 0), cruise6.moveForward(new Hex(0, 0), new NorthWest()));
+        assertEquals(new Hex(2, 1), cruise6.moveForward(new Hex(2, 2), new North()));
+        assertEquals(new Hex(3, 2), cruise6.moveForward(new Hex(2, 2), new NorthEast()));
+        assertEquals(new Hex(3, 3), cruise6.moveForward(new Hex(2, 2), new SouthEast()));
+        assertEquals(new Hex(2, 3), cruise6.moveForward(new Hex(2, 2), new South()));
+        assertEquals(new Hex(1, 3), cruise6.moveForward(new Hex(2, 2), new SouthWest()));
+        assertEquals(new Hex(1, 2), cruise6.moveForward(new Hex(2, 2), new NorthWest()));
     }
 
     @Test(expected = MovementPointsExhaustedException.class)
     public void moveForwardOutOfMP() throws MovementPointsExhaustedException {
-        assertEquals(new Hex(0, -1), cruise1.moveForward(new Hex(0, 0), new North()));
-        assertEquals(new Hex(1, 0), cruise1.moveForward(new Hex(0, 0), new NorthEast()));
+        assertEquals(new Hex(2, 1), cruise1.moveForward(new Hex(2, 2), new North()));
+        assertEquals(new Hex(3, 2), cruise1.moveForward(new Hex(2, 2), new NorthEast()));
     }
 
     @Test
     public void moveBackward() throws MovementPointsExhaustedException {
-        assertEquals(new Hex(0, 1), cruise6.moveBackward(new Hex(0, 0), new North()));
-        assertEquals(new Hex(-1, 1), cruise6.moveBackward(new Hex(0, 0), new NorthEast()));
-        assertEquals(new Hex(-1, 0), cruise6.moveBackward(new Hex(0, 0), new SouthEast()));
-        assertEquals(new Hex(0, -1), cruise6.moveBackward(new Hex(0, 0), new South()));
-        assertEquals(new Hex(1, 0), cruise6.moveBackward(new Hex(0, 0), new SouthWest()));
-        assertEquals(new Hex(1, 1), cruise6.moveBackward(new Hex(0, 0), new NorthWest()));
+        assertEquals(new Hex(2, 3), cruise6.moveBackward(new Hex(2, 2), new North()));
+        assertEquals(new Hex(1, 3), cruise6.moveBackward(new Hex(2, 2), new NorthEast()));
+        assertEquals(new Hex(1, 2), cruise6.moveBackward(new Hex(2, 2), new SouthEast()));
+        assertEquals(new Hex(2, 1), cruise6.moveBackward(new Hex(2, 2), new South()));
+        assertEquals(new Hex(3, 2), cruise6.moveBackward(new Hex(2, 2), new SouthWest()));
+        assertEquals(new Hex(3, 3), cruise6.moveBackward(new Hex(2, 2), new NorthWest()));
     }
 
     @Test(expected = MovementPointsExhaustedException.class)
     public void moveBackwardOutOfMP() throws MovementPointsExhaustedException {
-        assertEquals(new Hex(0, 1), cruise1.moveBackward(new Hex(0, 0), new North()));
-        assertEquals(new Hex(-1, 1), cruise1.moveBackward(new Hex(0, 0), new NorthEast()));
+        assertEquals(new Hex(5, 6), cruise1.moveBackward(new Hex(5, 5), new North()));
+        assertEquals(new Hex(4, 5), cruise1.moveBackward(new Hex(5, 5), new NorthEast()));
     }
 
     @Test
@@ -91,21 +94,31 @@ public class CruiseTest {
     @Test
     public void getMovementPoints() throws MovementPointsExhaustedException {
         assertEquals(1, cruise1.getMovementPoints());
+
         assertEquals(6, cruise6.getMovementPoints());
-        cruise6.moveForward(new Hex(0, 0), new North());
+        cruise6.moveForward(new Hex(2, 2), new SouthEast());
         assertEquals(5, cruise6.getMovementPoints());
-        cruise6.moveBackward(new Hex(0, 0), new North());
+        cruise6.moveBackward(new Hex(2, 2), new SouthEast());
         assertEquals(4, cruise6.getMovementPoints());
         cruise6.rotateRight(new North());
         assertEquals(3, cruise6.getMovementPoints());
         cruise6.rotateLeft(new North());
         assertEquals(2, cruise6.getMovementPoints());
+
+        Hex hex = new Hex(10, 2);
+        assertEquals(7, cruiseDefaultMap.getMovementPoints());
+        hex = cruiseDefaultMap.moveForward(hex, new South());
+        assertEquals(5, cruiseDefaultMap.getMovementPoints());
+        hex = cruiseDefaultMap.moveForward(hex, new South());
+        assertEquals(2, cruiseDefaultMap.getMovementPoints());
+        hex = cruiseDefaultMap.moveForward(hex, new South());
+        assertEquals(0, cruiseDefaultMap.getMovementPoints());
     }
 
     @Test
     public void getToHitModifier() throws MovementPointsExhaustedException {
-        Hex hex = new Hex(0, 0);
-        Direction facing = new North();
+        Hex hex = new Hex(1, 1);
+        Direction facing = new SouthEast();
 
         for (int i = 1; i <= 2; ++i) {
             hex = cruise.moveForward(hex, facing);
@@ -131,7 +144,7 @@ public class CruiseTest {
             hex = cruise.moveForward(hex, facing);
             assertEquals(5, cruise.getToHitModifier());
         }
-        for (int i = 25; i < 100; ++i) {
+        for (int i = 25; i < 50; ++i) {
             hex = cruise.moveForward(hex, facing);
             assertEquals(6, cruise.getToHitModifier());
         }
@@ -139,7 +152,7 @@ public class CruiseTest {
 
     @Test
     public void getToHitModifier1() throws MovementPointsExhaustedException {
-        Hex hex = new Hex(0, 0);
+        Hex hex = new Hex(5, 5);
         Direction facing = new North();
 
         assertEquals(0, cruise.getToHitModifier());
@@ -166,7 +179,7 @@ public class CruiseTest {
         hex = cruise.moveBackward(hex, facing); // moved 6
         assertEquals(2, cruise.getToHitModifier());
 
-        hex = new Hex(0, 0);
+        hex = new Hex(5, 5);
         hex = cruise6.moveBackward(hex, new SouthWest());
         assertEquals(0, cruise6.getToHitModifier());
         hex = cruise6.moveBackward(hex, new SouthWest());
@@ -189,7 +202,7 @@ public class CruiseTest {
     @Test
     public void testClone() throws MovementPointsExhaustedException {
         Hex hex = new Hex(0, 0);
-        Direction facing = new North();
+        Direction facing = new SouthEast();
 
         for (int i = 1; i <= 8; ++i) {
             hex = cruise.moveForward(hex, facing);

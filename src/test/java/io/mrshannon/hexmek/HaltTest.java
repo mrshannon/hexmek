@@ -13,7 +13,7 @@ public class HaltTest {
 
     @Before
     public void setUp() throws Exception {
-        halt = new Halt();
+        halt = new Halt((new MapLoader("default")).createMap());
     }
 
     @After

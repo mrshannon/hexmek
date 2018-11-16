@@ -5,16 +5,19 @@ package io.mrshannon.hexmek;
  */
 public class MovementFactory {
 
+    private HexMap map;
     private int cruiseMovementPoints;
     private int flankMovementPoints;
 
     /**
      * Create a movement factory.
      *
+     * @param map the map that movement objects will be created for
      * @param cruiseMovementPoints movement points when cruising
      * @param flankMovementPoints movement points when flanking
      */
-    public MovementFactory(int cruiseMovementPoints, int flankMovementPoints) {
+    public MovementFactory(HexMap map, int cruiseMovementPoints, int flankMovementPoints) {
+        this.map = map;
         this.cruiseMovementPoints = cruiseMovementPoints;
         this.flankMovementPoints = flankMovementPoints;
     }
@@ -25,7 +28,7 @@ public class MovementFactory {
      * @return the new movement object
      */
     public Halt createHalt() {
-        return new Halt();
+        return new Halt(map);
     }
 
     /**
@@ -34,7 +37,7 @@ public class MovementFactory {
      * @return the new movement object
      */
     public Cruise createCruise() {
-        return new Cruise(cruiseMovementPoints);
+        return new Cruise(map, cruiseMovementPoints);
     }
 
     /**
@@ -43,7 +46,7 @@ public class MovementFactory {
      * @return the new movement object
      */
     public Flank createFlank() {
-        return new Flank(flankMovementPoints);
+        return new Flank(map, flankMovementPoints);
     }
 
 }
