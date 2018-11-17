@@ -7,19 +7,34 @@ public class MovementFactory {
 
     private HexMap map;
     private int cruiseMovementPoints;
-    private int flankMovementPoints;
 
     /**
      * Create a movement factory.
      *
      * @param map the map that movement objects will be created for
      * @param cruiseMovementPoints movement points when cruising
-     * @param flankMovementPoints movement points when flanking
      */
-    public MovementFactory(HexMap map, int cruiseMovementPoints, int flankMovementPoints) {
+    public MovementFactory(HexMap map, int cruiseMovementPoints) {
         this.map = map;
         this.cruiseMovementPoints = cruiseMovementPoints;
-        this.flankMovementPoints = flankMovementPoints;
+    }
+
+    /**
+     * Get number of cruising movement points.
+     *
+     * @return cruising movement points
+     */
+    public int getCruiseMovementPoints() {
+        return cruiseMovementPoints;
+    }
+
+    /**
+     * Get number of flanking movement points.
+     *
+     * @return flanking movement points
+     */
+    public int getFlankMovementPoints() {
+        return (int) Math.ceil(((double) cruiseMovementPoints)*1.5);
     }
 
     /**
@@ -37,7 +52,7 @@ public class MovementFactory {
      * @return the new movement object
      */
     public Cruise createCruise() {
-        return new Cruise(map, cruiseMovementPoints);
+        return new Cruise(map, getCruiseMovementPoints());
     }
 
     /**
@@ -46,7 +61,21 @@ public class MovementFactory {
      * @return the new movement object
      */
     public Flank createFlank() {
-        return new Flank(map, flankMovementPoints);
+        return new Flank(map, getFlankMovementPoints());
+    }
+
+    /**
+     * Apply damage to the movement factory, reducing the total movement points.
+     */
+    public void damageMovement() {
+        --cruiseMovementPoints;
+    }
+
+    /**
+     * Destroy the movement factory, reducing movement points to zero.
+     */
+    public void destroyMovmement() {
+        cruiseMovementPoints = 0;
     }
 
 }
