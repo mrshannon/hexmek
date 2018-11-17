@@ -146,32 +146,38 @@ public class Mech extends AbstractUnit {
         return components;
     }
 
-    @Override
-    protected Component getRandomComponent() {
+    /**
+     * Apply damage to a random component of the unit.
+     *
+     * @param weapon the weapon that is doing the damage
+     * @param damage amount of damage to apply
+     * @return list of damage records
+     */
+    private List<DamageRecord> applyComponentDamage(Weapon weapon, int damage) {
         dice.roll();
         switch (dice.getTotal()) {
             case 2:
-                return centerTorso;
+                return centerTorso.applyDamage(weapon, damage);
             case 3:
-                return rightArm;
+                return rightArm.applyDamage(weapon, damage);
             case 4:
-                return rightArm;
+                return rightArm.applyDamage(weapon, damage);
             case 5:
-                return rightLeg;
+                return rightLeg.applyDamage(weapon, damage);
             case 6:
-                return rightTorso;
+                return rightTorso.applyDamage(weapon, damage);
             case 7:
-                return centerTorso;
+                return centerTorso.applyDamage(weapon, damage);
             case 8:
-                return leftTorso;
+                return leftTorso.applyDamage(weapon, damage);
             case 9:
-                return leftLeg;
+                return leftLeg.applyDamage(weapon, damage);
             case 10:
-                return leftArm;
+                return leftArm.applyDamage(weapon, damage);
             case 11:
-                return leftArm;
+                return leftArm.applyDamage(weapon, damage);
             case 12:
-                return head;
+                return head.applyDamage(weapon, damage);
         }
         throw new RuntimeException("The code is broken!");
     }
@@ -186,7 +192,7 @@ public class Mech extends AbstractUnit {
      */
     @Override
     public List<DamageRecord> applyDamage(Weapon weapon, int damage) {
-        var records = super.applyDamage(weapon, damage);
+        var records = applyComponentDamage(weapon, damage);
         if (leftLeg.isDestroyed() || rightLeg.isDestroyed()) {
             destroyMobility();
         }

@@ -132,25 +132,6 @@ public abstract class AbstractUnit implements Unit {
     }
 
     /**
-     * Get random component, by rolling a 2D6 and using hit location table.
-     *
-     * @return random component
-     */
-    protected abstract Component getRandomComponent();
-
-    /**
-     * Apply damage to a random component of the unit.
-     *
-     * @param weapon the weapon that is doing the damage
-     * @param damage amount of damage to apply
-     * @return list of damage records
-     */
-    @Override
-    public List<DamageRecord> applyDamage(Weapon weapon, int damage) {
-        return getRandomComponent().applyDamage(weapon, damage);
-    }
-
-    /**
      * Save the current location and movement state of the unit.
      *
      * <br>
