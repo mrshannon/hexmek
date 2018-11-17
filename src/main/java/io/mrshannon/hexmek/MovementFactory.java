@@ -67,14 +67,16 @@ public class MovementFactory {
     /**
      * Apply damage to the movement factory, reducing the total movement points.
      */
-    public void damageMovement() {
-        --cruiseMovementPoints;
+    public void damageMobility() {
+        if (cruiseMovementPoints > 0) {
+            --cruiseMovementPoints;
+        }
     }
 
     /**
      * Destroy the movement factory, reducing movement points to zero.
      */
-    public void destroyMovmement() {
+    public void destroyMobility() {
         cruiseMovementPoints = 0;
     }
 
