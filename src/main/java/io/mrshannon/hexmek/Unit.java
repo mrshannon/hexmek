@@ -1,5 +1,7 @@
 package io.mrshannon.hexmek;
 
+import java.util.List;
+
 /**
  * Unit interface.
  *
@@ -31,10 +33,40 @@ public interface Unit extends Movable, Damageable, Originator {
     int getGunneryModifier();
 
     /**
-     * Determine if the unit is still alive.
+     * Get a list of components in the unit.
      *
-     * @return true if the unit is alive
+     * @return list of unit components
      */
-    boolean isAlive();
+    List<Component> getComponents();
+
+    /**
+     * Get list of the unit's weapons.
+     *
+     * @return list of weapons
+     */
+    List<Weapon> getWeapons();
+
+    /**
+     * Get the current armour points of the unit.
+     *
+     * @return current armour points
+     */
+    int getArmour();
+
+    /**
+     * Get the maximum armour points of the unit.
+     *
+     * @return maximum armour points
+     */
+    int getMaxArmour();
+
+    /**
+     * Get current armour percentage of the unit (unit health).
+     *
+     * @return armour percentage
+     */
+    default double getArmourPercent() {
+        return ((double) getArmour())/((double) getMaxArmour());
+    }
 
 }

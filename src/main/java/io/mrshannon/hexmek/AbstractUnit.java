@@ -1,5 +1,8 @@
 package io.mrshannon.hexmek;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Abstract unit, providing full implementation of movement methods.
  *
@@ -8,7 +11,6 @@ package io.mrshannon.hexmek;
 public abstract class AbstractUnit implements Unit {
 
     private char id;
-    private HexMap map;
     private Hex hex;
     private Direction facing;
     private Movement currentMovement;
@@ -18,14 +20,12 @@ public abstract class AbstractUnit implements Unit {
      * Construct a new unit.
      *
      * @param id identification of unit, should be unique to each unit
-     * @param map the map the unit is on
      * @param hex starting hex coordinate
      * @param facing initial facing direction
      * @param movementFactory factory to use to construct movement strategies
      */
-    public AbstractUnit(char id, HexMap map, Hex hex, Direction facing, MovementFactory movementFactory) {
+    public AbstractUnit(char id, Hex hex, Direction facing, MovementFactory movementFactory) {
         this.id = id;
-        this.map = map;
         this.hex = hex;
         this.facing = facing;
         this.movementFactory = movementFactory;
@@ -63,6 +63,25 @@ public abstract class AbstractUnit implements Unit {
     }
 
     @Override
+    public boolean canMove() {
+        return movementFactory.getCruiseMovementPoints() > 0;
+    }
+
+    /**
+     * Damage the unit's movement.
+     */
+    protected void damageMobility() {
+        movementFactory.damageMobility();
+    }
+
+    /**
+     * Destroy the unit's movement.
+     */
+    protected void destroyMobility() {
+        movementFactory.destroyMobility();
+    }
+
+    @Override
     public void halt() {
         currentMovement = movementFactory.createHalt();
     }
@@ -95,6 +114,40 @@ public abstract class AbstractUnit implements Unit {
     @Override
     public void rotateLeft() throws MovementPointsExhaustedException {
         facing = currentMovement.rotateLeft(facing);
+    }
+
+    @Override
+    public List<Weapon> getWeapons() {
+        return getComponents().stream().map(Component::getWeapons).flatMap(List::stream).collect(Collectors.toList());
+    }
+
+    @Override
+    public int getArmour() {
+        return getComponents().stream().mapToInt(Component::getArmour).sum();
+    }
+
+    @Override
+    public int getMaxArmour() {
+        return getComponents().stream().mapToInt(Component::getMaxArmour).sum();
+    }
+
+    /**
+     * Get random component, by rolling a 2D6 and using hit location table.
+     *
+     * @return random component
+     */
+    protected abstract Component getRandomComponent();
+
+    /**
+     * Apply damage to a random component of the unit.
+     *
+     * @param weapon the weapon that is doing the damage
+     * @param damage amount of damage to apply
+     * @return list of damage records
+     */
+    @Override
+    public List<DamageRecord> applyDamage(Weapon weapon, int damage) {
+        return getRandomComponent().applyDamage(weapon, damage);
     }
 
     /**
