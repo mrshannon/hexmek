@@ -8,6 +8,13 @@ import java.util.List;
 public interface Damageable {
 
     /**
+     * Determine if object is destroyed.
+     *
+     * @return true if object is destroyed, false if not destroyed
+     */
+    boolean isDestroyed();
+
+    /**
      * Apply damage, getting a damage record in response.
      *
      * @see io.mrshannon.hexmek.DamageRecord

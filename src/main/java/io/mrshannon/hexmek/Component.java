@@ -38,6 +38,15 @@ public class Component implements Damageable {
     }
 
     /**
+     * Determine if component is destroyed
+     * @return
+     */
+    @Override
+    public boolean isDestroyed() {
+        return getArmour() == 0;
+    }
+
+    /**
      * Get current armour.
      *
      * @return current armour value
