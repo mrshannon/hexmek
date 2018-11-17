@@ -86,7 +86,7 @@ public class RealComponent implements Component {
     }
 
     /**
-     * Apply damage to the component.
+     * Apply damage to the component, and propagate to next component if this component is destroyed.
      *
      * @param weapon the weapon that is doing the damage
      * @param damage amount of damage to apply
