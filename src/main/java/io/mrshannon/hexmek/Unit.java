@@ -19,6 +19,13 @@ public interface Unit extends Movable, Damageable, Originator {
     char getId();
 
     /**
+     * Get the type of the unit.
+     *
+     * @return get unit type
+     */
+    String getType();
+
+    /**
      * Get the current to-hit modifier.
      *
      * @return current to hit modifier
