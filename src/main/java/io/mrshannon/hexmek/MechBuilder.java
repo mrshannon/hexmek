@@ -12,19 +12,19 @@ public class MechBuilder implements UnitBuilder {
 
     private int headArmour;
     private int centerTorsoArmour;
-    private int leftTorsoArmour;
     private int rightTorsoArmour;
-    private int leftArmArmour;
+    private int leftTorsoArmour;
     private int rightArmArmour;
-    private int leftLegArmour;
+    private int leftArmArmour;
     private int rightLegArmour;
+    private int leftLegArmour;
 
     private ArrayList<Weapon> headWeapons;
     private ArrayList<Weapon> centerTorsoWeapons;
-    private ArrayList<Weapon> leftTorsoWeapons;
     private ArrayList<Weapon> rightTorsoWeapons;
-    private ArrayList<Weapon> leftArmWeapons;
+    private ArrayList<Weapon> leftTorsoWeapons;
     private ArrayList<Weapon> rightArmWeapons;
+    private ArrayList<Weapon> leftArmWeapons;
 
     /**
      * Construct a new mech builder.
@@ -232,7 +232,7 @@ public class MechBuilder implements UnitBuilder {
         var leftArm = new RealComponent("Left Arm", leftArmArmour, leftTorso, leftArmWeapons);
         var rightLeg = new RealComponent("Right Leg", rightLegArmour, rightTorso);
         var leftLeg = new RealComponent("Left Leg", leftLegArmour, leftTorso);
-        return new Mech(id, type, hex, facing, movementFactory,
+        return new Mech(type, id, hex, facing, movementFactory,
                 head, centerTorso, leftTorso, rightTorso, leftArm, rightArm, leftLeg, rightLeg);
     }
 

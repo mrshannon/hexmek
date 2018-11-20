@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
  */
 public abstract class AbstractUnit implements Unit {
 
-    private char id;
     private String type;
+    private char id;
     private Hex hex;
     private Direction facing;
     private Movement currentMovement;
@@ -20,15 +20,15 @@ public abstract class AbstractUnit implements Unit {
     /**
      * Construct a new unit.
      *
-     * @param id identification of unit, should be unique to each unit
      * @param type type of unit
+     * @param id identification of unit, should be unique to each unit
      * @param hex starting hex coordinate
      * @param facing initial facing direction
      * @param movementFactory factory to use to construct movement strategies
      */
-    public AbstractUnit(char id, String type, Hex hex, Direction facing, MovementFactory movementFactory) {
-        this.id = id;
+    public AbstractUnit(String type, char id, Hex hex, Direction facing, MovementFactory movementFactory) {
         this.type = type;
+        this.id = id;
         this.hex = hex;
         this.facing = facing;
         this.movementFactory = movementFactory;
@@ -36,13 +36,13 @@ public abstract class AbstractUnit implements Unit {
     }
 
     @Override
-    public char getId() {
-        return id;
+    public String getType() {
+        return type;
     }
 
     @Override
-    public String getType() {
-        return type;
+    public char getId() {
+        return id;
     }
 
     @Override

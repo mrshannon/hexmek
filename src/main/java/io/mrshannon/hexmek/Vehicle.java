@@ -29,10 +29,10 @@ public class Vehicle extends AbstractUnit {
      * @param rightSide       right side component
      * @param leftSide        left side component
      */
-    public Vehicle(char id, String type, Hex hex, Direction facing, MovementFactory movementFactory,
+    public Vehicle(String type, char id, Hex hex, Direction facing, MovementFactory movementFactory,
                    RealComponent turret, RealComponent front, RealComponent rear,
                    RealComponent rightSide, RealComponent leftSide) {
-        super(id, type, hex, facing, movementFactory);
+        super(type, id, hex, facing, movementFactory);
         this.turret = turret;
         this.front = front;
         this.rear = rear;

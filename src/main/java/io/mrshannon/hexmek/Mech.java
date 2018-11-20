@@ -21,8 +21,8 @@ public class Mech extends AbstractUnit {
     /**
      * Construct a new mech.
      *
-     * @param id              identification of unit, should be unique to each unit
      * @param type            type of unit
+     * @param id              identification of unit, should be unique to each unit
      * @param hex             starting hex coordinate
      * @param facing          initial facing direction
      * @param movementFactory factory to use to construct movement strategies
@@ -35,10 +35,10 @@ public class Mech extends AbstractUnit {
      * @param rightLeg        right leg component
      * @param leftLeg         left leg component
      */
-    public Mech(char id, String type, Hex hex, Direction facing, MovementFactory movementFactory,
+    public Mech(String type, char id, Hex hex, Direction facing, MovementFactory movementFactory,
                 RealComponent head, RealComponent centerTorso, RealComponent rightTorso, RealComponent leftTorso,
                 RealComponent rightArm, RealComponent leftArm, RealComponent rightLeg, RealComponent leftLeg) {
-        super(id, type, hex, facing, movementFactory);
+        super(type, id, hex, facing, movementFactory);
         this.head = head;
         this.centerTorso = centerTorso;
         this.rightTorso = rightTorso;

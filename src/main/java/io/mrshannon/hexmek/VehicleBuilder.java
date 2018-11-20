@@ -176,7 +176,8 @@ public class VehicleBuilder implements UnitBuilder {
         var rear = new RealComponent("Rear", rearArmour, new NullComponent(), rearWeapons);
         var rightSide = new RealComponent("Right Side", rightSideArmour, new NullComponent(), rightSideWeapons);
         var leftSide = new RealComponent("Left Side", leftSideArmour, new NullComponent(), leftSideWeapons);
-        return new Vehicle(id, type, hex, facing, movementFactory,
+        return new Vehicle(type, id, hex, facing, movementFactory,
                 turret, front, rear, rightSide, leftSide);
     }
+
 }
