@@ -12,13 +12,13 @@ public class Destroyed extends Hit {
      * @param component component that was damage
      * @param damage    amount of damage done
      */
-    public Destroyed(Weapon weapon, RealComponent component, int damage) {
+    public Destroyed(Weapon weapon, Component component, int damage) {
         super(weapon, component, damage);
     }
 
     @Override
     public String toString() {
-        return super.toString() + String.format("\n%s destroyed!", getComponent());
+        return super.toString() + String.format("\n%s destroyed!", getComponent().getType());
     }
 
 }
