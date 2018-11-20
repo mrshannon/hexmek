@@ -36,7 +36,7 @@ public class RealComponent implements Component {
      * @param armour initial armour value
      * @param nextComponent component to transfer damage to if this component is destroyed
      */
-    public RealComponent(String type, int armour, RealComponent nextComponent) {
+    public RealComponent(String type, int armour, Component nextComponent) {
         this.type = type;
         this.armour = armour;
         this.maxArmour = armour;
@@ -52,7 +52,7 @@ public class RealComponent implements Component {
      * @param nextComponent component to transfer damage to if this component is destroyed
      * @param weapons collection of weapons in the component
      */
-    public RealComponent(String type, int armour, RealComponent nextComponent, Collection<Weapon> weapons) {
+    public RealComponent(String type, int armour, Component nextComponent, Collection<Weapon> weapons) {
         this.type = type;
         this.armour = armour;
         this.maxArmour = armour;
