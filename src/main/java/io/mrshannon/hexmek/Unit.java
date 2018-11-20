@@ -12,18 +12,18 @@ import java.util.List;
 public interface Unit extends Movable, Damageable, Originator {
 
     /**
-     * Get the ID of the unit.
-     *
-     * @return unique (per game) unit ID
-     */
-    char getId();
-
-    /**
      * Get the type of the unit.
      *
      * @return get unit type
      */
     String getType();
+
+    /**
+     * Get the ID of the unit.
+     *
+     * @return unique (per game) unit ID
+     */
+    char getId();
 
     /**
      * Get the current to-hit modifier.
