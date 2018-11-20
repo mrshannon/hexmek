@@ -40,7 +40,7 @@ public class WeaponFactory {
      * </ul>
      *
      * @param weaponType type of weapon to create
-     * @return
+     * @return a new weapon flyweight of the given type
      */
     public static Weapon createWeapon(String weaponType) {
 
