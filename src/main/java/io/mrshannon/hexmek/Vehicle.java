@@ -12,31 +12,32 @@ public class Vehicle extends AbstractUnit {
     private RealComponent turret;
     private RealComponent front;
     private RealComponent rear;
-    private RealComponent leftSide;
     private RealComponent rightSide;
+    private RealComponent leftSide;
 
     /**
      * Construct a new vehicle.
      *
      * @param id              identification of unit, should be unique to each unit
+     * @param type            type of unit
      * @param hex             starting hex coordinate
      * @param facing          initial facing direction
      * @param movementFactory factory to use to construct movement strategies
      * @param turret          turret component
      * @param front           front component
      * @param rear            rear component
-     * @param leftSide        left side component
      * @param rightSide       right side component
+     * @param leftSide        left side component
      */
-    public Vehicle(char id, Hex hex, Direction facing, MovementFactory movementFactory,
+    public Vehicle(char id, String type, Hex hex, Direction facing, MovementFactory movementFactory,
                    RealComponent turret, RealComponent front, RealComponent rear,
-                   RealComponent leftSide, RealComponent rightSide) {
-        super(id, hex, facing, movementFactory);
+                   RealComponent rightSide, RealComponent leftSide) {
+        super(id, type, hex, facing, movementFactory);
         this.turret = turret;
         this.front = front;
         this.rear = rear;
-        this.leftSide = leftSide;
         this.rightSide = rightSide;
+        this.leftSide = leftSide;
         this.dice = new DiceRoller(new Die(6), new Die(6));
     }
 
@@ -68,6 +69,15 @@ public class Vehicle extends AbstractUnit {
     }
 
     /**
+     * Get the amount of right side armour.
+     *
+     * @return turret right side points
+     */
+    public int getRightSideArmour() {
+        return rightSide.getArmour();
+    }
+
+    /**
      * Get the amount of left side armour.
      *
      * @return turret left side points
@@ -77,12 +87,14 @@ public class Vehicle extends AbstractUnit {
     }
 
     /**
-     * Get the amount of right side armour.
+     * Determine if the vehicle is destroyed.  If any component is destroyed the entire vehicle is destroyed.
      *
-     * @return turret right side points
+     * @return true if vehicle is destroyed
      */
-    public int getRightSideArmour() {
-        return rightSide.getArmour();
+    @Override
+    public boolean isDestroyed() {
+        return turret.isDestroyed() || front.isDestroyed() || rear.isDestroyed() ||
+                leftSide.isDestroyed() || rightSide.isDestroyed();
     }
 
     @Override
@@ -91,8 +103,8 @@ public class Vehicle extends AbstractUnit {
         components.add(turret);
         components.add(front);
         components.add(rear);
-        components.add(leftSide);
         components.add(rightSide);
+        components.add(leftSide);
         return components;
     }
 
@@ -137,8 +149,4 @@ public class Vehicle extends AbstractUnit {
         throw new RuntimeException("The code is broken!");
     }
 
-    @Override
-    public boolean isDestroyed() {
-        return false;
-    }
 }

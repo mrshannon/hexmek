@@ -11,42 +11,42 @@ public class Mech extends AbstractUnit {
     private DiceRoller dice;
     private RealComponent head;
     private RealComponent centerTorso;
-    private RealComponent leftTorso;
     private RealComponent rightTorso;
-    private RealComponent leftArm;
+    private RealComponent leftTorso;
     private RealComponent rightArm;
-    private RealComponent leftLeg;
+    private RealComponent leftArm;
     private RealComponent rightLeg;
+    private RealComponent leftLeg;
 
     /**
      * Construct a new mech.
      *
      * @param id              identification of unit, should be unique to each unit
+     * @param type            type of unit
      * @param hex             starting hex coordinate
      * @param facing          initial facing direction
      * @param movementFactory factory to use to construct movement strategies
      * @param head            head component
      * @param centerTorso     center torso component
-     * @param leftTorso       left torso component
      * @param rightTorso      right torso component
-     * @param leftArm         left arm component
+     * @param leftTorso       left torso component
      * @param rightArm        right arm component
-     * @param leftLeg         left leg component
+     * @param leftArm         left arm component
      * @param rightLeg        right leg component
+     * @param leftLeg         left leg component
      */
-    public Mech(char id, Hex hex, Direction facing, MovementFactory movementFactory,
-                RealComponent head, RealComponent centerTorso, RealComponent leftTorso, RealComponent rightTorso,
-                RealComponent leftArm, RealComponent rightArm, RealComponent leftLeg, RealComponent rightLeg) {
-        super(id, hex, facing, movementFactory);
+    public Mech(char id, String type, Hex hex, Direction facing, MovementFactory movementFactory,
+                RealComponent head, RealComponent centerTorso, RealComponent rightTorso, RealComponent leftTorso,
+                RealComponent rightArm, RealComponent leftArm, RealComponent rightLeg, RealComponent leftLeg) {
+        super(id, type, hex, facing, movementFactory);
         this.head = head;
         this.centerTorso = centerTorso;
-        this.leftTorso = leftTorso;
         this.rightTorso = rightTorso;
-        this.leftArm = leftArm;
+        this.leftTorso = leftTorso;
         this.rightArm = rightArm;
-        this.leftLeg = leftLeg;
+        this.leftArm = leftArm;
         this.rightLeg = rightLeg;
-
+        this.leftLeg = leftLeg;
         this.dice = new DiceRoller(new Die(6), new Die(6));
     }
 
@@ -69,15 +69,6 @@ public class Mech extends AbstractUnit {
     }
 
     /**
-     * Get the amount of left torso armour.
-     *
-     * @return left torso armour points
-     */
-    public int getLeftTorsoArmour() {
-        return leftTorso.getArmour();
-    }
-
-    /**
      * Get the amount of right torso armour.
      *
      * @return right torso armour points
@@ -87,12 +78,12 @@ public class Mech extends AbstractUnit {
     }
 
     /**
-     * Get the amount of left arm armour.
+     * Get the amount of left torso armour.
      *
-     * @return left arm armour points
+     * @return left torso armour points
      */
-    public int getLeftArmArmour() {
-        return leftArm.getArmour();
+    public int getLeftTorsoArmour() {
+        return leftTorso.getArmour();
     }
 
     /**
@@ -105,12 +96,12 @@ public class Mech extends AbstractUnit {
     }
 
     /**
-     * Get the amount of left leg armour.
+     * Get the amount of left arm armour.
      *
-     * @return left leg armour points
+     * @return left arm armour points
      */
-    public int getLeftLegArmour() {
-        return leftLeg.getArmour();
+    public int getLeftArmArmour() {
+        return leftArm.getArmour();
     }
 
     /**
@@ -123,7 +114,16 @@ public class Mech extends AbstractUnit {
     }
 
     /**
-     * Determine if the mech is destroyed.  If the head or the torso is destroyed the entire mech is destroyed.
+     * Get the amount of left leg armour.
+     *
+     * @return left leg armour points
+     */
+    public int getLeftLegArmour() {
+        return leftLeg.getArmour();
+    }
+
+    /**
+     * Determine if the mech is destroyed.  If the head or the center torso is destroyed the entire mech is destroyed.
      *
      * @return true if the mech is destroyed, false otherwise
      */
@@ -137,12 +137,12 @@ public class Mech extends AbstractUnit {
         var components = new ArrayList<Component>();
         components.add(head);
         components.add(centerTorso);
-        components.add(leftTorso);
         components.add(rightTorso);
-        components.add(leftArm);
+        components.add(leftTorso);
         components.add(rightArm);
-        components.add(leftLeg);
+        components.add(leftArm);
         components.add(rightLeg);
+        components.add(leftLeg);
         return components;
     }
 
@@ -193,7 +193,7 @@ public class Mech extends AbstractUnit {
     @Override
     public List<DamageRecord> applyDamage(Weapon weapon, int damage) {
         var records = applyComponentDamage(weapon, damage);
-        if (leftLeg.isDestroyed() || rightLeg.isDestroyed()) {
+        if (rightLeg.isDestroyed() || leftLeg.isDestroyed()) {
             destroyMobility();
         }
         return records;
