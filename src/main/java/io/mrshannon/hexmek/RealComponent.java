@@ -95,7 +95,9 @@ public class RealComponent implements Component {
     @Override
     public List<DamageRecord> applyDamage(Weapon weapon, int damage) {
         var records = new ArrayList<DamageRecord>();
-        if (armour < damage) {
+        if (armour == 0) {
+            records.addAll(nextComponent.applyDamage(weapon, damage));
+        } else if (armour < damage) {
             records.add(new Destroyed(weapon, this, armour));
             records.addAll(nextComponent.applyDamage(weapon, damage - armour));
             armour = 0;
