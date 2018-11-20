@@ -15,7 +15,7 @@ public class NullComponent implements Component {
 
     @Override
     public boolean isDestroyed() {
-        return false;
+        return true;
     }
 
     @Override
