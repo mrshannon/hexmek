@@ -10,8 +10,8 @@ import static org.mockito.Mockito.mock;
 
 public class NullComponentTest {
 
-    Weapon mockWeapon;
-    Component nullComponent;
+    private Weapon mockWeapon;
+    private Component nullComponent;
 
     @Before
     public void setUp() throws Exception {

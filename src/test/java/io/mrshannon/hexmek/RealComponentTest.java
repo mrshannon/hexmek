@@ -13,12 +13,12 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class RealComponentTest {
 
-    Weapon mockWeapon;
+    private Weapon mockWeapon;
 
-    Component destroyedComponent;
-    Component componentA;
-    Component componentB;
-    Component componentC;
+    private Component destroyedComponent;
+    private Component componentA;
+    private Component componentB;
+    private Component componentC;
 
     @Before
     public void setUp() throws Exception {
