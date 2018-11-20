@@ -14,35 +14,6 @@ public class UnitFactory {
     }
 
     /**
-     * Create a new weapon from the given type string.  Uses the flyweight pattern to make weapons cheap.
-     *
-     * <br>
-     *
-     * Types of weapons:
-     * <ul>
-     *     <li>Small Laser</li>
-     *     <li>Medium Laser</li>
-     *     <li>Large Laser</li>
-     *     <li>PPC</li>
-     *     <li>Machine Gun</li>
-     *     <li>Autocannon/2</li>
-     *     <li>Autocannon/5</li>
-     *     <li>Autocannon/10</li>
-     *     <li>Autocannon/20</li>
-     *     <li>SRM 2</li>
-     *     <li>SRM 4</li>
-     *     <li>SRM 6</li>
-     *     <li>LRM 5</li>
-     *     <li>LRM 10</li>
-     *     <li>LRM 15</li>
-     *     <li>LRM 20</li>
-     * </ul>
-     *
-     * @param weaponType type of weapon to create
-     * @return a new weapon flyweight of the given type
-     */
-
-    /**
      * Create a new unit from the given type string with the given ID.
      *
      * <br>
