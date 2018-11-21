@@ -9,20 +9,36 @@ import java.util.Collection;
 
 import static java.lang.Math.max;
 
+/**
+ * A list view that displays a list of all the units in the game.
+ */
 public class ListView implements View {
 
     private ArrayList<Player> players;
 
+    /**
+     * Create a list view.
+     *
+     * @param players the players whose units will be listed
+     */
     public ListView(Player... players) {
         this.players = new ArrayList<Player>();
         this.players.addAll(Arrays.asList(players));
     }
 
+    /**
+     * Create a list view.
+     *
+     * @param players the players whose units will be listed
+     */
     public ListView(Collection<Player> players) {
         this.players = new ArrayList<Player>();
         this.players.addAll(players);
     }
 
+    /**
+     * Render the list of units.
+     */
     @Override
     public void render() {
         printHeader();
@@ -30,11 +46,17 @@ public class ListView implements View {
         printLines();
     }
 
+    /**
+     * Print the header line.
+     */
     private void printHeader() {
         String format = "%-" + getMaxPlayerLength() + "s   %-" + getMaxTypeLength() + "s   Health      Grid   Facing";
         System.out.println(String.format(format, "Player", "Type"));
     }
 
+    /**
+     * Print the separation line, to separate the header from the entries.
+     */
     private void printSeparator() {
         var builder = new StringBuilder();
         for (int i = 0; i < getMaxPlayerLength(); ++i) {
@@ -48,6 +70,9 @@ public class ListView implements View {
         System.out.println(builder.toString());
     }
 
+    /**
+     * Print the lines of unit status.
+     */
     private void printLines() {
         for (var player : players) {
             for (var unit : player.getUnits()) {
@@ -56,6 +81,12 @@ public class ListView implements View {
         }
     }
 
+    /**
+     * Print a single line of unit status.
+     *
+     * @param player name of the player that owns the unit
+     * @param unit the unit to print the status for
+     */
     private void printLine(String player, Unit unit) {
         String health;
         if (unit.isDestroyed()) {
@@ -68,6 +99,11 @@ public class ListView implements View {
                 unit.getHex().getColumn(), unit.getHex().getRow(), unit.getFacing().toString()));
     }
 
+    /**
+     * Get the maximum length of a player's name.
+     *
+     * @return max player name length
+     */
     private int getMaxPlayerLength() {
         int length = 0;
         for (var player : players) {
@@ -76,6 +112,11 @@ public class ListView implements View {
         return length;
     }
 
+    /**
+     * Get the maximum length of the unit type.
+     *
+     * @return max unit type length
+     */
     private int getMaxTypeLength() {
         int length = 0;
         for (var player : players) {
