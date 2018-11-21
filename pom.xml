@@ -24,7 +24,7 @@
                     <archive>
                         <manifest>
                             <mainClass>
-                                io.mrshannon.hexmek.models.Main
+                                io.mrshannon.hexmek.Main
                             </mainClass>
                         </manifest>
                     </archive>
@@ -35,7 +35,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>io.mrshannon.hexmek.models.Main</mainClass>
+                            <mainClass>io.mrshannon.hexmek.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
