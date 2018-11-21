@@ -128,6 +128,16 @@ public class VehicleTest {
     }
 
     @Test
+    public void getCruiseMovementPoints() {
+        assertEquals(3, vehicle.getCruiseMovementPoints());
+    }
+
+    @Test
+    public void getFlankMovementPoints() {
+        assertEquals(5, vehicle.getFlankMovementPoints());
+    }
+
+    @Test
     public void getToHitModifier() throws MovementPointsExhaustedException {
         assertEquals(0, vehicle.getToHitModifier());
         vehicle.flank();

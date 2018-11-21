@@ -28,6 +28,20 @@ public interface Movable {
     int getMovementPoints();
 
     /**
+     * Get the number of movement points that are available when cruising.
+     *
+     * @return total cruising movement points
+     */
+    int getCruiseMovementPoints();
+
+    /**
+     * Get the number of movement points that are available when flanking.
+     *
+     * @return total flanking movement points
+     */
+    int getFlankMovementPoints();
+
+    /**
      * Determine whether or not the object can be moved or not.
      *
      * @return true if the object can be moved, false if it can't

@@ -61,6 +61,16 @@ public abstract class AbstractUnit implements Unit {
     }
 
     @Override
+    public int getCruiseMovementPoints() {
+        return movementFactory.getCruiseMovementPoints();
+    }
+
+    @Override
+    public int getFlankMovementPoints() {
+        return movementFactory.getFlankMovementPoints();
+    }
+
+    @Override
     public int getToHitModifier() {
         return currentMovement.getToHitModifier();
     }

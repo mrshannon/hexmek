@@ -3,6 +3,7 @@ package io.mrshannon.hexmek;
 import io.mrshannon.hexmek.models.*;
 import io.mrshannon.hexmek.views.ListView;
 import io.mrshannon.hexmek.views.MapView;
+import io.mrshannon.hexmek.views.StatusView;
 
 import java.io.IOException;
 
@@ -24,7 +25,8 @@ public class Main {
             return;
         }
         Player playerA = new Player("The best player.");
-        playerA.addUnit(UnitFactory.createUnit("Hunchback HBK-4G", map, new Hex(4, 4), new SouthEast()));
+        var unitC = UnitFactory.createUnit("Hunchback HBK-4G", map, new Hex(4, 4), new SouthEast());
+        playerA.addUnit(unitC);
         var unitA = UnitFactory.createUnit("Manticore Heavy Tank", map, new Hex(7, 12), new North());
         playerA.addUnit(unitA);
         unitA.applyDamage(WeaponFactory.createWeapon("Medium Laser"), 1000);
@@ -35,5 +37,11 @@ public class Main {
         var list = new ListView(playerA, playerB);
         System.out.println("\n\n");
         list.render();
+        System.out.println("\n\n");
+        (new StatusView(unitA)).render();
+        System.out.println("\n\n");
+        (new StatusView(unitB)).render();
+        System.out.println("\n\n");
+        (new StatusView(unitC)).render();
     }
 }

@@ -148,6 +148,16 @@ public class MechTest {
     }
 
     @Test
+    public void getCruiseMovementPoints() {
+        assertEquals(3, mech.getCruiseMovementPoints());
+    }
+
+    @Test
+    public void getFlankMovementPoints() {
+        assertEquals(5, mech.getFlankMovementPoints());
+    }
+
+    @Test
     public void getToHitModifier() throws MovementPointsExhaustedException {
         assertEquals(0, mech.getToHitModifier());
         mech.flank();
