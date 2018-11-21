@@ -1,5 +1,8 @@
 package io.mrshannon.hexmek;
 
+import io.mrshannon.hexmek.models.DirectFireStrategy;
+import io.mrshannon.hexmek.models.Tile;
+import io.mrshannon.hexmek.models.TileFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

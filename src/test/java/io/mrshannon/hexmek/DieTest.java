@@ -1,5 +1,6 @@
 package io.mrshannon.hexmek;
 
+import io.mrshannon.hexmek.models.Die;
 import org.junit.Test;
 
 import java.util.HashSet;

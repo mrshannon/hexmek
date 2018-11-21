@@ -1,5 +1,6 @@
 package io.mrshannon.hexmek;
 
+import io.mrshannon.hexmek.models.WeaponFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

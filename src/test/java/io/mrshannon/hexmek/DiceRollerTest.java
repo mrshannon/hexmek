@@ -1,5 +1,7 @@
 package io.mrshannon.hexmek;
 
+import io.mrshannon.hexmek.models.DiceRoller;
+import io.mrshannon.hexmek.models.Die;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,5 +1,9 @@
 package io.mrshannon.hexmek;
 
+import io.mrshannon.hexmek.models.Hex;
+import io.mrshannon.hexmek.models.MapLoader;
+import io.mrshannon.hexmek.models.Tile;
+import io.mrshannon.hexmek.models.TileFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,5 +1,7 @@
 package io.mrshannon.hexmek;
 
+import io.mrshannon.hexmek.models.Miss;
+import io.mrshannon.hexmek.models.Weapon;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

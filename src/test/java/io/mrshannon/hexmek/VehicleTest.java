@@ -1,5 +1,6 @@
 package io.mrshannon.hexmek;
 
+import io.mrshannon.hexmek.models.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -165,28 +166,6 @@ public class VehicleTest {
         vehicle.moveForward();
         vehicle.moveForward();
         assertFalse(vehicle.canMove());
-    }
-
-    @Test
-    public void damageMobility() {
-        vehicle.cruise();
-        assertEquals(3, vehicle.getMovementPoints());
-        vehicle.damageMobility();
-        vehicle.cruise();
-        assertEquals(2, vehicle.getMovementPoints());
-        vehicle.damageMobility();
-        vehicle.damageMobility();
-        vehicle.cruise();
-        assertEquals(0, vehicle.getMovementPoints());
-    }
-
-    @Test
-    public void destroyMobility() {
-        vehicle.cruise();
-        assertEquals(3, vehicle.getMovementPoints());
-        vehicle.destroyMobility();
-        vehicle.cruise();
-        assertEquals(0, vehicle.getMovementPoints());
     }
 
     @Test
