@@ -76,6 +76,9 @@ public class MovementFactoryTest {
         factory35.damageMobility();
         assertEquals(0, factory35.getCruiseMovementPoints());
         assertEquals(0, factory35.getFlankMovementPoints());
+        factory35.damageMobility();
+        assertEquals(0, factory35.getCruiseMovementPoints());
+        assertEquals(0, factory35.getFlankMovementPoints());
 
         factory46.damageMobility();
         assertEquals(3, factory46.getCruiseMovementPoints());
