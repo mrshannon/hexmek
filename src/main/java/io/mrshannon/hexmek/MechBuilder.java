@@ -233,7 +233,7 @@ public class MechBuilder implements UnitBuilder {
         var rightLeg = new RealComponent("Right Leg", rightLegArmour, rightTorso);
         var leftLeg = new RealComponent("Left Leg", leftLegArmour, leftTorso);
         return new Mech(type, id, hex, facing, movementFactory,
-                head, centerTorso, leftTorso, rightTorso, leftArm, rightArm, leftLeg, rightLeg);
+                head, centerTorso, rightTorso, leftTorso, rightArm, leftArm, rightLeg, leftLeg);
     }
 
 }
