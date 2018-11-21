@@ -39,7 +39,7 @@ public class UnitFactory {
      * @param facing direction the unit will face
      * @return the new unit
      */
-    public Unit createUnit(String unitType, HexMap map, Hex hex, Direction facing) {
+    public static Unit createUnit(String unitType, HexMap map, Hex hex, Direction facing) {
         UnitBuilder builder;
         if (unitBuilders.containsKey(unitType)) {
             builder = unitBuilders.get(unitType);
@@ -58,7 +58,7 @@ public class UnitFactory {
      * @param unitType type of unit to store a builder for in the cache
      * @return the new unit builder that is also stored in the cache
      */
-    private UnitBuilder cacheBuilder(String unitType) {
+    private static UnitBuilder cacheBuilder(String unitType) {
         UnitBuilder builder;
         switch (unitType) {
             case "Scorpion Light Tank":
@@ -94,7 +94,7 @@ public class UnitFactory {
      *
      * @return scorpion light tank builder
      */
-    private UnitBuilder createScorpionLightTank() {
+    private static UnitBuilder createScorpionLightTank() {
         var builder = new VehicleBuilder("Scorpion Light Tank", 4);
         builder.turret(16).front(16).rear(10).rightSide(11).leftSide(11);
         builder.turret(WeaponFactory.createWeapon("Autocannon/5"));
@@ -107,7 +107,7 @@ public class UnitFactory {
      *
      * @return bulldog medium tank builder
      */
-    private UnitBuilder createBulldogMediumTank() {
+    private static UnitBuilder createBulldogMediumTank() {
         var builder = new VehicleBuilder("Bulldog Medium Tank", 4);
         builder.turret(20).front(24).rear(20).rightSide(20).leftSide(20);
         builder.front(WeaponFactory.createWeapon("Machine Gun"));
@@ -122,7 +122,7 @@ public class UnitFactory {
      *
      * @return manticore heavy tank builder
      */
-    private UnitBuilder createManticoreHeavyTank() {
+    private static UnitBuilder createManticoreHeavyTank() {
         var builder = new VehicleBuilder("Manticore Heavy Tank", 4);
         builder.turret(42).front(42).rear(26).rightSide(33).leftSide(33);
         builder.front(WeaponFactory.createWeapon("Medium Laser"));
@@ -137,7 +137,7 @@ public class UnitFactory {
      *
      * @return jenner JR7-D builder
      */
-    private UnitBuilder createJennerJR7_D() {
+    private static UnitBuilder createJennerJR7_D() {
         var builder = new MechBuilder("Jenner JR7-D", 7);
         builder.head(10).centerTorso(24).rightTorso(20).leftTorso(20).rightArm(10).leftArm(10).rightLeg(14).leftLeg(14);
         builder.centerTorso(WeaponFactory.createWeapon("SRM 4"));
@@ -153,7 +153,7 @@ public class UnitFactory {
      *
      * @return hunchback HBK-4G builder
      */
-    private UnitBuilder createHunchbackHBK_4G() {
+    private static UnitBuilder createHunchbackHBK_4G() {
         var builder = new MechBuilder("Hunchback HBK-4G", 4);
         builder.head(12).centerTorso(47).rightTorso(36).leftTorso(36).rightArm(24).leftArm(24).rightLeg(32).leftLeg(32);
         builder.head(WeaponFactory.createWeapon("Small Laser"));
@@ -168,7 +168,7 @@ public class UnitFactory {
      *
      * @return catapult CPLT-C1 builder
      */
-    private UnitBuilder createCatapultCPLT_C1() {
+    private static UnitBuilder createCatapultCPLT_C1() {
         var builder = new MechBuilder("Catapult CPLT-C1", 4);
         builder.head(12).centerTorso(56).rightTorso(42).leftTorso(42).rightArm(23).leftArm(23).rightLeg(32).leftLeg(32);
         builder.centerTorso(WeaponFactory.createWeapon("Medium Laser"));
@@ -185,7 +185,7 @@ public class UnitFactory {
      *
      * @return atlas AS7-D builder
      */
-    private UnitBuilder createAtlasAS7_D() {
+    private static UnitBuilder createAtlasAS7_D() {
         var builder = new MechBuilder("Atlas AS7-D", 3);
         builder.head(12).centerTorso(92).rightTorso(63).leftTorso(63).rightArm(51).leftArm(51).rightLeg(62).leftLeg(62);
         builder.centerTorso(WeaponFactory.createWeapon("Medium Laser"));
