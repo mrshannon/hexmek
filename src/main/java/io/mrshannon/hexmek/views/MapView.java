@@ -1,18 +1,21 @@
 package io.mrshannon.hexmek.views;
 
-import io.mrshannon.hexmek.*;
+import io.mrshannon.hexmek.models.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 public class MapView implements View {
 
     private HexMap map;
     private ArrayList<Unit> units;
+    private HashMap<Hex, Unit> unitCache;
 
     public MapView(HexMap map) {
         this.map = map;
         this.units = new ArrayList<>();
+        this.unitCache = new HashMap<>();
     }
 
     public MapView(HexMap map, Collection<Unit> units) {
@@ -26,12 +29,22 @@ public class MapView implements View {
 
     @Override
     public void render() {
+        cacheUnits();
         printColumnHeadings();
         printTop();
         for (int row = 1; row < map.getHeight(); ++row) {
             printRow(row, false);
         }
         printRow(map.getHeight(), true);
+    }
+
+    private void cacheUnits() {
+        unitCache.clear();
+        for (var unit : units) {
+            if (!unit.isDestroyed()) {
+                unitCache.put(unit.getHex(), unit);
+            }
+        }
     }
 
     private void printColumnHeadings() {
@@ -68,30 +81,27 @@ public class MapView implements View {
     }
 
     private char getUnitIdChar(Hex hex) {
-        for (var unit : units) {
-            if (unit.getHex().equals(hex)) {
-                return unit.getId();
-            }
+        if (unitCache.containsKey(hex)) {
+            return unitCache.get(hex).getId();
         }
         return '_';
     }
 
     private char getUnitDirectionChar(Hex hex) {
-        for (var unit : units) {
-            if (unit.getHex().equals(hex)) {
-                if (unit.getFacing() instanceof North) {
-                    return '0';
-                } else if (unit.getFacing() instanceof NorthEast) {
-                    return '1';
-                } else if (unit.getFacing() instanceof SouthEast) {
-                    return '2';
-                } else if (unit.getFacing() instanceof South) {
-                    return '3';
-                } else if (unit.getFacing() instanceof SouthWest) {
-                    return '4';
-                } else { // NorthWest
-                    return '5';
-                }
+        if (unitCache.containsKey(hex)) {
+            var unit = unitCache.get(hex);
+            if (unit.getFacing() instanceof North) {
+                return '0';
+            } else if (unit.getFacing() instanceof NorthEast) {
+                return '1';
+            } else if (unit.getFacing() instanceof SouthEast) {
+                return '2';
+            } else if (unit.getFacing() instanceof South) {
+                return '3';
+            } else if (unit.getFacing() instanceof SouthWest) {
+                return '4';
+            } else { // NorthWest
+                return '5';
             }
         }
         return '_';
