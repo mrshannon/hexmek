@@ -56,5 +56,9 @@ public class Main {
         System.out.println("\n\n");
         unitC.flank();
         (new MovementSelectView(unitC, false)).render();
+        System.out.println("\n\n");
+        (new PromptView("Player A")).render();
+        System.out.println("\n\n");
+        (new PromptView("Player B", "combat")).render();
     }
 }
