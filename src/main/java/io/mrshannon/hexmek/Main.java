@@ -50,5 +50,11 @@ public class Main {
         (new MovementTypeSelectView(unitC)).render();
         System.out.println("\n\n");
         (new MovementTypeSelectView(unitB)).render();
+        System.out.println("\n\n");
+        unitC.cruise();
+        (new MovementSelectView(unitC, true)).render();
+        System.out.println("\n\n");
+        unitC.flank();
+        (new MovementSelectView(unitC, false)).render();
     }
 }
