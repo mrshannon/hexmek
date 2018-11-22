@@ -1,6 +1,7 @@
 package io.mrshannon.hexmek;
 
 import io.mrshannon.hexmek.models.*;
+import io.mrshannon.hexmek.views.FireSelectView;
 import io.mrshannon.hexmek.views.ListView;
 import io.mrshannon.hexmek.views.MapView;
 import io.mrshannon.hexmek.views.StatusView;
@@ -27,7 +28,7 @@ public class Main {
         Player playerA = new Player("The best player.");
         var unitC = UnitFactory.createUnit("Hunchback HBK-4G", map, new Hex(4, 4), new SouthEast());
         playerA.addUnit(unitC);
-        var unitA = UnitFactory.createUnit("Manticore Heavy Tank", map, new Hex(7, 12), new North());
+        var unitA = UnitFactory.createUnit("Manticore Heavy Tank", map, new Hex(7, 5), new North());
         playerA.addUnit(unitA);
         unitA.applyDamage(WeaponFactory.createWeapon("Medium Laser"), 1000);
         Player playerB = new Player("ACE");
@@ -43,5 +44,7 @@ public class Main {
         (new StatusView(unitB)).render();
         System.out.println("\n\n");
         (new StatusView(unitC)).render();
+        System.out.println("\n\n");
+        (new FireSelectView(map, unitC, unitA, unitC.getWeapons())).render();
     }
 }
