@@ -46,5 +46,9 @@ public class Main {
         System.out.println("\n\n");
         unitA = UnitFactory.createUnit("Hunchback HBK-4G", map, new Hex(4, 4), new SouthEast());
         (new DamageRecordView(unitA.applyDamage(WeaponFactory.createWeapon("PPC"), 300))).render();
+        System.out.println("\n\n");
+        (new MovementTypeSelectView(unitC)).render();
+        System.out.println("\n\n");
+        (new MovementTypeSelectView(unitB)).render();
     }
 }
