@@ -1,10 +1,7 @@
 package io.mrshannon.hexmek;
 
 import io.mrshannon.hexmek.models.*;
-import io.mrshannon.hexmek.views.FireSelectView;
-import io.mrshannon.hexmek.views.ListView;
-import io.mrshannon.hexmek.views.MapView;
-import io.mrshannon.hexmek.views.StatusView;
+import io.mrshannon.hexmek.views.*;
 
 import java.io.IOException;
 
@@ -46,5 +43,8 @@ public class Main {
         (new StatusView(unitC)).render();
         System.out.println("\n\n");
         (new FireSelectView(map, unitC, unitA, unitC.getWeapons())).render();
+        System.out.println("\n\n");
+        unitA = UnitFactory.createUnit("Hunchback HBK-4G", map, new Hex(4, 4), new SouthEast());
+        (new DamageRecordView(unitA.applyDamage(WeaponFactory.createWeapon("PPC"), 300))).render();
     }
 }
