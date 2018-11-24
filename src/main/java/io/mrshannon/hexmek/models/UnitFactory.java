@@ -24,13 +24,13 @@ public class UnitFactory {
      *
      * Types of units:
      * <ul>
-     *     <li>Scorpion Light Tank</li>
-     *     <li>Bulldog Medium Tank</li>
-     *     <li>Manticore Heavy Tank</li>
-     *     <li>Jenner JR7-D</li>
-     *     <li>Hunchback HBK-4G</li>
-     *     <li>Catapult CPLT-C1</li>
-     *     <li>Atlas AS7-D</li>
+     *     <li>Scorpion Light Tank (BV = 306)</li>
+     *     <li>Bulldog Medium Tank (BV = 605)</li>
+     *     <li>Manticore Heavy Tank (BV = 993)</li>
+     *     <li>Jenner JR7-D (BV = 875)</li>
+     *     <li>Hunchback HBK-4G (BV = 1041)</li>
+     *     <li>Catapult CPLT-C1 (BV = 1399)</li>
+     *     <li>Atlas AS7-D (BV = 1897)</li>
      * </ul>
      *
      * @param unitType type of unit to create
