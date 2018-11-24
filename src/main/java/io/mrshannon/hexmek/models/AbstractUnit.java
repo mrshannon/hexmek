@@ -82,7 +82,7 @@ public abstract class AbstractUnit implements Unit {
 
     @Override
     public boolean canMove() {
-        return currentMovement.getMovementPoints() > 0;
+        return !isDestroyed() && movementFactory.getCruiseMovementPoints() > 0;
     }
 
     /**
@@ -138,6 +138,11 @@ public abstract class AbstractUnit implements Unit {
     public List<Weapon> getWeapons() {
         return getComponents().stream().filter(c -> !c.isDestroyed()).map(
                 Component::getWeapons).flatMap(List::stream).collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean canFire() {
+        return getWeapons().size() > 0;
     }
 
     @Override

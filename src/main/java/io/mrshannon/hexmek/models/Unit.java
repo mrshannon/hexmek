@@ -54,6 +54,13 @@ public interface Unit extends Movable, Damageable, Originator {
     List<Weapon> getWeapons();
 
     /**
+     * Determine if the unit can fire.
+     *
+     * @return true if the unit has any weapons that can be fired
+     */
+    boolean canFire();
+
+    /**
      * Get the current armour points of the unit.
      *
      * @return current armour points

@@ -183,18 +183,8 @@ public class MechTest {
 
     @Test
     public void canMove() throws MovementPointsExhaustedException {
-        assertFalse(mech.canMove());
-        mech.halt();
-        assertFalse(mech.canMove());
-        mech.cruise();
         assertTrue(mech.canMove());
-        mech.flank();
-        assertTrue(mech.canMove());
-        mech.moveForward();
-        mech.moveForward();
-        mech.moveForward();
-        mech.moveForward();
-        mech.moveForward();
+        mech.applyDamage(mockWeapon, 1000);
         assertFalse(mech.canMove());
     }
 

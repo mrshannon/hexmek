@@ -163,18 +163,8 @@ public class VehicleTest {
 
     @Test
     public void canMove() throws MovementPointsExhaustedException {
-        assertFalse(vehicle.canMove());
-        vehicle.halt();
-        assertFalse(vehicle.canMove());
-        vehicle.cruise();
         assertTrue(vehicle.canMove());
-        vehicle.flank();
-        assertTrue(vehicle.canMove());
-        vehicle.moveForward();
-        vehicle.moveForward();
-        vehicle.moveForward();
-        vehicle.moveForward();
-        vehicle.moveForward();
+        vehicle.applyDamage(mockWeapon, 1000);
         assertFalse(vehicle.canMove());
     }
 
