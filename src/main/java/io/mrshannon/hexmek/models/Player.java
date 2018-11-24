@@ -63,6 +63,24 @@ public class Player {
     }
 
     /**
+     * Get a list of all units that can move.
+     *
+     * @return list of units that can move
+     */
+    public List<Unit> getMovableUnits() {
+        return units.stream().filter(Movable::canMove).collect(Collectors.toList());
+    }
+
+    /**
+     * Get a list of all units that can fire at least one weapon.
+     *
+     * @return list of units that can fire
+     */
+    public List<Unit> getFireableUnits() { // TODO: Find places where this should have been used.
+        return units.stream().filter(Unit::canFire).collect(Collectors.toList());
+    }
+
+    /**
      * Returns true if the player is still in the game.  A player is no longer in the game when all their units are
      * destroyed.
      *
