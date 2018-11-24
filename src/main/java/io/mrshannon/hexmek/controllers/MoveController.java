@@ -22,7 +22,7 @@ public class MoveController extends GameController {
     /**
      * Construct a move controller.
      *
-     * @param other {@code MovementStageController} to copy the game state from and return to after movement is over
+     * @param other {@link MovementStageController} to copy the game state from and return to after movement is over
      * @param unit unit to move
      */
     public MoveController(MovementStageController other, Unit unit) {
@@ -35,7 +35,7 @@ public class MoveController extends GameController {
      * Run the controller, this displays the map and movement status and then asks the player which move they wish to
      * make.
      *
-     * @return the original {@code MovementStageController}
+     * @return the original {@link MovementStageController}
      * @throws IOException
      */
     @Override

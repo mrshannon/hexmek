@@ -22,7 +22,7 @@ public class FireController extends GameController {
     /**
      * Construct a fire controller.
      *
-     * @param other {@code CombatStageController} to copy the game state from and return to after firing is over
+     * @param other {@link CombatStageController} to copy the game state from and return to after firing is over
      * @param attacker attacking unit
      * @param target target unit
      */
@@ -37,7 +37,7 @@ public class FireController extends GameController {
      * Run the controller, this displays weapon options and asks the player which weapons to fire and then fires them,
      * reporting the damage.
      *
-     * @return the original {@code CombatStageController}
+     * @return the original {@link CombatStageController}
      * @throws IOException
      */
     @Override

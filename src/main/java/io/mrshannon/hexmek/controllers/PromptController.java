@@ -169,7 +169,7 @@ public abstract class PromptController extends GameController {
     /**
      * Handle the 'exit'/'quit' command which ends the game.
      *
-     * @return the {@code ExitController} which quits the game when run
+     * @return the {@link ExitController} which quits the game when run
      */
     private Controller handleExit() {
         return new ExitController();
