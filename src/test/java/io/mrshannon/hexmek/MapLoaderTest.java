@@ -37,7 +37,7 @@ public class MapLoaderTest {
         assertEquals(15, defaultMap.getWidth());
         assertEquals(17, defaultMap.getHeight());
 
-        assertEquals(clear, defaultMap.getTile(new Hex(1, 1)));
+        assertEquals(lightWoods, defaultMap.getTile(new Hex(1, 1)));
         assertEquals(clear, defaultMap.getTile(new Hex(1, 2)));
         assertEquals(clear, defaultMap.getTile(new Hex(1, 3)));
         assertEquals(clear, defaultMap.getTile(new Hex(1, 4)));
@@ -55,7 +55,7 @@ public class MapLoaderTest {
         assertEquals(clear, defaultMap.getTile(new Hex(1, 16)));
         assertEquals(clear, defaultMap.getTile(new Hex(1, 17)));
 
-        assertEquals(clear, defaultMap.getTile(new Hex(2, 1)));
+        assertEquals(lightWoods, defaultMap.getTile(new Hex(2, 1)));
         assertEquals(clear, defaultMap.getTile(new Hex(2, 2)));
         assertEquals(clear, defaultMap.getTile(new Hex(2, 3)));
         assertEquals(clear, defaultMap.getTile(new Hex(2, 4)));
@@ -280,7 +280,7 @@ public class MapLoaderTest {
         assertEquals(clear, defaultMap.getTile(new Hex(14, 13)));
         assertEquals(clear, defaultMap.getTile(new Hex(14, 14)));
         assertEquals(clear, defaultMap.getTile(new Hex(14, 15)));
-        assertEquals(clear, defaultMap.getTile(new Hex(14, 16)));
+        assertEquals(lightWoods, defaultMap.getTile(new Hex(14, 16)));
 
         assertEquals(clear, defaultMap.getTile(new Hex(15, 1)));
         assertEquals(clear, defaultMap.getTile(new Hex(15, 2)));
@@ -297,7 +297,7 @@ public class MapLoaderTest {
         assertEquals(clear, defaultMap.getTile(new Hex(15, 13)));
         assertEquals(clear, defaultMap.getTile(new Hex(15, 14)));
         assertEquals(clear, defaultMap.getTile(new Hex(15, 15)));
-        assertEquals(clear, defaultMap.getTile(new Hex(15, 16)));
+        assertEquals(lightWoods, defaultMap.getTile(new Hex(15, 16)));
         assertEquals(clear, defaultMap.getTile(new Hex(15, 17)));
     }
 }
