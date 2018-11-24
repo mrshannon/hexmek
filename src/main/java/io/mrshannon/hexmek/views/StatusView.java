@@ -26,6 +26,7 @@ public class StatusView implements View {
      */
     @Override
     public void render() {
+        System.out.println();
         printStatus();
         System.out.println();
         printWeapons();
@@ -61,7 +62,7 @@ public class StatusView implements View {
                 mech.getLeftTorsoArmour(), mech.getRightTorsoArmour());
         System.out.printf("Facing: %-30s /%2d/\\__/%2d\\__/\\%2d\\\n", mech.getFacing(),
                 mech.getLeftArmArmour(), mech.getCenterTorsoArmour(), mech.getRightArmArmour());
-        System.out.printf("Movement Points:                       \\_/  __\\__/__  \\_/\n");
+        System.out.print("Movement Points:                       \\_/  __\\__/__  \\_/\n");
         System.out.printf("    Walking: %2d                            /  \\  /  \\\n", mech.getCruiseMovementPoints());
         System.out.printf("    Running: %2d                            |%2d|  |%2d|\n",
                 mech.getFlankMovementPoints(), mech.getLeftLegArmour(), mech.getRightLegArmour());
@@ -87,7 +88,7 @@ public class StatusView implements View {
                 vehicle.getHex().getColumn(), vehicle.getHex().getRow());
         System.out.printf("Facing: %-34s |%2d/%2d\\%2d|\n", vehicle.getFacing(),
                 vehicle.getLeftSideArmour(), vehicle.getTurretArmour(), vehicle.getRightSideArmour());
-        System.out.printf("Movement Points:                           |  \\__/  |\n");
+        System.out.print("Movement Points:                           |  \\__/  |\n");
         System.out.printf("    Walking: %2d                            |__/%2d\\__|\n",
                 vehicle.getCruiseMovementPoints(), vehicle.getRearArmour());
         System.out.printf("    Running: %2d                            \\________/\n",

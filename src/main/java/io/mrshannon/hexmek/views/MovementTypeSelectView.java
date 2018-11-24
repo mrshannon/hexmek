@@ -24,6 +24,8 @@ public class MovementTypeSelectView implements View {
      */
     @Override
     public void render() {
+        System.out.println();
+        System.out.println("    halt   = do not move at all");
         if (unit instanceof Mech) {
             printMechChoices();
         } else {
@@ -37,25 +39,23 @@ public class MovementTypeSelectView implements View {
      * Print mech movement choices.
      */
     private void printMechChoices() {
-        System.out.println("    h. Halt");
-        System.out.printf("    w. Walk      (%d MP)  (+1 gunnery)\n", unit.getCruiseMovementPoints());
-        System.out.printf("    r. Run       (%d MP)  (+2 gunnery)\n", unit.getFlankMovementPoints());
+        System.out.printf("    walk   = %d MP  (+1 gunnery)\n", unit.getCruiseMovementPoints());
+        System.out.printf("    run    = %d MP  (+2 gunnery)\n", unit.getFlankMovementPoints());
     }
 
     /**
      * Print vehicle movement choices.
      */
     private void printVehicleChoices() {
-        System.out.println("    h. Halt");
-        System.out.printf("    c. Cruise    (%d MP)  (+1 gunnery)\n", unit.getCruiseMovementPoints());
-        System.out.printf("    f. Flank     (%d MP)  (+2 gunnery)\n", unit.getFlankMovementPoints());
+        System.out.printf("    cruise = %d MP  (+1 gunnery)\n", unit.getCruiseMovementPoints());
+        System.out.printf("    flank  = %d MP  (+2 gunnery)\n", unit.getFlankMovementPoints());
     }
 
     /**
      * Print the movement type prompt.
      */
     private void printPrompt() {
-        System.out.println("Select movement type: ");
+        System.out.print("Select movement type: ");
     }
 
 }

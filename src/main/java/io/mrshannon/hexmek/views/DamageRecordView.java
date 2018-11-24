@@ -26,6 +26,7 @@ public class DamageRecordView implements View {
      */
     @Override
     public void render() {
+        System.out.println();
         for (var record : records) {
             System.out.println(record);
         }

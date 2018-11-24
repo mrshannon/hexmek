@@ -38,19 +38,11 @@ public class MapView implements View {
     }
 
     /**
-     * Add a new unit to the map view.
-     *
-     * @param unit unit to add
-     */
-    public void addUnit(Unit unit) {
-        units.add(unit);
-    }
-
-    /**
      * Render the map view.
      */
     @Override
     public void render() {
+        System.out.println();
         cacheUnits();
         printColumnHeadings();
         printTop();
@@ -165,16 +157,13 @@ public class MapView implements View {
     private void printRow(int row, boolean lastLine) {
         System.out.print(String.format("  %2d ", row));
         for (int column = 1; column <= map.getWidth(); ++column) {
-            Hex hex = new Hex(column, row);
             if ((column & 1) == 1) { // odd
+                Hex hex = new Hex(column, row);
                 char c = getTerrainChar(hex);
                 System.out.print(String.format("/%c%c\\", c, c));
             } else { // even
-                if (lastLine) {
-                    System.out.print("__");
-                } else {
-                    System.out.print(String.format("%c%c", getUnitIdChar(hex), getUnitDirectionChar(hex)));
-                }
+                Hex hex = new Hex(column, row - 1);
+                System.out.print(String.format("%c%c", getUnitIdChar(hex), getUnitDirectionChar(hex)));
             }
         }
         System.out.print("\n     ");

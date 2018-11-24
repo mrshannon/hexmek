@@ -41,6 +41,7 @@ public class ListView implements View {
      */
     @Override
     public void render() {
+        System.out.println();
         printHeader();
         printSeparator();
         printLines();
@@ -50,7 +51,7 @@ public class ListView implements View {
      * Print the header line.
      */
     private void printHeader() {
-        String format = "%-" + getMaxPlayerLength() + "s   %-" + getMaxTypeLength() + "s   Health      Grid   Facing";
+        String format = "%-" + getMaxPlayerLength() + "s   ID   %-" + getMaxTypeLength() + "s   Health      Grid   Facing";
         System.out.println(String.format(format, "Player", "Type"));
     }
 
@@ -62,7 +63,7 @@ public class ListView implements View {
         for (int i = 0; i < getMaxPlayerLength(); ++i) {
             builder.append('-');
         }
-        builder.append("   ");
+        builder.append("   --   ");
         for (int i = 0; i < getMaxTypeLength(); ++i) {
             builder.append('-');
         }
@@ -94,8 +95,8 @@ public class ListView implements View {
         } else {
             health = String.format("%5d%%", (int) (unit.getArmourPercent()*100));
         }
-        String format = "%-" + getMaxPlayerLength() + "s   %-" + getMaxTypeLength() + "s   %9s   %02d%02d   %s";
-        System.out.println(String.format(format, player, unit.getType(), health,
+        String format = "%-" + getMaxPlayerLength() + "s    %c   %-" + getMaxTypeLength() + "s   %9s   %02d%02d   %s";
+        System.out.println(String.format(format, player, unit.getId(), unit.getType(), health,
                 unit.getHex().getColumn(), unit.getHex().getRow(), unit.getFacing().toString()));
     }
 

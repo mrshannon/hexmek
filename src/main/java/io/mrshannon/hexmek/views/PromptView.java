@@ -34,11 +34,12 @@ public class PromptView implements View {
      */
     @Override
     public void render() {
+        System.out.println();
         if (stage != null) {
             System.out.printf("[%s](%s): ", player, stage);
         } else {
             System.out.printf("[%s]: ", player);
         }
     }
-    
+
 }

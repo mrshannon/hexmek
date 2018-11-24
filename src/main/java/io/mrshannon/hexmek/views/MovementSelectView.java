@@ -8,17 +8,14 @@ import io.mrshannon.hexmek.models.Unit;
 public class MovementSelectView implements View {
 
     private Unit unit;
-    private boolean canMoveBackwards;
 
     /**
      * Create the view.
      *
      * @param unit unit to move
-     * @param canMoveBackwards true if backwards movement is allowed
      */
-    public MovementSelectView(Unit unit, boolean canMoveBackwards) {
+    public MovementSelectView(Unit unit) {
         this.unit = unit;
-        this.canMoveBackwards = canMoveBackwards;
     }
 
     /**
@@ -26,6 +23,7 @@ public class MovementSelectView implements View {
      */
     @Override
     public void render() {
+        System.out.println();
         printStatusLine();
         System.out.println();
         printOptions();
@@ -47,14 +45,12 @@ public class MovementSelectView implements View {
      * Print the available movement options.
      */
     private void printOptions() {
-        System.out.println("    w. Move Forward");
-        if (canMoveBackwards) {
-            System.out.println("    s. Move Backward");
-        }
-        System.out.println("    a. Rotate Left");
-        System.out.println("    d. Rotate Right");
-        System.out.println("    e. End Movement");
-        System.out.println("    r. Reset");
+        System.out.println("    forward = Move forward");
+        System.out.println("    back    = Move backward");
+        System.out.println("    left    = Rotate left");
+        System.out.println("    right   = Rotate right");
+        System.out.println("    end     = End movement");
+        System.out.println("    reset   = Reset to before movement");
     }
 
     /**

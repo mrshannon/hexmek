@@ -36,6 +36,7 @@ public class FireSelectView implements View {
      */
     @Override
     public void render() {
+        System.out.println();
         printMessageLine();
         System.out.println();
         printHeader();
@@ -83,7 +84,7 @@ public class FireSelectView implements View {
      * Print the prompt for weapon choice.
      */
     private void printPrompt() {
-        System.out.print("List weapon #'s to fire (leave blank to reset): ");
+        System.out.print("List weapon #'s to fire (leave blank to cancel): ");
     }
 
 }
