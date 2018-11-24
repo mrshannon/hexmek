@@ -14,7 +14,7 @@ public class CombatStageController extends PromptController {
     /**
      * Construct a movement stage controller from a game controller.
      *
-     * @param other game controller to copy the state from
+     * @param other game controller to copy the game state from
      */
     public CombatStageController(GameController other) {
         super(other);

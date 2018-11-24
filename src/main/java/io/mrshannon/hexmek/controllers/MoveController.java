@@ -35,7 +35,7 @@ public class MoveController extends GameController {
      * Run the controller, this displays the map and movement status and then asks the player which move they wish to
      * make.
      *
-     * @return this controller until the movement is complete, then the original stage controller
+     * @return the original {@code MovementStageController}
      * @throws IOException
      */
     @Override
