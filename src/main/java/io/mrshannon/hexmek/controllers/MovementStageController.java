@@ -66,7 +66,7 @@ public class MovementStageController extends PromptController {
     /**
      * Handle the 'move' command, starting a movement sequence.
      *
-     * @param args arguments from the user, in the form ['status', 'id']
+     * @param args arguments from the user, in the form ['move', 'id']
      * @return a {@code MovementController} if there are no errors, same {@code MovementStageController} otherwise
      */
     private Controller handleMove(List<String> args) {
