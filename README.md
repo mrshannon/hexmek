@@ -5,6 +5,12 @@ A console based board game simulator for a reduced set of the Classic
 BattleTech rules.
 
 
+Documentation
+-------------
+
+[https://mrshannon.github.io/hexmek](https://mrshannon.github.io/hexmek)
+
+
 How to play
 -----------
 
