@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"io.mrshannon.hexmek"},{"l":"io.mrshannon.hexmek.controllers"},{"l":"io.mrshannon.hexmek.models"},{"l":"io.mrshannon.hexmek.views"}]
