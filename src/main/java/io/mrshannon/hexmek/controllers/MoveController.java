@@ -96,6 +96,7 @@ public class MoveController extends GameController {
             (new MapView(getMap(), getUnits())).render();
             (new MovementSelectView(unit)).render();
             var command = readLine();
+            var saved = unit.save();
             try {
                 switch (command) {
                     case "forward":
@@ -124,7 +125,8 @@ public class MoveController extends GameController {
             } catch (IndexOutOfBoundsException e) {
                 (new MessageView("Cannot move out out bounds.")).render();
             } catch (MovementPointsExhaustedException e) {
-                break;
+                (new MessageView("Not enough movement points.")).render();
+                saved.restore();
             }
         }
         returnTo.takeTurn(unit);
