@@ -10,7 +10,7 @@ import io.mrshannon.hexmek.models.Weapon;
  */
 public class StatusView implements View {
 
-    Unit unit;
+    private Unit unit;
 
     /**
      * Create a unit status view.
